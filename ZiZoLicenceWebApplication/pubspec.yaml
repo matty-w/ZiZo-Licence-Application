@@ -1,0 +1,8 @@
+name: ZiZoWebServiceBuild03
+version: 0.3.1
+author: Matthew Whitmore
+description: An Application aiming to make the task of adding licence users easier.
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  browser: any

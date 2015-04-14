@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles/login.css">
+  	<meta charset="utf-8">
+    <title>Remove User</title>
+    <script type="application/dart" src="removeuser.dart"></script>
+    <script src="packages/browser/dart.js"> </script>
+  </head>
+ 
+  <body>   
+    <img id="topPage" src="images/whiteBackground.jpg"/>
+    <img id="zizoLogo" src="images/logo-zizo.jpg"/>
+    <img id="bottomPage" src="images/whiteBackground.jpg"/>
+    <br><br><br><br><br><br>
+    <h2>Remove User</h2>
+    
+    <form id = "default_form" action="#">
+  <fieldset id = "default_fieldset">
+    <legend id = "default_legend">Remove A User</legend>
+      <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
+      <p><label id = "formLabel" for = "url">Url:</label> <input type = "text" id = "url" required/><br /></p>
+      <p><label id = "formLabel" for = "filter">Filter:</label><input type = "text" id = "filter" /></p>
+      <p><input type = "submit" id = "removeUser_button" value="Remove User" class="btnSubmit"/></p>
+  </fieldset>
+ </form>
+    
+	<ul id="menu">
+	<li><a href="createLicence.html">Create A New Licence</a></li>
+	<li><a href="addUser.html">Add User To Licence Server</a></li>
+	<li><a href="addPermissions.html">Add Permissions For A User</a></li>
+	<li><a href="removeUser.html">Remove User</a></li>
+	<li><a href="logAccess.html">View Logs</a></li>
+	</ul>
+  
+    <p id="loggedInUserLabel"> 
+        Logged In As: <output id="username-output"></output> 
+    </p>
+    
+    <button id="logoutButton" type="button" class="defaultButton">Logout</button>
+    
+  </body>
+</html>

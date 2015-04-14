@@ -1,0 +1,348 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body
+{
+	background-color: #53868B;
+}
+
+h2
+{
+	color: white;
+	text-shadow: 1px 1px #000000;
+	text-align: center;
+}
+
+h3
+{
+	color: white;
+	text-shadow: 1px 1px #000000;
+	text-align: center;
+}
+
+#menu
+{
+	position: fixed;
+	left: 0%;
+	top: 30%;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+a:link, a:visited 
+{
+	display: block;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #458B00;
+	width: 250px;
+	text-align: center;
+	padding: 4px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+	
+a:hover, a:active 
+{
+	background-color: #9ACD32;
+}
+
+
+#topPage
+{
+	position: absolute;
+    left: 0px;
+    top: 0px;
+	width: 100%;
+	min-height: 12%;
+    z-index: -1;
+}
+
+#zizoLogo
+{
+	position: absolute;
+    left: 150px;
+    top: 0px;
+	height: auto;
+	width: auto;
+}
+
+#bottomPage
+{
+	position: absolute;
+    bottom: 0px;
+	left: 0px;
+	width: 100%;
+	min-height: 12%;
+}
+
+#usernameTextbox
+{
+	position: fixed;
+	height: 25px;
+	width: 13.5%;
+	left: 47%;
+}
+#usernameLabel
+{
+	color: white;
+	text-shadow: 1px 1px #000000;
+	position:fixed;
+	left: 40%;
+}
+
+#passwordTextbox
+{
+	position: fixed;
+	height: 25px;
+	width: 13.5%;
+	left: 47%;
+}
+
+#passwordLabel
+{
+	color: white;
+	text-shadow: 1px 1px #000000;
+	position: fixed;
+	left: 40%;
+}
+
+#testButton
+{
+  position: fixed;
+  left: 2%;
+  top: 75%;
+}
+
+#resetButton
+{
+	position: fixed;
+	left: 46.5%;
+	width: 7%;
+	height: auto;
+}
+
+#submitButton
+{
+	position: fixed;
+	left: 53.75%;
+	width: 7%;
+	height: auto;
+}
+
+#logoutButton
+{
+    position: fixed;
+	left: 90%;
+	top: 80%;
+	width: 9%;
+	height: auto;
+}
+
+#loggedInUserLabel
+{
+    color: white;
+	text-shadow: 1px 1px #000000;
+	position: fixed;
+	left: 2%;
+	top: 80%;
+}
+
+
+
+
+
+#formLabel
+{
+   width: 7em;
+   float: left;
+   text-align: right;
+   margin-right: 0.5em;
+   display: block
+}
+
+#default_fieldset
+{
+   border: 1px solid #006400;
+   width: 27em
+}
+
+#default_legend
+{
+   color: #fff;
+   background: #006400;
+   border: 1px solid #000000;
+   padding: 2px 6px
+}
+
+#default_submitButton
+{
+   margin-left: 78%;
+}
+
+#addPermissions_button
+{
+  margin-left: 65%;
+}
+
+#removeUser_button
+{
+  margin-left: 70%;
+}
+
+#default_form
+{
+  position: fixed;
+  top: 28%;
+  left: 38%;
+}
+
+#errorMessage
+{
+  color: white;
+  text-shadow: 1px 1px #000000;
+}
+
+
+
+
+
+
+
+.loginButtons
+{
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #269126;
+  padding: 4px 15px 4px 15px;
+  text-decoration: none;
+}
+
+.loginButtons:hover
+{
+  background: #27a155;
+  text-decoration: none;
+}
+
+.defaultButton 
+{
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 14px;
+  background: #269126;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.defaultButton:hover 
+{
+  background: #27a155;
+  text-decoration: none;
+}
+
+.btnSubmit
+{
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #269126;
+  padding: 4px 15px 4px 15px;
+  text-decoration: none;
+}
+
+.btnSubmit:hover
+{
+  background: #27a155;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+#canAddUser
+{
+  position: relative;
+  left: 50px;
+}
+
+#canRemoveUser
+{
+  position: relative;
+  left: 24px;
+}
+
+
+#canAddPermissions
+{
+  position: relative;
+  left: 100px;
+}
+
+#canViewLogs
+{
+  position: relative;
+  left: 113px;
+}
+
+#canAddUserText
+{
+  position: relative;
+  left: 0px;
+}
+
+#canAddPermissionsText
+{
+  position: relative;
+  left: 70px;
+}
+
+#canRemoveUserText
+{
+  position: relative;
+  left: 0px;
+}
+
+#canViewLogsText
+{
+  position: relative;
+  left: 44px;
+}
+
+
+
+
+
+
+
+
+
+table#logTable
+{
+  width: 100%; 
+  background-color: #f1f1c1;
+  border: 1px solid black;
+}
+
+th 
+{
+  text-align: left;
+  border: 1px solid black;
+}
+
+td
+{
+  border: 1px solid black;
+}
