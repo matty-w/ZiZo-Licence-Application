@@ -6,7 +6,6 @@ void main()
   var log = new LoginAndOut();
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
-  querySelector("#selectAll").onClick.listen(tickAlloptions);
   querySelector("#confirmPassword").onChange.listen(checkPasswords);
 }
 

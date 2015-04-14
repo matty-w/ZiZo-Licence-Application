@@ -334,15 +334,20 @@ table#logTable
   width: 100%; 
   background-color: #f1f1c1;
   border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 th 
 {
   text-align: left;
   border: 1px solid black;
+  background-color: #279252;
+  color: #F0F2F0;
 }
 
 td
 {
   border: 1px solid black;
+  background-color: #88D3A6;
 }

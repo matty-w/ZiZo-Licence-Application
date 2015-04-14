@@ -166,6 +166,8 @@ checkDateValue(Event e)
   
   if(shortDate == nowWithoutTime)
     dateInput.setCustomValidity("Invalid Date : Licence Cannot Expire On Current Day");
+  else if(shortDate == null)
+    dateInput.setCustomValidity("Please Enter A Date");
   else if(!(shortDate.isAfter(nowWithoutTime)))
     dateInput.setCustomValidity("Invalid Date: Licence Cannot Be Set Before Current Day");
   else if(!(shortDate.isAfter(nowPlusThree)))

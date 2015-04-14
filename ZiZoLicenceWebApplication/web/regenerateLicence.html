@@ -3,9 +3,9 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="styles/login.css">
-    <meta charset="utf-8">
-    <title>Add Permissions</title>
-    <script type="application/dart" src="addpermissions.dart"></script>
+  	<meta charset="utf-8">
+    <title>Remove User</title>
+    <script type="application/dart" src="regeneratelicence.dart"></script>
     <script src="packages/browser/dart.js"> </script>
   </head>
  
@@ -14,25 +14,9 @@
     <img id="zizoLogo" src="images/logo-zizo.jpg"/>
     <img id="bottomPage" src="images/whiteBackground.jpg"/>
     <br><br><br><br><br><br>
-    <h2>Add Permissions</h2>
     
- <form id = "default_form" action="#">
-  <fieldset id = "default_fieldset">
-    <legend id = "default_legend">Add A Permission</legend>
-      <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
-      <p>Select The Permission For The User:</p>
-      <select>
-        <option>Can Check Other Users Entries</option>
-        <option>Can Set Password</option>
-        <option>Can Delete A User</option>
-        <option>Can Remove Permissions</option>
-      </select>
-      <p><input type = "submit" id = "addPermissions_button" value="Add Permission" class="btnSubmit"/></p>
-  </fieldset>
- </form>  
-    
-    <ul id="menu">
-    <li><a href="createLicence.html">Create A New Licence</a></li>
+	<ul id="menu">
+	<li><a href="createLicence.html">Create A New Licence</a></li>
 	<li><a href="addUser.html">Add User To Licence Server</a></li>
 	<li><a href="addPermissions.html">Add Permissions For A User</a></li>
     <li><a href="regenerateLicence.html">Regenerate A Licence</a></li>
@@ -40,14 +24,13 @@
 	<li><a href="removeUser.html">Remove User</a></li>
 	<li><a href="logAccess.html">View Logs</a></li>
     <li><a href="viewLicences.html">View Licences</a></li>
-    </ul>
+	</ul>
   
     <p id="loggedInUserLabel"> 
         Logged In As: <output id="username-output"></output> 
     </p>
-  
+    
     <button id="logoutButton" type="button" class="defaultButton">Logout</button>
     
   </body>
 </html>
-
