@@ -190,6 +190,11 @@ a:hover, a:active
   margin-left: 70%;
 }
 
+#export_button
+{
+  margin-left: 70%;
+}
+
 #default_form
 {
   position: fixed;
@@ -355,5 +360,5 @@ td
 #tableDiv
 {
   overflow: scroll;
-  height: 15em;
+  height: 10em;
 }
