@@ -5,6 +5,7 @@ import 'licenceserverrequest.dart';
 
 String licenceLength;
 String defaultDate = today(3);
+String isoDate;
 
 void main()
 {
@@ -62,7 +63,7 @@ createUnlimitedLicence(Event e)
 {
   createDefaultDate();
   OutputElement unlimited = querySelector("#expiryDate");
-  unlimited.value = "";
+  unlimited.innerHtml = "";
   disableTextbox(e);
 }
 
@@ -71,7 +72,7 @@ createUserSpecifiedLicence(Event e)
   enableTextbox(e);
   DateInputElement i = querySelector("#specifiedLength");
   OutputElement specified = querySelector("#expiryDate");
-  specified.value = "";
+  specified.innerHtml = "";
   licenceLength = i.value;
 }
 
@@ -90,7 +91,7 @@ disableTextbox(Event e)
 void submitForm(MouseEvent e)
 {
   DateInputElement dateInput = querySelector("#specifiedLength");
-  DateTime shortDate = dateInput.valueAsDate;
+  String shortDate = licenceLengthValue();
   InputElement un = querySelector("#username");
   InputElement fe = querySelector("#filter");
   InputElement url = querySelector("#url");
@@ -106,15 +107,9 @@ void submitForm(MouseEvent e)
     userValue = userValue+"("+url.value+")";
   
   LicenceServerRequest.addLicence(
-      userValue,shortDateFormat(shortDate),fe.value,
+      userValue,shortDate,fe.value,
       window.sessionStorage['username'],window.sessionStorage['password'],
       "localhost",(s) => window.alert(s),(s) => window.alert("fail: "+s));
-}
-
-String shortDateFormat(DateTime date)
-{
-  String s = date.toIso8601String();
-  return s.substring(0,10);
 }
 
 checkFilter(Event e)
@@ -145,6 +140,16 @@ String licenceLengthChoice()
     return "";
 }
 
+String licenceLengthValue()
+{
+  if((querySelector("#thirtyDays") as RadioButtonInputElement).checked)
+    return isoDate;
+  else if((querySelector("#specified") as RadioButtonInputElement).checked)
+    return chosenDate();
+  else
+    return "";
+}
+
 String today(int days)
 {
   DateTime baseDate = new DateTime.now();
@@ -167,10 +172,10 @@ void thirtyDayDate()
   DateTime baseDate = new DateTime.now();
   DateTime licenceDate = baseDate.add(new Duration(days: 30));
   String date = licenceDate.toString();
-  String shortDate = date.substring(0,10);
-  String printedDate = shortDate.split("-").reversed.join("-");
+  isoDate = date.substring(0,10);
+  String printedDate = isoDate.split("-").reversed.join("-");
   OutputElement thirtyDays = querySelector("#expiryDate");
-  thirtyDays.value = "The Licence Will Expire On: "+printedDate; 
+  thirtyDays.innerHtml = "The Licence Will Expire On: "+printedDate;
   licenceLength = thirtyDays.value;
 }
 
