@@ -41,7 +41,7 @@ createDefaultDate()
 setDefaultIpAddress()
 {
   InputElement ipAddress = querySelector("#url");
-  ipAddress.value = "217.172.136.131:8080";
+  ipAddress.value = window.location.host;
 }
 
 listenToRadioButtons()
