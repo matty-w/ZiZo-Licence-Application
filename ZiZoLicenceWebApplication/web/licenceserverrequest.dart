@@ -13,6 +13,21 @@ class LicenceServerRequest extends SoapRequest
     result.getStringResult((s) => (s=="true")? onPass() : onFail ());
   }
   
+  static void addLicence(String user,String date,String filter,String adminName,String password,
+                         String host,Function onPass,Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("addLicence");
+    result.addArgument(user);
+    result.addArgument(date);
+    result.addArgument(filter);
+    result.addArgument(adminName);
+    result.addArgument(password);
+    result.getStringResult((String s) => (s.contains("-"))? onPass(s) : onFail (s));
+  }
+  
   @override
   namespace()
   {

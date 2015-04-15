@@ -1,6 +1,7 @@
 import 'loginfunctions.dart';
 import 'dart:js';
 import 'dart:html';
+import 'licenceserverrequest.dart';
 
 String licenceLength;
 String defaultDate = today(3);
@@ -88,7 +89,32 @@ disableTextbox(Event e)
 
 void submitForm(MouseEvent e)
 {
-  print("Task Complete");
+  DateInputElement dateInput = querySelector("#specifiedLength");
+  DateTime shortDate = dateInput.valueAsDate;
+  InputElement un = querySelector("#username");
+  InputElement fe = querySelector("#filter");
+  InputElement url = querySelector("#url");
+  String userValue;
+
+  if (un.value.length==0)
+    return;
+  if (!hasButtonSet())
+    return;
+  
+  userValue = un.value;
+  if (url.value.length>0)
+    userValue = userValue+"("+url.value+")";
+  
+  LicenceServerRequest.addLicence(
+      userValue,shortDateFormat(shortDate),fe.value,
+      window.sessionStorage['username'],window.sessionStorage['password'],
+      "localhost",(s) => window.alert(s),(s) => window.alert("fail: "+s));
+}
+
+String shortDateFormat(DateTime date)
+{
+  String s = date.toIso8601String();
+  return s.substring(0,10);
 }
 
 checkFilter(Event e)
@@ -153,6 +179,13 @@ void setRadioButtons()
   (querySelector("#thirtyDays") as RadioButtonInputElement).checked = false;
   (querySelector("#neverExpires") as RadioButtonInputElement).checked = false;
   (querySelector("#specified") as RadioButtonInputElement).checked = false;
+}
+
+bool hasButtonSet()
+{
+  return (querySelector("#thirtyDays") as RadioButtonInputElement).checked ||
+  (querySelector("#neverExpires") as RadioButtonInputElement).checked ||
+  (querySelector("#specified") as RadioButtonInputElement).checked;
 }
 
 checkDateValue(Event e)

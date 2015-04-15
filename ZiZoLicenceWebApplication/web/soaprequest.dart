@@ -96,9 +96,7 @@ class SoapRequest
   
   writeRequestArgument(int i)
   {
-    buffer.writeln("<arg"+i.toString()+">");
-    buffer.writeln(getArgument(i));
-    buffer.writeln("</arg"+i.toString()+">");
+    buffer.writeln("<arg"+i.toString()+">"+getArgument(i)+"</arg"+i.toString()+">");
   }
   
   getArgument(int i)
