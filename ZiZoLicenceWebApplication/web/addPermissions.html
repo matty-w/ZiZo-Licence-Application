@@ -21,12 +21,16 @@
     <legend id = "default_legend">Add A Permission</legend>
       <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
       <p>Select The Permission For The User:</p>
-      <select>
-        <option>Can Check Other Users Entries</option>
-        <option>Can Set Password</option>
-        <option>Can Delete A User</option>
-        <option>Can Remove Permissions</option>
+      <select id = "setPermissions">
+        <option value = "userEntries">Can Check Other Users Entries</option>
+        <option value = "changePassword">Can Change A Password</option>
+        <option value = "deleteUser">Can Delete A User</option>
+        <option value = "addPermissions">Can Add Permissions</option>
+        <option value = "removePermissions">Can Remove Permissions</option>
+        <option value = "listCommands">Can List Commands</option>
+        <option value = "addUser">Can Add A User</option>
       </select>
+      <p><output id = "permissionDescription"></output></p>
       <p><input type = "submit" id = "addPermissions_button" value="Add Permission" class="btnSubmit"/></p>
   </fieldset>
  </form>  
