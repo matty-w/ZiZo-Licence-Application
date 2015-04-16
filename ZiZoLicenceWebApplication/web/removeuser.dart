@@ -1,10 +1,14 @@
 import 'loginfunctions.dart';
 import 'dart:html';
 import 'dart:js';
+import 'helpscreenfunctions.dart';
 
 void main()
 {
   var log = new LoginAndOut();
+  var help = new HelpScreenFunctions();
+  
+  querySelector("#helpButton").onClick.listen(help.showScreen);
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   querySelector("#removeUser_button").onClick.listen(removeUser);

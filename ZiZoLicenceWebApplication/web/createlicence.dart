@@ -2,6 +2,7 @@ import 'loginfunctions.dart';
 import 'dart:js';
 import 'dart:html';
 import 'licenceserverrequest.dart';
+import 'helpscreenfunctions.dart';
 
 String licenceLength;
 String defaultDate = today(3);
@@ -9,6 +10,10 @@ String isoDate;
 
 void main()
 {
+  var help = new HelpScreenFunctions();
+  
+  querySelector("#helpButton").onClick.listen(help.showScreen);
+  
   setlogOut();
   disableDateLengthTextBox();
   createDefaultDate();
