@@ -11,7 +11,7 @@ void main()
   
   
   querySelector("#logoutButton").onClick.listen(log.logout);
-  querySelector("#helpButton").onClick.listen(help.showScreen);
+  querySelector("#helpButton").onClick.listen(help.showAddPermissionsScreen);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   
   setDescriptionText();

@@ -12,7 +12,7 @@ void main()
 {
   var help = new HelpScreenFunctions();
   
-  querySelector("#helpButton").onClick.listen(help.showScreen);
+  querySelector("#helpButton").onClick.listen(help.showCreateLicenceScreen);
   
   setlogOut();
   disableDateLengthTextBox();

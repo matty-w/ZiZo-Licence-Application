@@ -8,7 +8,7 @@ void main()
   var help = new HelpScreenFunctions();
   
   querySelector("#logoutButton").onClick.listen(log.logout);
-  querySelector("#helpButton").onClick.listen(help.showScreen);
+  querySelector("#helpButton").onClick.listen(help.showAddUsersScreen);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   querySelector("#confirmPassword").onChange.listen(checkPasswords);
 }
