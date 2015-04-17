@@ -19,6 +19,31 @@ h3
 	text-align: center;
 }
 
+#helpTitle
+{
+    color: white;
+	text-shadow: 1px 1px #000000;
+	text-align: center;
+	position: relative;
+	top: 5%;
+}
+
+#helpSubtitles
+{
+    color: white;
+	text-shadow: 1px 1px #000000;
+	text-align: left;
+}
+
+#helpParagraphs
+{
+    color: white;
+    text-shadow: 1px 1px #000000;
+	position: relative;
+	left: 10px;
+	margin-right: 5%;
+}
+
 #menu
 {
 	position: fixed;
