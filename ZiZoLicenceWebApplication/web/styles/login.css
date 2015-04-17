@@ -173,7 +173,7 @@ a:hover, a:active
 #default_fieldset
 {
    border: 1px solid #006400;
-   width: 27em
+   width: 25em
 }
 
 #default_legend
@@ -186,7 +186,12 @@ a:hover, a:active
 
 #default_submitButton
 {
-   margin-left: 78%;
+   margin-left: 65%;
+}
+
+#addUser_submitButton
+{
+  margin-left: 70%;
 }
 
 #addPermissions_button
