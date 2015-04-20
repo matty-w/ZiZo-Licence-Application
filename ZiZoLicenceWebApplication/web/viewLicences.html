@@ -4,7 +4,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="styles/login.css">
   	<meta charset="utf-8">
-    <title>Remove User</title>
+    <title>View Licences</title>
     <script type="application/dart" src="removelicence.dart"></script>
     <script src="packages/browser/dart.js"> </script>
   </head>
@@ -14,6 +14,31 @@
     <img id="zizoLogo" src="images/logo-zizo.jpg"/>
     <img id="bottomPage" src="images/whiteBackground.jpg"/>
     <br><br><br><br><br><br>
+    <h2>View Licences</h2>
+    
+ <form id = "default_form" action="#">
+  <fieldset id = "default_fieldset">
+    <legend id = "default_legend">View Licences</legend>
+      <p><label for = "adminCheckbox">Filter For Admin Licences Only:</label><input type = "checkbox" id = "adminCheckbox" /></p>
+      <p><label for = "filter">Filter:</label><input type = "text" id = "filter"></input><input type = "submit" id = "addPermissions_button" value="View Licences" 
+      class="btnSubmit"/></p>
+      <div id = "tableDiv">
+        <p><table id = "logTable" >
+          <tr>
+            <th>Option 1</th>
+            <th>Option 2</th>
+            <th>Option 3</th>
+          </tr>
+          <tr>
+            <td>Matthew</td>
+            <td>Whitmore</td>
+            <td>23</td>
+          </tr>
+      </table>
+      </div>
+      <p><input type = "button" id = "addPermissions_button" value = "Export Licences" class = "btnSubmit"/></p>
+  </fieldset>
+ </form>
     
 	<ul id="menu">
 	<li><a href="createLicence.html">Create A New Licence</a></li>

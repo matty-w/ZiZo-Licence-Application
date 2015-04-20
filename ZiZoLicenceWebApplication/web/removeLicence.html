@@ -4,7 +4,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="styles/login.css">
   	<meta charset="utf-8">
-    <title>Remove User</title>
+    <title>Remove Licence</title>
     <script type="application/dart" src="removelicence.dart"></script>
     <script src="packages/browser/dart.js"> </script>
   </head>
@@ -14,6 +14,15 @@
     <img id="zizoLogo" src="images/logo-zizo.jpg"/>
     <img id="bottomPage" src="images/whiteBackground.jpg"/>
     <br><br><br><br><br><br>
+    <h2>Remove A Licence</h2>
+    
+ <form id = "default_form" action="#">
+  <fieldset id = "default_fieldset">
+    <legend id = "default_legend">Remove A Licence</legend>
+      <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
+      <p><input type = "submit" id = "regenerateLicence_button" value="Remove Licence" class="btnSubmit"/></p>
+  </fieldset>
+ </form>
     
 	<ul id="menu">
 	<li><a href="createLicence.html">Create A New Licence</a></li>
