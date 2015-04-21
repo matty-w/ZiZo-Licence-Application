@@ -2,6 +2,9 @@ import 'loginfunctions.dart';
 import 'dart:html';
 import 'helpscreenfunctions.dart';
 
+bool confirmWidnow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk) Which Is Recommended, Are You Sure You Wish To Use"+ 
+        " This Username?");
+
 void main()
 {
   var log = new LoginAndOut();
@@ -10,49 +13,70 @@ void main()
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#helpButton").onClick.listen(help.showAddUsersScreen);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
+  querySelector("#password").onChange.listen(checkPasswords);
   querySelector("#confirmPassword").onChange.listen(checkPasswords);
+  querySelector("#addUser_submitButton").onClick.listen(checkUsername);
 }
 
-tickAlloptions(MouseEvent m)
+checkUsername(Event e)
 {
-  InputElement selectAll = querySelector("#selectAll") as CheckboxInputElement;
-  InputElement canRemoveUser = querySelector("#canRemoveUser") as CheckboxInputElement;
-  InputElement canAddUser = querySelector("#canAddUser") as CheckboxInputElement;
-  InputElement canAddPermissions = querySelector("#canAddPermissions") as CheckboxInputElement;
-  InputElement canViewLogs = querySelector("#canViewLogs") as CheckboxInputElement;
+  InputElement input = querySelector("#username");
+  String username = input.value;
   
-  if(selectAll.checked)
-  {
-    canRemoveUser.checked = true;
-    canAddUser.checked = true;
-    canAddPermissions.checked = true;
-    canViewLogs.checked = true;
-    canRemoveUser.disabled = true;
-    canAddUser.disabled = true;
-    canAddPermissions.disabled = true;
-    canViewLogs.disabled = true;
+  RegExp exp = new RegExp("[a-zA-Z0-9][a-zA-Z0-9-_\s]+@[a-zA-Z0-9-\s].+\.[a-zA-Z]{2,5}");
+  
+   
+  if(!(exp.hasMatch(username)))
+  {  
+    confirmWidnow;
+      if(confirmWidnow == true)
+        return;
+      else
+        e.preventDefault(); 
   }
   else
-  {
-    canRemoveUser.checked = false;
-    canAddUser.checked = false;
-    canAddPermissions.checked = false;
-    canViewLogs.checked = false;
-    canRemoveUser.disabled = false;
-    canAddUser.disabled = false;
-    canAddPermissions.disabled = false;
-    canViewLogs.disabled = false;
-  }
+    return;
 }
 
 checkPasswords(Event e)
 {
   InputElement password1 = querySelector("#password");
   InputElement password2 = querySelector("#confirmPassword");
+  String passwordFirst = password1.value;
+  String passwordSecond = password2.value;
   
-  if(password2.value != password1.value)
-    password2.setCustomValidity("Passwords Must Be Matching.");
-  else
-    password2.setCustomValidity("");
+  checkPasswordLength(passwordFirst.length);
+  checkPasswordsMatch(passwordFirst, passwordSecond);
 }
 
+checkPasswordLength(int length)
+{
+    InputElement password1 = querySelector("#password");
+
+    if(length <= 5)
+    {  
+      password1.setCustomValidity("The Password Must Be At Least 6 Characters Long");
+      return;
+    }  
+    else
+    {  
+      password1.setCustomValidity("");
+      return;
+    }
+}
+
+checkPasswordsMatch(String password, String confirmPassword)
+{
+  InputElement password2 = querySelector("#confirmPassword");
+  
+  if(confirmPassword != password)
+  {  
+    password2.setCustomValidity("Passwords Must Be Matching.");
+    return;
+  }
+  else
+  {  
+    password2.setCustomValidity("");
+    return;
+  }  
+}
