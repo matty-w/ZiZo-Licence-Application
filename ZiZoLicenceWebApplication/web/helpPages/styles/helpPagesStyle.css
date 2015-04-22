@@ -1,0 +1,31 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+body
+{
+	background-color: #53868B;
+}
+
+#helpTitle
+{
+    color: white;
+	text-shadow: 1px 1px #000000;
+	text-align: center;
+	position: relative;
+	top: 5%;
+}
+
+#helpSubtitles
+{
+    color: white;
+	text-shadow: 1px 1px #000000;
+	text-align: left;
+}
+
+#helpParagraphs
+{
+    color: white;
+    text-shadow: 1px 1px #000000;
+	position: relative;
+	left: 10px;
+	margin-right: 5%;
+}
