@@ -32,7 +32,10 @@ checkUsername(Event e)
       if(confirmWidnow == true)
         return;
       else
-        e.preventDefault(); 
+      {
+        e.preventDefault();
+        window.location.reload();
+      }  
   }
   else
     return;
