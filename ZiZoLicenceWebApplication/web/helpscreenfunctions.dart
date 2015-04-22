@@ -4,9 +4,10 @@ import 'dart:html';
 
 class HelpScreenFunctions
 {
+  
   showAddPermissionsScreen(MouseEvent m)
-  {
-     window.open("helpPages/addPermissionsHelp.html","",'width=500,height=300,scrollbars=yes');  
+  { 
+    window.open("helpPages/addPermissionsHelp.html","",'width=500,height=300,scrollbars=yes');  
   }
   
   showAddUsersScreen(MouseEvent m)

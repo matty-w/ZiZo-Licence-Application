@@ -118,6 +118,11 @@ a:hover, a:active
 	margin-left: 7.65em;
 }
 
+#permissionDescription
+{
+  color: white;
+  text-shadow: 1px 1px #000000;
+}
 
 #loginDiv
 {
@@ -203,10 +208,16 @@ a:hover, a:active
 
 
 
-
+#formTitles
+{
+   color: white;
+   text-shadow: 1px 1px #000000;
+}
 
 #formLabel
 {
+   color: white;
+   text-shadow: 1px 1px #000000; 
    width: 7em;
    float: left;
    text-align: right;
