@@ -12,7 +12,7 @@ class HelpScreenFunctions
   
   showAddUsersScreen(MouseEvent m)
   {
-    window.open("helpPages/addUserHelp.html","",'width=500,height=300,scrollbars=yes');
+    window.open("helpPages/addAdminHelp.html","",'width=500,height=300,scrollbars=yes');
   }
   
   showCreateLicenceScreen(MouseEvent m)
@@ -37,7 +37,7 @@ class HelpScreenFunctions
   
   showRemoveUsersScreen(MouseEvent m)
   {
-    window.open("helpPages/removeUserHelp.html","",'width=500,height=300,scrollbars=yes');
+    window.open("helpPages/removeAdminHelp.html","",'width=500,height=300,scrollbars=yes');
   }
   
   showViewLicencesScreen(MouseEvent m)
