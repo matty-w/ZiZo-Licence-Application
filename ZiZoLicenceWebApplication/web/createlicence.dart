@@ -96,6 +96,7 @@ disableTextbox(Event e)
 void submitForm(MouseEvent e)
 {
   DateInputElement dateInput = querySelector("#specifiedLength");
+  checkUsername(e);
   String shortDate = licenceLengthValue();
   InputElement un = querySelector("#username");
   InputElement fe = querySelector("#filter");
@@ -217,4 +218,31 @@ checkDateValue(Event e)
     dateInput.setCustomValidity("Invalid Date: Licence Must Have Minimum Length Of Three Days");
   else
     dateInput.setCustomValidity("");
+}
+
+checkUsername(Event e)
+{
+  InputElement input = querySelector("#username");
+  String username = input.value;
+  
+  bool confirmWidnow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk) Which Is Recommended, Are You Sure You Wish To Use"+ 
+          " This Username?");
+  
+  RegExp exp = new RegExp("[a-zA-Z0-9][a-zA-Z0-9-_\s]+@[a-zA-Z0-9-\s].+\.[a-zA-Z]{2,5}");
+  
+   
+  if(!(exp.hasMatch(username)))
+  {  
+    confirmWidnow;
+      if(confirmWidnow == true)
+        return;
+      else
+      {
+        e.preventDefault();
+        window.location.reload();
+        return;
+      }  
+  }
+  else
+    return;
 }
