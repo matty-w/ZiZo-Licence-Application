@@ -4,27 +4,27 @@
 
 body
 {
-	background-color: #53868B;
+  background-color: #53868B;
 }
 
 h2
 {
-    color: #ffffff; 
-    font-family: 'Lato', sans-serif; 
-    font-size: 30px; 
-    font-weight: 300; 
-	text-shadow: 1px 1px #000000;
-	text-align: center;
+  color: #ffffff; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  text-shadow: 1px 1px #000000;
+  text-align: center;
 }
 
 h3
 {
-	color: #ffffff; 
-    font-family: 'Lato', sans-serif; 
-    font-size: 20px; 
-    font-weight: 300; 
-	text-shadow: 1px 1px #000000;
-	text-align: center;
+  color: #ffffff; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 20px; 
+  font-weight: 300; 
+  text-shadow: 1px 1px #000000;
+  text-align: center;
 }
 
 table#logTable
@@ -54,40 +54,40 @@ td
 
 #topPage
 {
-	position: absolute;
-    left: 0px;
-    top: 0px;
-	width: 100%;
-	min-height: 12%;
-    z-index: -1;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  min-height: 12%;
+  z-index: -1;
 }
 
 #zizoLogo
 {
-	position: absolute;
-    left: 150px;
-    top: 0px;
-	height: auto;
-	width: auto;
+  position: absolute;
+  left: 150px;
+  top: 0px;
+  height: auto;
+  width: auto;
 }
 
 #bottomPage
 {
-	position: absolute;
-    bottom: 0px;
-	left: 0px;
-	width: 100%;
-	min-height: 12%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  min-height: 12%;
 }
 
 #menu
 {
-	position: fixed;
-	left: 0%;
-	top: 30%;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+  position: fixed;
+  left: 0%;
+  top: 30%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 #pageDiv
@@ -104,46 +104,46 @@ td
 
 #logoutButton
 {
-    position: fixed;
-	left: 90%;
-	top: 80%;
-	width: 9%;
-	height: auto;
+  position: fixed;
+  left: 90%;
+  top: 80%;
+  width: 9%;
+  height: auto;
 }
 
 #helpButton
 {
-    position: fixed;
-	left: 90%;
-	top: 15%;
-	width: 9%;
-	height: auto;
+  position: fixed;
+  left: 90%;
+  top: 15%;
+  width: 9%;
+  height: auto;
 }
 
 #loggedInUserLabel
 {
-    color: white;
-	text-shadow: 1px 1px #000000;
-	position: fixed;
-	left: 2%;
-	top: 80%;
+  color: white;
+  text-shadow: 1px 1px #000000;
+  position: fixed;
+  left: 2%;
+  top: 80%;
 }
 
 #formTitles
 {
-   color: white;
-   text-shadow: 1px 1px #000000;
+  color: white;
+  text-shadow: 1px 1px #000000;
 }
 
 #formLabel
 {
-   color: white;
-   text-shadow: 1px 1px #000000; 
-   width: 7em;
-   float: left;
-   text-align: right;
-   margin-right: 0.5em;
-   display: block
+  color: white;
+  text-shadow: 1px 1px #000000; 
+  width: 7em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block
 }
 
 #default_form
@@ -157,21 +157,21 @@ td
 
 #default_fieldset
 {
-   border: 1px solid #006400;
-   width: 25em
+  border: 1px solid #006400;
+  width: 25em
 }
 
 #default_legend
 {
-   color: #fff;
-   background: #006400;
-   border: 1px solid #000000;
-   padding: 2px 6px
+  color: #fff;
+  background: #006400;
+  border: 1px solid #000000;
+  padding: 2px 6px
 }
 
 #default_submitButton
 {
-   margin-left: 65%;
+  margin-left: 65%;
 }
 
 #tableDiv
@@ -184,33 +184,33 @@ td
 
 #usernameTextbox
 {
-	position: fixed;
-	height: 25px;
-	width: 12.5em;
-	margin-left: 16em;
+  position: fixed;
+  height: 25px;
+  width: 12.5em;
+  margin-left: 16em;
 }
 #usernameLabel
 {
-	color: white;
-	text-shadow: 1px 1px #000000;
-	position:fixed;	
-	margin-left: 7em;
+  color: white;
+  text-shadow: 1px 1px #000000;
+  position:fixed;	
+  margin-left: 7em;
 }
 
 #passwordTextbox
 {
-	position: fixed;
-	height: 25px;
-	width: 12.5em;
-	margin-left: 16em;
+  position: fixed;
+  height: 25px;
+  width: 12.5em;
+  margin-left: 16em;
 }
 
 #passwordLabel
 {
-	color: white;
-	text-shadow: 1px 1px #000000;
-	position: fixed;
-	margin-left: 7.65em;
+  color: white;
+  text-shadow: 1px 1px #000000;
+  position: fixed;
+  margin-left: 7.65em;
 }
 
 #loginDiv
@@ -235,19 +235,25 @@ td
 
 #resetButton
 {
-	position: fixed;
-	margin-left: 14em;
-	width: 6em;
+  position: fixed;
+  margin-left: 14em;
+  width: 6em;
 }
 
 #submitButton
 {	
-    position: fixed;
-	margin-left: 20em;
-	width: 6em;
+  position: fixed;
+  margin-left: 20em;
+  width: 6em;
 }
 
 /*############################### ID's Create Licence Page #################################################*/
+
+#expiryDate
+{
+  color: white;
+  text-shadow: 1px 1px #000000;
+}
 
 /*############################### ID's Add User Page #######################################################*/
 
@@ -296,20 +302,20 @@ td
 
 a:link, a:visited 
 {
-	display: block;
-	font-weight: bold;
-	color: #FFFFFF;
-	background-color: #458B00;
-	width: 250px;
-	text-align: center;
-	padding: 4px;
-	text-decoration: none;
-	text-transform: uppercase;
+  display: block;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #458B00;
+  width: 250px;
+  text-align: center;
+  padding: 4px;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 a:hover, a:active 
 {
-	background-color: #9ACD32;
+  background-color: #9ACD32;
 }
 
 .loginButtons
