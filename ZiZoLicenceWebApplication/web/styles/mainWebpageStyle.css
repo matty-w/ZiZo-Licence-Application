@@ -150,7 +150,6 @@ td
 {
   position: fixed;
   width: 25em;
-  
   margin: 0;
   padding: 0;
 }
@@ -293,9 +292,40 @@ td
 
 /*############################### ID's View Licences/Logs Page #############################################*/
 
+#tableofResultsForm
+{
+  position: fixed;
+  width: 40em;
+  margin: 0;
+  padding: 0;
+}
+
+#tableOfResultsDiv
+{
+  width: 40em;
+  height: 25em;
+  position: absolute;
+  top: -10em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#tableOfResultsFieldset
+{
+  border: 1px solid #006400;
+  width: 40em
+}
+
+#table_button
+{
+  margin-left: 77%;
+}
+
 #export_button
 {
-  margin-left: 70%;
+  margin-left: 77%;
 }
 
 /*############################### Classes ##################################################################*/
