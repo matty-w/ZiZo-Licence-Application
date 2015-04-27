@@ -1,6 +1,7 @@
 import 'loginfunctions.dart';
 import 'helpscreenfunctions.dart';
 import 'dart:html';
+import 'licenceserverrequest.dart';
 
 
 void main()
@@ -12,9 +13,39 @@ void main()
   
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#helpButton").onClick.listen(help.showAddPermissionsScreen);
+  querySelector("#addPermissions_button").onClick.listen(addPermission);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   
   setDescriptionText();
+}
+
+void addPermission(MouseEvent m)
+{
+  InputElement usernameInput = querySelector("#username");
+  SelectElement permissionChoice = querySelector("#setPermissions");
+  
+  String permission;
+  String user = usernameInput.value;
+  
+  if(permissionChoice.value == "userEntries")
+    permission = "user-entries";
+  else if(permissionChoice.value == "changePassword")
+    permission = "change-password";
+  else if(permissionChoice.value == "addPermissions")
+    permission = "add-permission";
+  else if(permissionChoice.value == "deleteUser")
+    permission = "delete-user";
+  else if(permissionChoice.value == "removePermissions")
+    permission = "remove-permission";
+  else if(permissionChoice.value == "listCommands")
+    permission = "list-commands";
+  else if(permissionChoice.value == "addUser")
+    permission = "add-user";
+  else
+    return;
+  
+  LicenceServerRequest.addPermission("add-permission", user, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
+      permission, (s) => window.alert(s),(s) => window.alert("fail: "+s));
 }
 
 setDescriptionText()

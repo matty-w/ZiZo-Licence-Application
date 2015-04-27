@@ -1,6 +1,7 @@
 import 'loginfunctions.dart';
 import 'dart:html';
 import 'helpscreenfunctions.dart';
+import 'licenceserverrequest.dart';
 
 bool confirmWidnow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk) Which Is Recommended, Are You Sure You Wish To Use"+ 
         " This Username?");
@@ -15,7 +16,23 @@ void main()
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   querySelector("#password").onChange.listen(checkPasswords);
   querySelector("#confirmPassword").onChange.listen(checkPasswords);
-  querySelector("#addUser_submitButton").onClick.listen(checkUsername);
+  querySelector("#addUser_submitButton").onClick.listen(addAdmin);
+}
+
+void addAdmin(MouseEvent m)
+{
+  InputElement userNameInput = querySelector("#username");
+  InputElement passwordInput = querySelector("#password");
+  
+  String user = userNameInput.value;
+  String password = passwordInput.value;
+  
+  
+  Event e;
+  checkUsername(e);
+  
+  LicenceServerRequest.addAdminUser("add-user", user, password, window.sessionStorage['username'],window.sessionStorage['password'],
+      "localhost", (s) => window.alert(s),(s) => window.alert("fail: "+s));
 }
 
 checkUsername(Event e)

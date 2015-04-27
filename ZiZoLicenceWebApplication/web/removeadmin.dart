@@ -2,6 +2,7 @@ import 'loginfunctions.dart';
 import 'dart:html';
 import 'dart:js';
 import 'helpscreenfunctions.dart';
+import 'licenceserverrequest.dart';
 
 void main()
 {
@@ -16,7 +17,14 @@ void main()
 
 void removeUser(MouseEvent m)
 {
-  printResponse();
+  InputElement username = querySelector("#username");
+  String userValue;
+  
+  userValue = username.value;
+  
+  LicenceServerRequest.removeUser("delete-user" , userValue, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
+      (s) => window.alert(s),(s) => window.alert("fail: "+s));
+  
 }
 
 void printResponse()

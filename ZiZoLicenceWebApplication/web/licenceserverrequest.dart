@@ -28,6 +28,53 @@ class LicenceServerRequest extends SoapRequest
     result.getStringResult((String s) => (s.contains("-"))? onPass(s) : onFail (s));
   }
   
+  static void regenerateLicence(String licenceId, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("regenerate-licence");
+    result.addArgument(licenceId);
+    result.addArgument(adminName);
+    result.addArgument(adminPassword);
+    result.getStringResult((String s) => (s == "true")? onPass() : onFail(s));
+  }
+  
+  static void addAdminUser(String operation, String user, String password, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("perform");
+  }
+  
+  static void removeUser(String operation, String user, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("perform");
+    result.addArgument(operation);
+    result.addArgument(user);
+    result.addArgument(adminName);
+    result.addArgument(adminPassword);
+    result.getStringResult((String s) => (s == "true")? onPass() : onFail(s));
+  }
+  
+  static void addPermission(String operation, String user, String adminName, String adminPassword, String host, String permissionChoice, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("perform");
+    result.addArgument(operation);
+    result.addArgument(user);
+    result.addArgument(adminName);
+    result.addArgument(adminPassword);
+    result.addArgument(permissionChoice);
+    result.getStringResult((String s) => (s == "true")? onPass() : onFail(s));
+  }
+  
   @override
   namespace()
   {
