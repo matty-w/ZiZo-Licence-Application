@@ -33,7 +33,7 @@ class LicenceServerRequest extends SoapRequest
     LicenceServerRequest result;
     result = new LicenceServerRequest();
     result.setHost(host);
-    result.setAction("regenerate-licence");
+    result.setAction("regenerateProductKey");
     result.addArgument(licenceId);
     result.addArgument(adminName);
     result.addArgument(adminPassword);
