@@ -22,9 +22,10 @@ void removeUser(MouseEvent m)
   
   userValue = username.value;
   
-  LicenceServerRequest.removeUser("delete-user" , userValue, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
+  LicenceServerRequest.removeUser(userValue, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
       (s) => window.alert(s),(s) => window.alert("fail: "+s));
   
+  username.value = "";
 }
 
 void printResponse()

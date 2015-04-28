@@ -3,9 +3,6 @@ import 'dart:html';
 import 'helpscreenfunctions.dart';
 import 'licenceserverrequest.dart';
 
-bool confirmWidnow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk) Which Is Recommended, Are You Sure You Wish To Use"+ 
-        " This Username?");
-
 void main()
 {
   var log = new LoginAndOut();
@@ -23,39 +20,19 @@ void addAdmin(MouseEvent m)
 {
   InputElement userNameInput = querySelector("#username");
   InputElement passwordInput = querySelector("#password");
+  InputElement confirmPassword = querySelector("#confirmPassword");
   
   String user = userNameInput.value;
   String password = passwordInput.value;
   
   
-  Event e;
-  checkUsername(e);
-  
-  LicenceServerRequest.addAdminUser("add-user", user, password, window.sessionStorage['username'],window.sessionStorage['password'],
+  LicenceServerRequest.addAdminUser(user, password, window.sessionStorage['username'],window.sessionStorage['password'],
       "localhost", (s) => window.alert(s),(s) => window.alert("fail: "+s));
-}
-
-checkUsername(Event e)
-{
-  InputElement input = querySelector("#username");
-  String username = input.value;
   
-  RegExp exp = new RegExp("[a-zA-Z0-9][a-zA-Z0-9-_\s]+@[a-zA-Z0-9-\s].+\.[a-zA-Z]{2,5}");
+  userNameInput.value = "";
+  passwordInput.value = "";
+  confirmPassword.value = "";
   
-   
-  if(!(exp.hasMatch(username)))
-  {  
-    confirmWidnow;
-      if(confirmWidnow == true)
-        return;
-      else
-      {
-        e.preventDefault();
-        window.location.reload();
-      }  
-  }
-  else
-    return;
 }
 
 checkPasswords(Event e)

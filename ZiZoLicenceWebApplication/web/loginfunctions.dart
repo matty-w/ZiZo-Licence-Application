@@ -16,11 +16,20 @@ class LoginAndOut
   
   void logout(MouseEvent m)
   {
-    goToPage("login.html");
+    Storage local = window.sessionStorage;
+    local['username'] = "";
+    local['password'] = "";
+    window.location.href = "login.html";
   }
   
   void goToPage(String page)
-  {
+  { 
+    InputElement username = querySelector("#usernameTextbox");
+    InputElement password = querySelector("#passwordTextbox");
+    Storage local = window.sessionStorage;
+    local['username'] = username.value;
+    local['password'] = password.value;
+    
     window.location.href = page;
   }
   

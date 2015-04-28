@@ -93,9 +93,10 @@ disableTextbox(Event e)
   specifiedLengthTextbox.disabled = true;
 }
 
-void submitForm(MouseEvent e)
+void submitForm(MouseEvent m)
 {
   DateInputElement dateInput = querySelector("#specifiedLength");
+  Event e;
   checkUsername(e);
   String shortDate = licenceLengthValue();
   InputElement un = querySelector("#username");
@@ -116,6 +117,9 @@ void submitForm(MouseEvent e)
       userValue,shortDate,fe.value,
       window.sessionStorage['username'],window.sessionStorage['password'],
       "localhost",(s) => window.alert(s),(s) => window.alert("fail: "+s));
+  
+  un.value = "";
+  fe.value = "";
 }
 
 checkFilter(Event e)
