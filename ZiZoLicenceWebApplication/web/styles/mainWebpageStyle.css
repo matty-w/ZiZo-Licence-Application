@@ -52,6 +52,12 @@ td
 
 /*########################### Main ID's Accross Pages #########################################################*/
 
+#hidden
+{
+  display: none;
+}
+
+
 #topPage
 {
   position: absolute;
@@ -348,6 +354,11 @@ a:hover, a:active
   background-color: #9ACD32;
 }
 
+a:deactive
+{
+  background-color: #4A5449;
+}
+
 .loginButtons
 {
   -webkit-border-radius: 25;
@@ -404,5 +415,14 @@ a:hover, a:active
   background: #27a155;
   text-decoration: none;
 }
+
+
+
+
+
+
+
+
+
 
 /*##########################################################################################################*/

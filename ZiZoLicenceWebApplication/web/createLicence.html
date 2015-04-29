@@ -32,18 +32,22 @@
       <p><input type = "button" id = "default_submitButton" value="Create Licence" class="btnSubmit"/></p>
   </fieldset>
  </form>
-</div> 
-    
- <ul id="menu">
-    <li><a href="createLicence.html">Create A New Licence</a></li>
-    <li><a href="addAdmin.html">Add Admin To Licence Server</a></li>
-	<li><a href="addPermissions.html">Add Permissions For An Admin</a></li>
-    <li><a href="regenerateLicence.html">Regenerate A Licence</a></li>
-    <li><a href="removeLicence.html">Remove A Licence</a></li>
-	<li><a href="removeAdmin.html">Remove Admin</a></li>
-	<li><a href="logAccess.html">View Logs</a></li>
-    <li><a href="viewLicences.html">View Licences</a></li>
- </ul>
+</div>
+ 
+ <nav id = "menu">
+  <div id = "hidden">
+    <div id = "table"> 
+      <div id = "showCreateLicence"><a href='createLicence.html'>Create A New Licence</a></div>
+      <div id = "showAddAdmin"><a href='addAdmin.html'>Add Admin To Licence Server</a></div>
+      <div id = "showAddPermissions"><a href='addPermissions.html'>Add Permissions For An Admin</a></div>
+      <div id = "showRegenerateLicence"><a href='regenerateLicence.html'>Regenerate A Licence</a></div>
+      <div id = "showRemoveLicence"><a href='removeLicence.html'>Remove A Licence</a></div>
+      <div id = "showRemoveAdmin"><a href='removeAdmin.html'>Remove Admin</a></div>
+      <div id = "showLogAccess"><a href='logAccess.html'>View Logs</a></div>
+      <div id = "showViewLicences"><a href='viewLicences.html'>View Licences</a></div> 
+    </div>
+  </div>    
+ </nav>  
    
  <p id="loggedInUserLabel"> 
      Logged In As: <output id="username-output"></output>

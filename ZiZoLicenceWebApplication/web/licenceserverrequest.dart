@@ -76,6 +76,16 @@ class LicenceServerRequest extends SoapRequest
     result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
   }
   
+  static void checkPermissions(String adminName, String adminPassword, String host)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("getPermissions");
+    result.addArgument(adminName);
+    result.addArgument(adminPassword);
+  }
+  
   @override
   namespace()
   {

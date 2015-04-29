@@ -3,6 +3,7 @@ import 'dart:js';
 import 'dart:html';
 import 'licenceserverrequest.dart';
 import 'helpscreenfunctions.dart';
+import 'viewablepages.dart';
 
 String licenceLength;
 String defaultDate = today(3);
@@ -11,6 +12,7 @@ String isoDate;
 void main()
 {
   var help = new HelpScreenFunctions();
+  ViewablePages pages = new ViewablePages();
   
   querySelector("#helpButton").onClick.listen(help.showCreateLicenceScreen);
   
@@ -24,6 +26,7 @@ void main()
   querySelector("#default_submitButton").onClick.listen(submitForm);
   querySelector("#specifiedLength").onClick.listen(checkDateValue);
   querySelector("#filter").onChange.listen(checkFilter);
+  pages.showOptions(false);
 }
 
 setlogOut()
@@ -249,4 +252,57 @@ checkUsername(Event e)
   }
   else
     return;
+}
+
+showOptions()
+{
+  bool test = true;
+  OutputElement createLicence = querySelector("#showCreateLicence");
+  OutputElement addPermissions = querySelector("#showAddPermissions");
+  OutputElement addAdmin =  querySelector("#showAddAdmin");
+  OutputElement regenerateLicence = querySelector("#showRegenerateLicence");
+  OutputElement removeLicence = querySelector("#showRemoveLicence");
+  OutputElement removeAdmin = querySelector("#showRemoveAdmin");
+  OutputElement logAccess = querySelector("#showLogAccess");
+  OutputElement viewLicences = querySelector("#showViewLicences");
+  
+  if(test)
+    createLicence.innerHtml = "<a href='createLicence.html'>Create A New Licence</a>";
+  else
+    createLicence.innerHtml = "";
+  
+  if(test)
+    addPermissions.innerHtml = "<a href='addPermissions.html'>Add Permissions For An Admin</a>";
+  else
+    addPermissions.innerHtml = "";
+    
+  if(!test)
+    addAdmin.innerHtml = "<a href='addAdmin.html'>Add Admin To Licence Server</a>";
+  else
+    addAdmin.innerHtml = "";
+  
+  if(test)
+    regenerateLicence.innerHtml = "<a href='regenerateLicence.html'>Regenerate A Licence</a>";
+  else
+    regenerateLicence.innerHtml = "";
+  
+  if(!test)
+    removeLicence.innerHtml = "<a href='removeLicence.html'>Remove A Licence</a>";
+  else
+    removeLicence.innerHtml = "";
+  
+  if(!test)
+    removeAdmin.innerHtml = "<a href='removeAdmin.html'>Remove Admin</a>";
+  else
+    removeAdmin.innerHtml = "";
+  
+  if(test)
+    logAccess.innerHtml = "<a href='logAccess.html'>View Logs</a>";
+  else
+    logAccess.innerHtml = "";
+  
+  if(test)
+    viewLicences.innerHtml = "<a href='viewLicences.html'>View Licences</a>";
+  else
+    viewLicences.innerHtml = "";
 }
