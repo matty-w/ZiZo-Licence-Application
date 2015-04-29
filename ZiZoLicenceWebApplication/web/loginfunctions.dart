@@ -21,6 +21,11 @@ class LoginAndOut
   
   void goToPage(String page)
   {
+    InputElement username = querySelector("#usernameTextbox");
+    InputElement password = querySelector("#passwordTextbox");
+    Storage local = window.sessionStorage;
+    local['username'] = username.value;
+    local['password'] = password.value;
     window.location.href = page;
   }
   
