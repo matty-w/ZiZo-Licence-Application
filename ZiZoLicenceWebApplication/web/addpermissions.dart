@@ -44,8 +44,8 @@ void addPermission(MouseEvent m)
   else
     return;
   
-  LicenceServerRequest.addPermission("add-permission", user, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
-      permission, (s) => window.alert(s),(s) => window.alert("fail: "+s));
+  LicenceServerRequest.addPermission(user, permission, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
+       (s) => window.alert(s),(s) => window.alert("fail: "+s));
 }
 
 setDescriptionText()

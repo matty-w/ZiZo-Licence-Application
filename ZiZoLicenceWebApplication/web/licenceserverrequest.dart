@@ -33,46 +33,47 @@ class LicenceServerRequest extends SoapRequest
     LicenceServerRequest result;
     result = new LicenceServerRequest();
     result.setHost(host);
-    result.setAction("regenerateProductKey");
+    result.setAction("regenerateProductKeyFor");
     result.addArgument(licenceId);
     result.addArgument(adminName);
     result.addArgument(adminPassword);
-    result.getStringResult((String s) => (s == "true")? onPass() : onFail(s));
+    result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
   }
   
-  static void addAdminUser(String operation, String user, String password, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  static void addAdminUser(String user, String password, String adminName, String adminPassword, String host, Function onPass, Function onFail)
   {
     LicenceServerRequest result;
     result = new LicenceServerRequest();
     result.setHost(host);
     result.setAction("perform");
-  }
-  
-  static void removeUser(String operation, String user, String adminName, String adminPassword, String host, Function onPass, Function onFail)
-  {
-    LicenceServerRequest result;
-    result = new LicenceServerRequest();
-    result.setHost(host);
-    result.setAction("perform");
-    result.addArgument(operation);
-    result.addArgument(user);
+    result.addArgument("add-user "+user+","+password);
     result.addArgument(adminName);
     result.addArgument(adminPassword);
-    result.getStringResult((String s) => (s == "true")? onPass() : onFail(s));
+    result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
   }
   
-  static void addPermission(String operation, String user, String adminName, String adminPassword, String host, String permissionChoice, Function onPass, Function onFail)
+  static void removeUser(String user, String adminName, String adminPassword, String host, Function onPass, Function onFail)
   {
     LicenceServerRequest result;
     result = new LicenceServerRequest();
     result.setHost(host);
     result.setAction("perform");
-    result.addArgument(operation);
-    result.addArgument(user);
+    result.addArgument("delete-user "+user);
     result.addArgument(adminName);
     result.addArgument(adminPassword);
-    result.addArgument(permissionChoice);
-    result.getStringResult((String s) => (s == "true")? onPass() : onFail(s));
+    result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
+  }
+  
+  static void addPermission(String user, String permissionChoice, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("perform");
+    result.addArgument("add-permission "+user+","+permissionChoice);
+    result.addArgument(adminName);
+    result.addArgument(adminPassword); 
+    result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
   }
   
   @override
