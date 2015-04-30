@@ -22,13 +22,20 @@
           <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
           <p id = "formTitles">Select The Permission For The User:</p>
           <select id = "setPermissions">
-            <option value = "add-licence">Can Add Licence</option>
-            <option value = "add-permission">Can Add Permissions</option>
-            <option value = "add-user">Can Add A User</option>
-            <option value = "change-password">Can Change A Password</option>
-            <option value = "delete-user">Can Delete A User</option>
-            <option value = "remove-licence">Can Remove Licence</option>
-            <option value = "remove-permission">Can Remove Permissions</option>
+            <option value = "add-licence"       doc="User Can Return A String Showing An Entries From Other Administrators. Includes A List Of Their Permissions.">
+            Can Add Licence</option>
+            <option value = "add-permission"    doc="Can Add Indicated Operation To The List Of Things The Administrator Can Do.">
+            Can Add Permissions</option>
+            <option value = "add-user"          doc="User Can Add A New Administrator To The Service. This Administrator Initially Has No Permissions.">
+            Can Add A User</option>
+            <option value = "change-password"   doc="Can Change Password For A User. (Note: A User Can Alter Their Own Password Without This Permission).">
+            Can Change A Password</option>
+            <option value = "delete-user"       doc="User Can Delete This User From The List Of Administrators.">
+            Can Delete A User</option>
+            <option value = "remove-licence"    doc="User Can Remove A Licence From The Database">
+            Can Remove Licence</option>
+            <option value = "remove-permission" doc="User Can Delete A User From The List Of Administrators.">
+            an Remove Permissions</option>
           </select>
           <p><output id = "permissionDescription"></output></p>
           <p><input type = "button" id = "addPermissions_button" value="Add Permission" class="btnSubmit"/></p>
