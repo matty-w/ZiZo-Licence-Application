@@ -2,6 +2,7 @@ import 'dart:html';
 import 'loginfunctions.dart';
 import 'helpscreenfunctions.dart';
 import 'licenceserverrequest.dart';
+import 'viewablepages.dart';
 
 void main()
 {
@@ -14,6 +15,8 @@ void main()
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   querySelector("#regenerateLicence_button").onClick.listen(regenerateLicence);
+  
+  ViewablePages.revealOptions();
 }
 
 void regenerateLicence(MouseEvent m)

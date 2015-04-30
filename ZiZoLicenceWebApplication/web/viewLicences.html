@@ -14,52 +14,36 @@
     <img id="zizoLogo" src="images/logo-zizo.jpg"/>
     <img id="bottomPage" src="images/whiteBackground.jpg"/>
     
-<div id = "tableOfResultsDiv">    
- <form id = "tableOfResultsForm" action="#">
-  <h2>View Licences</h2>
-  <fieldset id = "tableOfResultsFieldset">
-    <legend id = "default_legend">View Licences</legend>
-      <p id = "formTitles"><label for = "adminCheckbox">Filter For Admin Licences Only:</label><input type = "checkbox" id = "adminCheckbox" /></p>
-      <p id = "formTitles"><label for = "filter">Filter:</label><input type = "text" id = "filter"></input><input type = "submit" id = "table_button" value="View Licences" 
-      class="btnSubmit"/></p>
-      <div id = "tableDiv">
-        <p><table id = "logTable" >
-          <tr>
-            <th>Time Stamp:</th>
-            <th>Licence Name:</th>
-            <th>Filter:</th>
-            <th>Expiry:</th>
-          </tr>
-          <tr>
-            <td>Matthew</td>
-            <td>Whitmore</td>
-            <td>23</td>
-            <td>Text</td>
-          </tr>
-      </table>
-      </div>
-      <p><input type = "button" id = "table_button" value = "Export Licences" class = "btnSubmit"/></p>
-  </fieldset>
- </form>
-</div> 
-    
-	<ul id="menu">
-	<li><a href="createLicence.html">Create A New Licence</a></li>
-	<li><a href="addAdmin.html">Add Admin To Licence Server</a></li>
-	<li><a href="addPermissions.html">Add Permissions For An Admin</a></li>
-    <li><a href="regenerateLicence.html">Regenerate A Licence</a></li>
-    <li><a href="removeLicence.html">Remove A Licence</a></li>
-	<li><a href="removeAdmin.html">Remove Admin</a></li>
-	<li><a href="logAccess.html">View Logs</a></li>
-    <li><a href="viewLicences.html">View Licences</a></li>
-	</ul>
-  
-    <p id="loggedInUserLabel"> 
-        Logged In As: <output id="username-output"></output> 
-    </p>
-    
-    <button id="helpButton" type="button" class="defaultButton">Help</button>
-    <button id="logoutButton" type="button" class="defaultButton">Logout</button>
-    
+    <div id = "tableOfResultsDiv">    
+     <form id = "tableOfResultsForm" action="#">
+      <h2>View Licences</h2>
+      <fieldset id = "tableOfResultsFieldset">
+        <legend id = "default_legend">View Licences</legend>
+          <p id = "formTitles"><label for = "adminCheckbox">Filter For Admin Licences Only:</label><input type = "checkbox" id = "adminCheckbox" /></p>
+          <p id = "formTitles"><label for = "filter">Filter:</label><input type = "text" id = "filter"></input><input type = "submit" id = "table_button" value="View Licences" 
+          class="btnSubmit"/></p>
+          <div id = "tableDiv">
+            <p><table id = "logTable" >
+              <tr>
+                <th>Time Stamp:</th>
+                <th>Licence Name:</th>
+                <th>Filter:</th>
+                <th>Expiry:</th>
+              </tr>
+              <tr>
+                <td>Matthew</td>
+                <td>Whitmore</td>
+                <td>23</td>
+                <td>Text</td>
+              </tr>
+          </table>
+          </div>
+          <p><input type = "button" id = "table_button" value = "Export Licences" class = "btnSubmit"/></p>
+      </fieldset>
+     </form>
+    </div> 
+
+    <script type="text/javascript" src="menu.js"> </script>
+    <script type="text/javascript" src="footer.js"> </script>
   </body>
 </html>

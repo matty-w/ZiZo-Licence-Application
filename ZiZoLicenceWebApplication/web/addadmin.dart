@@ -2,6 +2,7 @@ import 'loginfunctions.dart';
 import 'dart:html';
 import 'helpscreenfunctions.dart';
 import 'licenceserverrequest.dart';
+import 'viewablepages.dart';
 
 void main()
 {
@@ -14,6 +15,8 @@ void main()
   querySelector("#password").onChange.listen(checkPasswords);
   querySelector("#confirmPassword").onChange.listen(checkPasswords);
   querySelector("#addUser_submitButton").onClick.listen(addAdmin);
+
+  ViewablePages.revealOptions();
 }
 
 void addAdmin(MouseEvent m)

@@ -14,45 +14,30 @@
     <img id="zizoLogo" src="images/logo-zizo.jpg"/>
     <img id="bottomPage" src="images/whiteBackground.jpg"/>
     
-<div id = "pageDiv">    
- <form id = "default_form" action="#">
-  <h2>Add Permissions</h2>
-  <fieldset id = "default_fieldset">
-    <legend id = "default_legend">Add A Permission</legend>
-      <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
-      <p id = "formTitles">Select The Permission For The User:</p>
-      <select id = "setPermissions">
-        <option value = "userEntries">Can Check Other Users Entries</option>
-        <option value = "changePassword">Can Change A Password</option>
-        <option value = "deleteUser">Can Delete A User</option>
-        <option value = "addPermissions">Can Add Permissions</option>
-        <option value = "removePermissions">Can Remove Permissions</option>
-        <option value = "listCommands">Can List Commands</option>
-        <option value = "addUser">Can Add A User</option>
-      </select>
-      <p><output id = "permissionDescription"></output></p>
-      <p><input type = "button" id = "addPermissions_button" value="Add Permission" class="btnSubmit"/></p>
-  </fieldset>  
- </form>
-</div>   
-    
-    <ul id="menu">
-    <li><a href="createLicence.html">Create A New Licence</a></li>
-	<li><a href="addAdmin.html">Add Admin To Licence Server</a></li>
-	<li><a href="addPermissions.html">Add Permissions For An Admin</a></li>
-    <li><a href="regenerateLicence.html">Regenerate A Licence</a></li>
-    <li><a href="removeLicence.html">Remove A Licence</a></li>
-	<li><a href="removeAdmin.html">Remove Admin</a></li>
-	<li><a href="logAccess.html">View Logs</a></li>
-    <li><a href="viewLicences.html">View Licences</a></li>
-    </ul>
-  
-    <p id="loggedInUserLabel"> 
-        Logged In As: <output id="username-output"></output> 
-    </p>
-    <button id="helpButton" type="button" class="defaultButton">Help</button>
-    <button id="logoutButton" type="button" class="defaultButton">Logout</button>
-    
+    <div id = "pageDiv">    
+     <form id = "default_form" action="#">
+      <h2>Add Permissions</h2>
+      <fieldset id = "default_fieldset">
+        <legend id = "default_legend">Add A Permission</legend>
+          <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
+          <p id = "formTitles">Select The Permission For The User:</p>
+          <select id = "setPermissions">
+            <option value = "add-licence">Can Add Licence</option>
+            <option value = "add-permission">Can Add Permissions</option>
+            <option value = "add-user">Can Add A User</option>
+            <option value = "change-password">Can Change A Password</option>
+            <option value = "delete-user">Can Delete A User</option>
+            <option value = "remove-licence">Can Remove Licence</option>
+            <option value = "remove-permission">Can Remove Permissions</option>
+          </select>
+          <p><output id = "permissionDescription"></output></p>
+          <p><input type = "button" id = "addPermissions_button" value="Add Permission" class="btnSubmit"/></p>
+      </fieldset>  
+     </form>
+    </div>   
+
+    <script type="text/javascript" src="menu.js"> </script>
+    <script type="text/javascript" src="footer.js"> </script>
   </body>
 </html>
 

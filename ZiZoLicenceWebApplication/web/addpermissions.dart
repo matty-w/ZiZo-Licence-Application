@@ -2,14 +2,12 @@ import 'loginfunctions.dart';
 import 'helpscreenfunctions.dart';
 import 'dart:html';
 import 'licenceserverrequest.dart';
-
+import 'viewablepages.dart';
 
 void main()
 {
   var log = new LoginAndOut();
   var help = new HelpScreenFunctions();
-  
-  
   
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#helpButton").onClick.listen(help.showAddPermissionsScreen);
@@ -17,6 +15,7 @@ void main()
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   
   setDescriptionText();
+  ViewablePages.revealOptions();
 }
 
 void addPermission(MouseEvent m)
@@ -27,22 +26,7 @@ void addPermission(MouseEvent m)
   String permission;
   String user = usernameInput.value;
   
-  if(permissionChoice.value == "userEntries")
-    permission = "user-entries";
-  else if(permissionChoice.value == "changePassword")
-    permission = "change-password";
-  else if(permissionChoice.value == "addPermissions")
-    permission = "add-permission";
-  else if(permissionChoice.value == "deleteUser")
-    permission = "delete-user";
-  else if(permissionChoice.value == "removePermissions")
-    permission = "remove-permission";
-  else if(permissionChoice.value == "listCommands")
-    permission = "list-commands";
-  else if(permissionChoice.value == "addUser")
-    permission = "add-user";
-  else
-    return;
+  permission = permissionChoice.value;
   
   LicenceServerRequest.addPermission(user, permission, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
        (s) => window.alert(s),(s) => window.alert("fail: "+s));
@@ -51,7 +35,7 @@ void addPermission(MouseEvent m)
 setDescriptionText()
 {
   OutputElement output = querySelector("#permissionDescription");
-  output.value = "User Can Return A String Showing An Entries From Other Administrators. Includes A List Of Their Permissions.";
+  output.innerHtml = "User Can Return A String Showing An Entries From Other Administrators. Includes A List Of Their Permissions.";
   querySelector("#setPermissions").onChange.listen(setText);
 }
 

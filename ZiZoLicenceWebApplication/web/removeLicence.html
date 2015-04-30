@@ -14,34 +14,18 @@
     <img id="zizoLogo" src="images/logo-zizo.jpg"/>
     <img id="bottomPage" src="images/whiteBackground.jpg"/>
     
-<div id = "pageDiv">    
- <form id = "default_form" action="#">
-  <h2>Remove A Licence</h2>
-  <fieldset id = "default_fieldset">
-    <legend id = "default_legend">Remove A Licence</legend>
-      <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
-      <p><input type = "submit" id = "regenerateLicence_button" value="Remove Licence" class="btnSubmit"/></p>
-  </fieldset>
- </form>
-</div> 
+    <div id = "pageDiv">    
+     <form id = "default_form" action="#">
+      <h2>Remove A Licence</h2>
+      <fieldset id = "default_fieldset">
+        <legend id = "default_legend">Remove A Licence</legend>
+          <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
+          <p><input type = "submit" id = "regenerateLicence_button" value="Remove Licence" class="btnSubmit"/></p>
+      </fieldset>
+     </form>
+    </div>
     
-	<ul id="menu">
-	<li><a href="createLicence.html">Create A New Licence</a></li>
-	<li><a href="addAdmin.html">Add Admin To Licence Server</a></li>
-	<li><a href="addPermissions.html">Add Permissions For An Admin</a></li>
-    <li><a href="regenerateLicence.html">Regenerate A Licence</a></li>
-    <li><a href="removeLicence.html">Remove A Licence</a></li>
-	<li><a href="removeAdmin.html">Remove Admin</a></li>
-	<li><a href="logAccess.html">View Logs</a></li>
-    <li><a href="viewLicences.html">View Licences</a></li>
-	</ul>
-  
-    <p id="loggedInUserLabel"> 
-        Logged In As: <output id="username-output"></output> 
-    </p>
-    
-    <button id="helpButton" type="button" class="defaultButton">Help</button>
-    <button id="logoutButton" type="button" class="defaultButton">Logout</button>
-    
+    <script type="text/javascript" src="menu.js"> </script>
+    <script type="text/javascript" src="footer.js"> </script>
   </body>
 </html>

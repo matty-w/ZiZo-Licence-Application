@@ -1,60 +1,41 @@
 <!DOCTYPE html>
 
 <html>
- <head>
-   <link rel="stylesheet" type="text/css" href="styles/mainWebpageStyle.css">
-   <meta charset="utf-8">
-   <title>Create Licence</title>
-   <script type="application/dart" src="createlicence.dart"></script>
-   <script src="packages/browser/dart.js"> </script>
- </head>
- 
- <body>   
-   <img id="topPage" src="images/whiteBackground.jpg"/>
-   <img id="zizoLogo" src="images/logo-zizo.jpg"/>
-   <img id="bottomPage" src="images/whiteBackground.jpg"/>
-   
-     
-<div id = "pageDiv">    
- <form id = "default_form" action="#">
- <h2>Create A Licence</h2>
-  <fieldset id = "default_fieldset">
-    <legend id = "default_legend">Create A Licence</legend>
-      <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
-      <p><label id = "formLabel" for = "url">Server Address:</label> <input type = "text" id = "url" /><br /></p>
-      <p><label id = "formLabel" for = "filter">Filter:</label><input type = "text" id = "filter" /></p>
-      <p id = "formTitles">Select The Licence Length:</p>
-      <p><label id = "formLabel" for = "30Days">Thirty Days:</label><input type = "radio" id = "thirtyDays" name = "createLicence_radio"/></p>
-      <p><label id = "formLabel" for = "neverExpires">Never Expires:</label><input type = "radio" id = "neverExpires" name = "createLicence_radio" required/></p>
-      <p><label id = "formLabel" for = "specified">User Specified:</label><input type = "radio" id = "specified" name = "createLicence_radio"/>
-      <input type = "date" id = "specifiedLength"/>
-      <p><output id = "expiryDate"></output></p>
-      <p><input type = "button" id = "default_submitButton" value="Create Licence" class="btnSubmit"/></p>
-  </fieldset>
- </form>
-</div>
- 
- <nav id = "menu">
-  <div id = "hidden">
-    <div id = "table"> 
-      <div id = "showCreateLicence"><a href='createLicence.html'>Create A New Licence</a></div>
-      <div id = "showAddAdmin"><a href='addAdmin.html'>Add Admin To Licence Server</a></div>
-      <div id = "showAddPermissions"><a href='addPermissions.html'>Add Permissions For An Admin</a></div>
-      <div id = "showRegenerateLicence"><a href='regenerateLicence.html'>Regenerate A Licence</a></div>
-      <div id = "showRemoveLicence"><a href='removeLicence.html'>Remove A Licence</a></div>
-      <div id = "showRemoveAdmin"><a href='removeAdmin.html'>Remove Admin</a></div>
-      <div id = "showLogAccess"><a href='logAccess.html'>View Logs</a></div>
-      <div id = "showViewLicences"><a href='viewLicences.html'>View Licences</a></div> 
-    </div>
-  </div>    
- </nav>  
-   
- <p id="loggedInUserLabel"> 
-     Logged In As: <output id="username-output"></output>
- </p>
-  
- <button id="helpButton" type="button" class="defaultButton">Help</button> 
- <button id="logoutButton" type="button" class="defaultButton">Logout</button>
+  <head>
+    <link rel="stylesheet" type="text/css" href="styles/mainWebpageStyle.css">
+    <link rel="import" href="menu.html">
 
+    <meta charset="utf-8">
+    <title>Create Licence</title>
+    <script type="application/dart" src="createlicence.dart"></script>
+    <script src="packages/browser/dart.js"> </script>
+  </head>
+ 
+  <body>   
+    <img id="topPage" src="images/whiteBackground.jpg"/>
+    <img id="zizoLogo" src="images/logo-zizo.jpg"/>
+    <img id="bottomPage" src="images/whiteBackground.jpg"/>
+   
+    <div id = "pageDiv">    
+     <form id = "default_form" action="#">
+     <h2>Create A Licence</h2>
+      <fieldset id = "default_fieldset">
+        <legend id = "default_legend">Create A Licence</legend>
+          <p><label id = "formLabel" for="username">Username:</label> <input type = "text" id = "username" required/></p>
+          <p><label id = "formLabel" for = "url">Server Address:</label> <input type = "text" id = "url" /><br /></p>
+          <p><label id = "formLabel" for = "filter">Filter:</label><input type = "text" id = "filter" /></p>
+          <p id = "formTitles">Select The Licence Length:</p>
+          <p><label id = "formLabel" for = "30Days">Thirty Days:</label><input type = "radio" id = "thirtyDays" name = "createLicence_radio"/></p>
+          <p><label id = "formLabel" for = "neverExpires">Never Expires:</label><input type = "radio" id = "neverExpires" name = "createLicence_radio" required/></p>
+          <p><label id = "formLabel" for = "specified">User Specified:</label><input type = "radio" id = "specified" name = "createLicence_radio"/>
+          <input type = "date" id = "specifiedLength"/>
+          <p><output id = "expiryDate"></output></p>
+          <p><input type = "button" id = "default_submitButton" value="Create Licence" class="btnSubmit"/></p>
+      </fieldset>
+     </form>
+    </div>
+
+    <script type="text/javascript" src="menu.js"> </script>
+    <script type="text/javascript" src="footer.js"> </script>
   </body>
 </html>

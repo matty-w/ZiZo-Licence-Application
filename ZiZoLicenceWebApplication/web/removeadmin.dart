@@ -3,6 +3,7 @@ import 'dart:html';
 import 'dart:js';
 import 'helpscreenfunctions.dart';
 import 'licenceserverrequest.dart';
+import 'viewablepages.dart';
 
 void main()
 {
@@ -13,6 +14,8 @@ void main()
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   querySelector("#removeUser_button").onClick.listen(removeUser);
+  
+  ViewablePages.revealOptions();
 }
 
 void removeUser(MouseEvent m)
