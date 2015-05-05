@@ -34,7 +34,7 @@ void addPermission(MouseEvent m)
 
 setDescriptionText()
 {
-  OutputElement output = querySelector("#permissionDescription");
+  SpanElement output = querySelector("#permissionDescription");
   output.innerHtml = "User Can Return A String Showing An Entries From Other Administrators. Includes A List Of Their Permissions.";
   querySelector("#setPermissions").onChange.listen(setText);
 }
@@ -42,7 +42,9 @@ setDescriptionText()
 setText(Event e)
 {
   SelectElement dropDown = querySelector("#setPermissions");
-  OutputElement output = querySelector("#permissionDescription");
-  output.innerHtml = dropDown.attributes['doc'];
+  int index = dropDown.selectedIndex;
+  OptionElement oe = dropDown.options[index];
+  SpanElement output = querySelector("#permissionDescription");
+  output.innerHtml = oe.attributes['doc'];
 }
 
