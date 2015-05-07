@@ -416,9 +416,100 @@ a:deactive
   text-decoration: none;
 }
 
+/*#################################### Popup  ############################################################*/
 
+#blanket {
+background-color:#dddddd;
+opacity: 0.65;
+*background:none;
+position:absolute;
+z-index: 9001;
+top:0px;
+left:0px;
+width:100%;
+}
 
+#popUpDiv {
+position:absolute;
+background-color:#FFFFF0;
+width:460px;
+height:245px;
+border:2px solid #000;
+z-index: 9002;
+}
 
+#tick
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+#popupTitle
+{
+color: #575757;
+font-size: 30px;
+text-align: center;
+font-weight: 600;
+text-transform: none;
+position: relative;
+margin: 0;
+padding: 0;
+line-height: 60px;
+display: block;
+}
+
+#popupParagraph
+{
+font-size: 16px;
+text-align: center;
+font-weight: 300;
+position: relative;
+float: none;
+margin: 0;
+padding: 0;
+line-height: normal;
+}
+
+.popupButtons
+{
+color: #fff;
+border: 0;
+box-shadow: none;
+font-size: 17px;
+font-weight: 500;
+border-radius: 5px;
+padding: 10px 32px;
+margin: 0 5px;
+cursor: pointer;
+background-color: #27a155;
+}
+
+.popupButtons:hover
+{
+  background: #7AB97A;
+  text-decoration: none;
+}
+
+.dismissButton
+{
+color: #fff;
+border: 0;
+box-shadow: none;
+font-size: 17px;
+font-weight: 500;
+border-radius: 5px;
+padding: 10px 32px;
+margin: 0 5px;
+cursor: pointer;
+background-color: #C03030;
+}
+
+.dismissButton:hover
+{
+background: #CE5E5E;
+text-decoration: none;
+}
 
 
 

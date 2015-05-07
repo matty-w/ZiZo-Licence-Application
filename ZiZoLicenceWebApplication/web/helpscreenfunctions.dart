@@ -4,35 +4,44 @@ import 'dart:html';
 
 class HelpScreenFunctions
 {
+  WindowBase helpWindow;
+   
+  void showHelpScreen(String url)
+  {
+    if(helpWindow != null && !helpWindow.closed)
+      helpWindow.location;
+    else
+      helpWindow = window.open(url, "",'width=500,height=300,scrollbars=yes');
+  }
   
   showAddPermissionsScreen(MouseEvent m)
   { 
-    window.open("helpPages/addPermissionsHelp.html","",'width=500,height=300,scrollbars=yes');  
+    showHelpScreen("helpPages/addPermissionsHelp.html");  
   }
   
   showAddUsersScreen(MouseEvent m)
   {
-    window.open("helpPages/addAdminHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/addAdminHelp.html");
   }
   
   showCreateLicenceScreen(MouseEvent m)
   {
-    window.open("helpPages/createLicenceHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/createLicenceHelp.html");
   }
   
   showLogAccessScreen(MouseEvent m)
   {
-    window.open("helpPages/logAccessHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/logAccessHelp.html");
   }
   
   showRegenerateLicenceScreen(MouseEvent m)
   {
-    window.open("helpPages/regenerateLicenceHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/regenerateLicenceHelp.html");
   }
   
   showRemoveLicenceScreen(MouseEvent m)
   {
-    window.open("helpPages/removeLicenceHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/removeLicenceHelp.html");
   }
   
   showRemoveUsersScreen(MouseEvent m)

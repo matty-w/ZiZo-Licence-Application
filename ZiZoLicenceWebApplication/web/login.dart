@@ -3,12 +3,11 @@ import 'dart:html';
 
 void main()
 {
-  var log = new LoginAndOut();
-      
+  LoginAndOut log = new LoginAndOut();      
   querySelector("#resetButton").onClick.listen(resetTextboxes);
   querySelector("#submitButton").onClick.listen(log.login);
 }
-  
+
 void resetTextboxes(MouseEvent m)
 {
   InputElement username = querySelector("#usernameTextbox");

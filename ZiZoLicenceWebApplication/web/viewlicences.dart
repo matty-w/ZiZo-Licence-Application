@@ -5,12 +5,18 @@ import 'viewablepages.dart';
 
 void main()
 {
-  var log = new LoginAndOut();
-  var help = new HelpScreenFunctions();
-  
+  window.onContentLoaded.listen(refresh);
+  refresh(null);
+}
+
+void refresh(Event e)
+{
+  LoginAndOut log = new LoginAndOut();
+  HelpScreenFunctions help = new HelpScreenFunctions();
+    
   querySelector("#helpButton").onClick.listen(help.showViewLicencesScreen);
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
-  
+    
   ViewablePages.revealOptions();
 }

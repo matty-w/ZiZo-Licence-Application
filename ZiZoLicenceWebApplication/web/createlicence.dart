@@ -3,17 +3,29 @@ import 'dart:html';
 import 'licenceserverrequest.dart';
 import 'helpscreenfunctions.dart';
 import 'viewablepages.dart';
+import 'dart:js';
 
 String licenceLength;
 String defaultDate = today(3);
+String licenceName;
 String isoDate;
+bool continueWithLicence;
 
 void main()
 {
-  var help = new HelpScreenFunctions();
-  
+  window.onContentLoaded.listen(refresh);
+  refresh(null);
+}
+
+void refresh(Event e)
+{
+  HelpScreenFunctions help = new HelpScreenFunctions();
+    
   querySelector("#helpButton").onClick.listen(help.showCreateLicenceScreen);
   
+  querySelector("#dismiss").onClick.listen(dismissPrompt);
+  querySelector("#clipboard").onClick.listen(saveToClipboard);
+    
   setlogOut();
   disableDateLengthTextBox();
   createDefaultDate();
@@ -96,27 +108,34 @@ disableTextbox(Event e)
 
 void submitForm(MouseEvent m)
 {
-  Event e;
-  checkUsername(e);
-  String shortDate = licenceLengthValue();
   InputElement un = querySelector("#username");
   InputElement fe = querySelector("#filter");
   InputElement url = querySelector("#url");
   String userValue;
-
-  if (un.value.length==0)
-    return;
-  if (!hasButtonSet())
-    return;
   
-  userValue = un.value;
-  if (url.value.length>0)
-    userValue = userValue+"("+url.value+")";
+  Event e;
   
-  LicenceServerRequest.addLicence(
-      userValue,shortDate,fe.value,
-      window.sessionStorage['username'],window.sessionStorage['password'],
-      "localhost",(s) => window.alert(s),(s) => window.alert("fail: "+s));
+  if(checkUsername(e) == true)
+  {
+    String shortDate = licenceLengthValue();
+    
+    if (un.value.length==0)
+      return;
+    if (!hasButtonSet())
+      return;
+    
+    userValue = un.value;
+    if (url.value.length>0)
+      userValue = userValue+"("+url.value+")";
+    
+    LicenceServerRequest.addLicence(
+        userValue,shortDate,fe.value,
+        window.sessionStorage['username'],window.sessionStorage['password'],
+        "localhost",(s) => popup("#popUpDiv"),(s) => window.alert("fail: "+s));
+    
+    un.value = "";
+    fe.value = "";
+  }
   
   un.value = "";
   fe.value = "";
@@ -224,29 +243,126 @@ checkDateValue(Event e)
     dateInput.setCustomValidity("");
 }
 
-checkUsername(Event e)
+bool checkUsername(Event e)
 {
   InputElement input = querySelector("#username");
   String username = input.value;
-  
-  bool confirmWidnow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk) Which Is Recommended, Are You Sure You Wish To Use"+ 
-          " This Username?");
   
   RegExp exp = new RegExp("[a-zA-Z0-9][a-zA-Z0-9-_\s]+@[a-zA-Z0-9-\s].+\.[a-zA-Z]{2,5}");
   
    
   if(!(exp.hasMatch(username)))
   {  
-    confirmWidnow;
-      if(confirmWidnow == true)
-        return;
+    bool confirmWindow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk)"+ 
+                                        "Which Is Recommended, Are You Sure You Wish To Use This Username?");
+    confirmWindow;
+      if(confirmWindow == true)
+      {
+        return true;
+      }
       else
       {
-        e.preventDefault();
         window.location.reload();
-        return;
+        return false;
       }  
   }
   else
-    return;
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void toggle(div_id)
+{
+  DivElement el = querySelector(div_id);
+  
+  if(el.style.display == "none")
+    el.style.display = "block";
+  else
+    el.style.display = "none";   
+}
+
+Rectangle blanketSize(String popupId)
+{
+  int viewportHeight, blanketHeight, popupHeight;
+  HtmlHtmlElement frame = document.body.parentNode;
+  viewportHeight = window.innerHeight;
+  
+  if ((viewportHeight > frame.scrollHeight) && (viewportHeight > frame.clientHeight))
+    blanketHeight = viewportHeight;
+  else if(frame.clientHeight > frame.scrollHeight)
+    blanketHeight = frame.clientHeight;
+  else
+    blanketHeight = frame.scrollHeight;
+  
+  DivElement blanket = querySelector('#blanket');
+  blanket.style.height = blanketHeight.toString() + 'px';
+  DivElement popUpDiv = querySelector(popupId);
+  popupHeight = (blanketHeight/2-200).floor();
+  popUpDiv.style.top = popupHeight.toString() + 'px';
+ 
+  return new Rectangle(0, 0, 0, viewportHeight);
+}
+
+Point windowPosition(String popupId)
+{
+  int windowWidth;
+  int viewportWidth = window.innerHeight;
+  HtmlHtmlElement frame = document.body.parentNode;
+  
+  if ((viewportWidth > frame.scrollWidth) && (viewportWidth > frame.clientWidth))
+    windowWidth = viewportWidth;
+  else if(frame.clientWidth > frame.scrollWidth)
+    windowWidth = frame.clientWidth;
+  else
+    windowWidth = frame.scrollWidth;
+     
+  DivElement popUpDiv = querySelector(popupId);
+  windowWidth = (windowWidth/2-200).floor();
+  popUpDiv.style.left = windowWidth.toString() + 'px';
+  
+  return new Point(windowWidth, 0);
+}
+
+void popup(String popupId)
+{
+  blanketSize(popupId);
+  windowPosition(popupId);
+  toggle('#blanket');
+  toggle(popupId);
+}
+
+void showAlert(MouseEvent e)
+{
+  popup("#popUpDiv");
+}
+
+
+void saveToClipboard(MouseEvent e)
+{
+  clipboardPrompt(licenceName);
+}
+
+void clipboardPrompt(String licence)
+{
+  var result = context.callMethod('prompt', ["Copy to clipboard: Ctrl+C, Enter", licence]);
+  print(result);
+  popup("#popUpDiv");
+}
+
+void dismissPrompt(MouseEvent e)
+{
+  popup("#popUpDiv");
+  main();
 }
