@@ -38,14 +38,14 @@ void addPermission(MouseEvent m)
        (s) => window.alert(s),(s) => window.alert("fail: "+s));
 }
 
-setDescriptionText()
+void setDescriptionText()
 {
   SpanElement output = querySelector("#permissionDescription");
   output.innerHtml = "User Can Return A String Showing An Entries From Other Administrators. Includes A List Of Their Permissions.";
   querySelector("#setPermissions").onChange.listen(setText);
 }
 
-setText(Event e)
+void setText(Event e)
 {
   SelectElement dropDown = querySelector("#setPermissions");
   int index = dropDown.selectedIndex;

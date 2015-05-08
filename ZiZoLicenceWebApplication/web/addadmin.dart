@@ -44,7 +44,7 @@ void addAdmin(MouseEvent m)
   
 }
 
-checkPasswords(Event e)
+void checkPasswords(Event e)
 {
   InputElement password1 = querySelector("#password");
   InputElement password2 = querySelector("#confirmPassword");
@@ -55,7 +55,7 @@ checkPasswords(Event e)
   checkPasswordsMatch(passwordFirst, passwordSecond);
 }
 
-checkPasswordLength(int length)
+void checkPasswordLength(int length)
 {
     InputElement password1 = querySelector("#password");
 
@@ -71,7 +71,7 @@ checkPasswordLength(int length)
     }
 }
 
-checkPasswordsMatch(String password, String confirmPassword)
+void checkPasswordsMatch(String password, String confirmPassword)
 {
   InputElement password2 = querySelector("#confirmPassword");
   

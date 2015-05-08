@@ -40,7 +40,7 @@ void regenerateLicence(MouseEvent m)
       "localhost", (s) => window.alert(s),(s) => window.alert("fail: "+s));  
 }
 
-setDefaultIpAddress()
+void setDefaultIpAddress()
 {
   InputElement ipAddress = querySelector("#url");
   ipAddress.value = window.location.host;

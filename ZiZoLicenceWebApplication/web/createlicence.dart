@@ -39,45 +39,45 @@ void refresh(Event e)
   ViewablePages.revealOptions();
 }
 
-setlogOut()
+void setlogOut()
 {
-  var log = new LoginAndOut();
+  LoginAndOut log = new LoginAndOut();
   querySelector("#logoutButton").onClick.listen(log.logout);
 }
 
-disableDateLengthTextBox()
+void disableDateLengthTextBox()
 {
   InputElement specifiedLengthTextbox = querySelector("#specifiedLength");
   specifiedLengthTextbox.disabled = true;
 }
 
-createDefaultDate()
+void createDefaultDate()
 {
   DateInputElement date = querySelector("#specifiedLength"); 
   date.value = today(3);
 }
 
-setDefaultIpAddress()
+void setDefaultIpAddress()
 {
   InputElement ipAddress = querySelector("#url");
   ipAddress.value = window.location.host;
 }
 
-listenToRadioButtons()
+void listenToRadioButtons()
 {
   querySelector("#thirtyDays").onChange.listen(createThirtyDayLicence);
   querySelector("#neverExpires").onChange.listen(createUnlimitedLicence);
   querySelector("#specified").onChange.listen(createUserSpecifiedLicence);
 }
 
-createThirtyDayLicence(Event e)
+void createThirtyDayLicence(Event e)
 { 
   createDefaultDate();
   thirtyDayDate();
   disableTextbox(e);
 }
 
-createUnlimitedLicence(Event e)
+void createUnlimitedLicence(Event e)
 {
   createDefaultDate();
   OutputElement unlimited = querySelector("#expiryDate");
@@ -85,7 +85,7 @@ createUnlimitedLicence(Event e)
   disableTextbox(e);
 }
 
-createUserSpecifiedLicence(Event e)
+void createUserSpecifiedLicence(Event e)
 {
   enableTextbox(e);
   DateInputElement i = querySelector("#specifiedLength");
@@ -94,13 +94,13 @@ createUserSpecifiedLicence(Event e)
   licenceLength = i.value;
 }
 
-enableTextbox(Event e)
+void enableTextbox(Event e)
 {
   InputElement specifiedLengthTextbox = querySelector("#specifiedLength");
   specifiedLengthTextbox.disabled = false;
 }
 
-disableTextbox(Event e)
+void disableTextbox(Event e)
 {
   InputElement specifiedLengthTextbox = querySelector("#specifiedLength");
   specifiedLengthTextbox.disabled = true;
@@ -111,37 +111,48 @@ void submitForm(MouseEvent m)
   InputElement un = querySelector("#username");
   InputElement fe = querySelector("#filter");
   InputElement url = querySelector("#url");
+  RadioButtonInputElement specifiedChoice = querySelector("#specified");
   String userValue;
   
   Event e;
   
-  if(checkUsername(e) == true)
-  {
-    String shortDate = licenceLengthValue();
-    
-    if (un.value.length==0)
-      return;
-    if (!hasButtonSet())
-      return;
-    
-    userValue = un.value;
-    if (url.value.length>0)
-      userValue = userValue+"("+url.value+")";
-    
-    LicenceServerRequest.addLicence(
-        userValue,shortDate,fe.value,
-        window.sessionStorage['username'],window.sessionStorage['password'],
-        "localhost",(s) => popup("#popUpDiv"),(s) => window.alert("fail: "+s));
-    
-    un.value = "";
-    fe.value = "";
-  }
+  if(specifiedChoice.checked)
+    if(checkDateValue(e) == false)
+      return;   
   
+  if(un.value == null || un.value.trim() == "")
+  {
+    return;
+  }  
+  else
+  {
+    if(checkUsername(e) == true)
+    {
+      String shortDate = licenceLengthValue();
+      
+      if (un.value.length==0)
+        return;
+      if (!hasButtonSet())
+        return;
+      
+      userValue = un.value;
+      if (url.value.length>0)
+        userValue = userValue+"("+url.value+")";
+      
+      LicenceServerRequest.addLicence(
+          userValue,shortDate,fe.value,
+          window.sessionStorage['username'],window.sessionStorage['password'],
+          "localhost",(s) => getLicence(popup("#popUpDiv"), s),(s) => popupFail("#popUpDiv"));
+      
+      un.value = "";
+      fe.value = "";
+    }
+  }
   un.value = "";
   fe.value = "";
 }
 
-checkFilter(Event e)
+void checkFilter(Event e)
 {
   InputElement filter = querySelector("#filter");
   
@@ -222,7 +233,7 @@ bool hasButtonSet()
   (querySelector("#specified") as RadioButtonInputElement).checked;
 }
 
-checkDateValue(Event e)
+bool checkDateValue(Event e)
 {
   DateInputElement dateInput = querySelector("#specifiedLength");
   DateTime shortDate = dateInput.valueAsDate;
@@ -232,15 +243,28 @@ checkDateValue(Event e)
   DateTime nowPlusThree = new DateTime(now.year,now.month,day,1,0,0,0);
   
   if(shortDate == nowWithoutTime)
+  {  
     dateInput.setCustomValidity("Invalid Date : Licence Cannot Expire On Current Day");
+    return false;
+  }  
   else if(shortDate == null)
+  {  
     dateInput.setCustomValidity("Please Enter A Date");
+    return false;
+  }  
   else if(!(shortDate.isAfter(nowWithoutTime)))
+  {  
     dateInput.setCustomValidity("Invalid Date: Licence Cannot Be Set Before Current Day");
+    return false;
+  }  
   else if(!(shortDate.isAfter(nowPlusThree)))
+  {  
     dateInput.setCustomValidity("Invalid Date: Licence Must Have Minimum Length Of Three Days");
+    return false;
+  }  
   else
     dateInput.setCustomValidity("");
+  return true;
 }
 
 bool checkUsername(Event e)
@@ -269,19 +293,6 @@ bool checkUsername(Event e)
   else
     return true;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void toggle(div_id)
 {
@@ -335,7 +346,7 @@ Point windowPosition(String popupId)
   return new Point(windowWidth, 0);
 }
 
-void popup(String popupId)
+popup(String popupId)
 {
   blanketSize(popupId);
   windowPosition(popupId);
@@ -348,7 +359,6 @@ void showAlert(MouseEvent e)
   popup("#popUpDiv");
 }
 
-
 void saveToClipboard(MouseEvent e)
 {
   clipboardPrompt(licenceName);
@@ -359,10 +369,29 @@ void clipboardPrompt(String licence)
   var result = context.callMethod('prompt', ["Copy to clipboard: Ctrl+C, Enter", licence]);
   print(result);
   popup("#popUpDiv");
+  main();
 }
 
 void dismissPrompt(MouseEvent e)
 {
   popup("#popUpDiv");
   main();
+}
+
+void getLicence(Function popup, String s)
+{
+  OutputElement licence = querySelector("#licence");
+  licence.value = s;
+  popup;
+  licenceName = s;
+}
+
+popupFail(String popupId)
+{
+  ImageElement image = querySelector("#tick");
+  image.src.replaceAll("images/ticksmall.png", "images/errorLogoSmall.png");
+  blanketSize(popupId);
+  windowPosition(popupId);
+  toggle('#blanket');
+  toggle(popupId);
 }
