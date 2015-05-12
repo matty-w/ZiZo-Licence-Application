@@ -331,6 +331,7 @@ void showAlert(MouseEvent e)
 void saveToClipboard(MouseEvent e)
 {
   clipboardPrompt(licenceName);
+  window.location.reload();
 }
 
 void clipboardPrompt(String licence)

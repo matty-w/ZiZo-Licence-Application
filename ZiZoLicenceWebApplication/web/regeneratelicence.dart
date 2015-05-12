@@ -18,6 +18,7 @@ void refresh(Event e)
   
   querySelector("#dismissSuccess").onClick.listen(dismissPrompt);
   querySelector("#dismissFail").onClick.listen(dismissPrompt);
+  querySelector("#regenerateLicence_button").onClick.listen(regenerateLicence);
     
   setDefaultIpAddress();
     
@@ -35,6 +36,12 @@ void regenerateLicence(MouseEvent m)
   InputElement url = querySelector("#url");
   
   String userValue;
+  
+  if(usernameInput.value == null || usernameInput.value.trim() == "")
+  {
+    popupNoUserName("#popUpDiv");
+    return;
+  }  
   
   userValue = usernameInput.value;
     if (url.value.length>0)
@@ -98,5 +105,25 @@ void dismissPrompt(MouseEvent e)
 {
   popup("#popUpDiv");
   main();
+}
+
+popupNoUserName(String popupId)
+{
+  PopupWindow p = new PopupWindow();
+  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
+  querySelector("#popupTitle").innerHtml = "Error";
+  OutputElement text = querySelector("#popupText");
+  text.value = "No Username Entered, Please Enter A Username.";
+  OutputElement licenceText = querySelector("#licence");
+  licenceText.value = "";
+  ButtonElement button = querySelector("#dismissSuccess");
+  button.hidden = true;
+  ButtonElement button2 = querySelector("#dismissFail");
+  button2.hidden = false;
+ 
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId);  
 }
 
