@@ -4,12 +4,14 @@ import 'licenceserverrequest.dart';
 import 'helpscreenfunctions.dart';
 import 'viewablepages.dart';
 import 'dart:js';
+import 'popup.dart';
 
 String licenceLength;
 String defaultDate = today(3);
 String licenceName;
 String isoDate;
 bool continueWithLicence;
+String licenceLengthError;
 
 void main()
 {
@@ -25,6 +27,9 @@ void refresh(Event e)
   
   querySelector("#dismiss").onClick.listen(dismissPrompt);
   querySelector("#clipboard").onClick.listen(saveToClipboard);
+  
+  querySelector("#no").onClick.listen(dismissPrompt);
+  querySelector("#yes").onClick.listen(completeLicence);
     
   setlogOut();
   disableDateLengthTextBox();
@@ -112,44 +117,56 @@ void submitForm(MouseEvent m)
   InputElement fe = querySelector("#filter");
   InputElement url = querySelector("#url");
   RadioButtonInputElement specifiedChoice = querySelector("#specified");
-  String userValue;
-  
+  RadioButtonInputElement thirtyDay = querySelector("#thirtyDays");
+  RadioButtonInputElement unlimited = querySelector("#neverExpires");
+  String userValue; 
   Event e;
+  
+  if(!(specifiedChoice.checked) && !(thirtyDay.checked) && !(unlimited.checked))
+  {
+    popupNoOptionSelected("#popUpDiv");
+    return;
+  }
   
   if(specifiedChoice.checked)
     if(checkDateValue(e) == false)
-      return;   
+    {  
+      popupInvalidDate("#popUpDiv", licenceLengthError);
+      return;
+    }  
   
   if(un.value == null || un.value.trim() == "")
   {
+    popupNoUserName("#popUpDiv");
     return;
   }  
+  
+  if(checkUsername(e) == true)
+  {
+    popupLicenceFormat("#popUpDiv");
+  }
+  
   else
   {
-    if(checkUsername(e) == true)
-    {
-      String shortDate = licenceLengthValue();
+    String shortDate = licenceLengthValue();
       
-      if (un.value.length==0)
-        return;
-      if (!hasButtonSet())
-        return;
+    if (un.value.length==0)
+      return;
+    if (!hasButtonSet())
+      return;
       
-      userValue = un.value;
-      if (url.value.length>0)
-        userValue = userValue+"("+url.value+")";
+    userValue = un.value;
+    if (url.value.length>0)
+      userValue = userValue+"("+url.value+")";
       
-      LicenceServerRequest.addLicence(
-          userValue,shortDate,fe.value,
-          window.sessionStorage['username'],window.sessionStorage['password'],
-          "localhost",(s) => getLicence(popup("#popUpDiv"), s),(s) => popupFail("#popUpDiv"));
+    LicenceServerRequest.addLicence(
+        userValue,shortDate,fe.value,
+        window.sessionStorage['username'],window.sessionStorage['password'],
+        "localhost",(s) => getResult(popup("#popUpDiv"), s),(s) => getResult(popupFail("#popUpDiv"), s));
       
-      un.value = "";
-      fe.value = "";
+    un.value = "";
+    fe.value = "";
     }
-  }
-  un.value = "";
-  fe.value = "";
 }
 
 void checkFilter(Event e)
@@ -244,26 +261,25 @@ bool checkDateValue(Event e)
   
   if(shortDate == nowWithoutTime)
   {  
-    dateInput.setCustomValidity("Invalid Date : Licence Cannot Expire On Current Day");
+    licenceLengthError = "Invalid Date : Licence Cannot Expire On Current Day";
     return false;
   }  
   else if(shortDate == null)
   {  
-    dateInput.setCustomValidity("Please Enter A Date");
+    licenceLengthError = "Please Enter A Date";
     return false;
   }  
   else if(!(shortDate.isAfter(nowWithoutTime)))
   {  
-    dateInput.setCustomValidity("Invalid Date: Licence Cannot Be Set Before Current Day");
+    licenceLengthError = "Invalid Date: Licence Cannot Be Set Before Current Day";
     return false;
   }  
   else if(!(shortDate.isAfter(nowPlusThree)))
   {  
-    dateInput.setCustomValidity("Invalid Date: Licence Must Have Minimum Length Of Three Days");
+    licenceLengthError = "Invalid Date: Licence Must Have Minimum Length Of Three Days";
     return false;
   }  
   else
-    dateInput.setCustomValidity("");
   return true;
 }
 
@@ -277,81 +293,34 @@ bool checkUsername(Event e)
    
   if(!(exp.hasMatch(username)))
   {  
-    bool confirmWindow = window.confirm("The Username You Have Created Is Not In An Email Format (Test@Account.co.uk)"+ 
-                                        "Which Is Recommended, Are You Sure You Wish To Use This Username?");
-    confirmWindow;
-      if(confirmWindow == true)
-      {
-        return true;
-      }
-      else
-      {
-        window.location.reload();
-        return false;
-      }  
+    return true;  
   }
-  else
-    return true;
-}
-
-void toggle(div_id)
-{
-  DivElement el = querySelector(div_id);
-  
-  if(el.style.display == "none")
-    el.style.display = "block";
-  else
-    el.style.display = "none";   
-}
-
-Rectangle blanketSize(String popupId)
-{
-  int viewportHeight, blanketHeight, popupHeight;
-  HtmlHtmlElement frame = document.body.parentNode;
-  viewportHeight = window.innerHeight;
-  
-  if ((viewportHeight > frame.scrollHeight) && (viewportHeight > frame.clientHeight))
-    blanketHeight = viewportHeight;
-  else if(frame.clientHeight > frame.scrollHeight)
-    blanketHeight = frame.clientHeight;
-  else
-    blanketHeight = frame.scrollHeight;
-  
-  DivElement blanket = querySelector('#blanket');
-  blanket.style.height = blanketHeight.toString() + 'px';
-  DivElement popUpDiv = querySelector(popupId);
-  popupHeight = (blanketHeight/2-200).floor();
-  popUpDiv.style.top = popupHeight.toString() + 'px';
- 
-  return new Rectangle(0, 0, 0, viewportHeight);
-}
-
-Point windowPosition(String popupId)
-{
-  int windowWidth;
-  int viewportWidth = window.innerHeight;
-  HtmlHtmlElement frame = document.body.parentNode;
-  
-  if ((viewportWidth > frame.scrollWidth) && (viewportWidth > frame.clientWidth))
-    windowWidth = viewportWidth;
-  else if(frame.clientWidth > frame.scrollWidth)
-    windowWidth = frame.clientWidth;
-  else
-    windowWidth = frame.scrollWidth;
-     
-  DivElement popUpDiv = querySelector(popupId);
-  windowWidth = (windowWidth/2-200).floor();
-  popUpDiv.style.left = windowWidth.toString() + 'px';
-  
-  return new Point(windowWidth, 0);
+  else  
+    return false;
 }
 
 popup(String popupId)
 {
-  blanketSize(popupId);
-  windowPosition(popupId);
-  toggle('#blanket');
-  toggle(popupId);
+  PopupWindow p = new PopupWindow();
+  
+  querySelector("#tick").setAttribute("src", "images/ticksmall.png");
+  querySelector("#popupTitle").innerHtml = "Licence Created";
+  OutputElement text = querySelector("#popupText");
+  text.value = "The Licence Is: ";
+  
+  ButtonElement button = querySelector("#clipboard");
+  button.hidden = false;
+  ButtonElement button2 = querySelector("#dismiss");
+  button2.hidden = false;
+  ButtonElement button3 = querySelector("#yes");
+  button3.hidden = true;
+  ButtonElement button4 = querySelector("#no");
+  button4.hidden = true;
+  
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId);
 }
 
 void showAlert(MouseEvent e)
@@ -378,7 +347,7 @@ void dismissPrompt(MouseEvent e)
   main();
 }
 
-void getLicence(Function popup, String s)
+void getResult(Function popup, String s)
 {
   OutputElement licence = querySelector("#licence");
   licence.value = s;
@@ -388,10 +357,148 @@ void getLicence(Function popup, String s)
 
 popupFail(String popupId)
 {
-  ImageElement image = querySelector("#tick");
-  image.src.replaceAll("images/ticksmall.png", "images/errorLogoSmall.png");
-  blanketSize(popupId);
-  windowPosition(popupId);
-  toggle('#blanket');
-  toggle(popupId);
+  PopupWindow p = new PopupWindow();
+  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
+  querySelector("#popupTitle").innerHtml = "Error";
+  OutputElement text = querySelector("#popupText");
+  text.value = "An Error Occurred: ";
+  OutputElement licenceText = querySelector("#licence");
+  licenceText.value = "";
+  ButtonElement button = querySelector("#clipboard");
+  button.hidden = true;
+  ButtonElement button2 = querySelector("#dismiss");
+  button2.hidden = false;
+  ButtonElement button3 = querySelector("#yes");
+  button3.hidden = true;
+  ButtonElement button4 = querySelector("#no");
+  button4.hidden = true;
+  
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId);
+}
+
+popupNoUserName(String popupId)
+{
+  PopupWindow p = new PopupWindow();
+  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
+  querySelector("#popupTitle").innerHtml = "Error";
+  OutputElement text = querySelector("#popupText");
+  text.value = "No Username Entered, Please Enter A Username.";
+  OutputElement licenceText = querySelector("#licence");
+  licenceText.value = "";
+  ButtonElement button = querySelector("#clipboard");
+  button.hidden = true;
+  ButtonElement button2 = querySelector("#dismiss");
+  button2.hidden = false;
+  ButtonElement button3 = querySelector("#yes");
+  button3.hidden = true;
+  ButtonElement button4 = querySelector("#no");
+  button4.hidden = true;
+    
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId);  
+}
+
+popupInvalidDate(String popupId, String reason)
+{
+  PopupWindow p = new PopupWindow();
+  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
+  querySelector("#popupTitle").innerHtml = "Error";
+  OutputElement text = querySelector("#popupText");
+  text.value = reason;
+  OutputElement licenceText = querySelector("#licence");
+  licenceText.value = "";
+  ButtonElement button = querySelector("#clipboard");
+  button.hidden = true;
+  ButtonElement button2 = querySelector("#dismiss");
+  button2.hidden = false;
+  ButtonElement button3 = querySelector("#yes");
+  button3.hidden = true;
+  ButtonElement button4 = querySelector("#no");
+  button4.hidden = true;
+      
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId); 
+}
+
+popupLicenceFormat(String popupId)
+{
+  PopupWindow p = new PopupWindow();
+  querySelector("#tick").setAttribute("src", "images/questionMark.png");
+  querySelector("#popupTitle").innerHtml = "Username Format";
+  OutputElement text = querySelector("#popupText");
+  text.value = "The Username Is Not In The Recommended Email Format, Continue?";
+  OutputElement licenceText = querySelector("#licence");
+  licenceText.value = "";
+  ButtonElement button = querySelector("#clipboard");
+  button.hidden = true;
+  ButtonElement button2 = querySelector("#dismiss");
+  button2.hidden = true;
+  ButtonElement button3 = querySelector("#yes");
+  button3.hidden = false;
+  ButtonElement button4 = querySelector("#no");
+  button4.hidden = false;
+  
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId); 
+}
+
+popupNoOptionSelected(String popupId)
+{
+  PopupWindow p = new PopupWindow();
+  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
+  querySelector("#popupTitle").innerHtml = "Error";
+  OutputElement text = querySelector("#popupText");
+  text.value = "No Licence Length Option Selected, Please Pick An Option.";
+  OutputElement licenceText = querySelector("#licence");
+  licenceText.value = "";
+  ButtonElement button = querySelector("#clipboard");
+  button.hidden = true;
+  ButtonElement button2 = querySelector("#dismiss");
+  button2.hidden = false;
+  ButtonElement button3 = querySelector("#yes");
+  button3.hidden = true;
+  ButtonElement button4 = querySelector("#no");
+  button4.hidden = true;
+        
+  p.blanketSize(popupId);
+  p.windowPosition(popupId);
+  p.toggle('#blanket');
+  p.toggle(popupId); 
+}
+
+void completeLicence(MouseEvent m)
+{
+  popup("#popUpDiv");
+  InputElement un = querySelector("#username");
+  InputElement fe = querySelector("#filter");
+  InputElement url = querySelector("#url");
+  String userValue;
+  
+  String shortDate = licenceLengthValue();
+        
+  if (un.value.length==0)
+    return;
+  if (!hasButtonSet())
+    return;
+        
+  userValue = un.value;
+  if (url.value.length>0)
+    userValue = userValue+"("+url.value+")";
+        
+  LicenceServerRequest.addLicence(
+      userValue,shortDate,fe.value,
+      window.sessionStorage['username'],window.sessionStorage['password'],
+      "localhost",(s) => getResult(popup("#popUpDiv"), s),(s) => getResult(popupFail("#popUpDiv"), s));
+        
+  un.value = "";
+  fe.value = "";
 }
