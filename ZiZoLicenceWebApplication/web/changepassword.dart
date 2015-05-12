@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'loginfunctions.dart';
 
 void main()
 {
@@ -8,8 +9,15 @@ void main()
 
 void refresh(Event e)
 {
+  setlogOut();
   querySelector("#username-output").innerHtml = window.sessionStorage['username'];
   InputElement username = querySelector("#username");
-  username.value = window.sessionStorage['username'];
-  username.disabled = true; 
+  username.innerHtml = window.sessionStorage['username'];
+  username.disabled; 
+}
+
+void setlogOut()
+{
+  LoginAndOut log = new LoginAndOut();
+  querySelector("#logoutButton").onClick.listen(log.logout);
 }
