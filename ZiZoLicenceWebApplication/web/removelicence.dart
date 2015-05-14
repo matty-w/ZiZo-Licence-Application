@@ -3,6 +3,7 @@ import 'loginfunctions.dart';
 import 'helpscreenfunctions.dart';
 import 'viewablepages.dart';
 import 'licenceserverrequest.dart';
+import 'popupconstruct.dart';
 import 'popup.dart';
 
 void main()
@@ -14,10 +15,11 @@ void main()
 void refresh(Event e)
 {
   LoginAndOut log = new LoginAndOut();
+  PopupWindow p = new PopupWindow();
   HelpScreenFunctions help = new HelpScreenFunctions();
   
-  querySelector("#dismissSuccess").onClick.listen(dismissPrompt);
-  querySelector("#dismissFail").onClick.listen(dismissPrompt);
+  querySelector("#dismissSuccess").onClick.listen(p.dismissPrompt);
+  querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
   querySelector("#removeLicence_button").onClick.listen(removeLicence);
     
   querySelector("#helpButton").onClick.listen(help.showRemoveLicenceScreen);
@@ -29,84 +31,18 @@ void refresh(Event e)
 
 void removeLicence(MouseEvent m)
 {
+  SelectPopup sp = new SelectPopup();
+  PopupWindow p = new PopupWindow();
   InputElement licence = querySelector("#licence");
   String licenceValue;
   licenceValue = licence.value;
   
   if(licenceValue == null || licenceValue.trim() == "")
   {
-    popupNoLicenceName("#popUpDiv");
+    sp.popupOther("no-licence-name","#popUpDiv");
     return;
   }
   
   LicenceServerRequest.removeAdmin(licenceValue, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
-      (s) => getResult(popup("#popUpDiv"), s),(s) => getResult(popupFail("#popUpDiv"), s));
-}
-
-popup(String popupId)
-{
-  PopupWindow p = new PopupWindow();
-  ButtonElement button = querySelector("#dismissFail");
-  button.hidden = true;
-  ButtonElement button2 = querySelector("#dismissSuccess");
-  button2.hidden = false;
-  querySelector("#popupTitle").innerHtml = "Licence Removed";
-  OutputElement text = querySelector("#popupText");
-  text.value = "The Licence Has Been Successfully Removed: ";
-  querySelector("#tick").setAttribute("src", "images/ticksmall.png");
-  
-  p.blanketSize(popupId);
-  p.windowPosition(popupId);
-  p.toggle('#blanket');
-  p.toggle(popupId);
-}
-
-popupFail(String popupId)
-{
-  PopupWindow p = new PopupWindow();
-  ButtonElement button = querySelector("#dismissSuccess");
-  button.hidden = true;
-  ButtonElement button2 = querySelector("#dismissFail");
-  button2.hidden = false;
-  
-  
-  querySelector("#popupTitle").innerHtml = "Error";
-  OutputElement text = querySelector("#popupText");
-  text.value = "An Error Occurred: ";
-  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
-  p.blanketSize(popupId);
-  p.windowPosition(popupId);
-  p.toggle('#blanket');
-  p.toggle(popupId);
-}
-
-void getResult(Function popup, String s)
-{
-  OutputElement admin = querySelector("#serverResponse");
-  admin.value = s;
-  popup;
-}
-
-void dismissPrompt(MouseEvent e)
-{
-  popup("#popUpDiv");
-  main();
-}
-
-popupNoLicenceName(String popupId)
-{
-  PopupWindow p = new PopupWindow();
-  ButtonElement button = querySelector("#dismissSuccess");
-  button.hidden = true;
-  ButtonElement button2 = querySelector("#dismissFail");
-  button2.hidden = false;
-       
-  querySelector("#popupTitle").innerHtml = "Error";
-  OutputElement text = querySelector("#popupText");
-  text.value = "Please Enter A Licence Name To Continue.";
-  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
-  p.blanketSize(popupId);
-  p.windowPosition(popupId);
-  p.toggle('#blanket');
-  p.toggle(popupId);
+      (s) => p.getResult(sp.popup("remove-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
 }

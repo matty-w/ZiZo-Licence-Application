@@ -52,6 +52,18 @@ class LicenceServerRequest extends SoapRequest
     result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
   }
   
+  static void changeAdminPassword(String user, String newPassword, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("perform");
+    result.addArgument("change-password "+user+","+newPassword);
+    result.addArgument(adminName);
+    result.addArgument(adminPassword);
+    result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
+  }
+  
   static void removeUser(String user, String adminName, String adminPassword, String host, Function onPass, Function onFail)
   {
     LicenceServerRequest result;

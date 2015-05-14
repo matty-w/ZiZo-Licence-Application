@@ -136,6 +136,7 @@ class SoapRequest
   
   String packageName()
   {
+    //TODO get rid of port
     return host()+":"+port().toString()+"/"+path();
   }
   

@@ -5,6 +5,7 @@ import 'helpscreenfunctions.dart';
 import 'viewablepages.dart';
 import 'dart:js';
 import 'popup.dart';
+import 'popupconstruct.dart';
 
 String licenceLength;
 String defaultDate = today(3);
@@ -25,11 +26,11 @@ void refresh(Event e)
     
   querySelector("#helpButton").onClick.listen(help.showCreateLicenceScreen);
   
-  querySelector("#dismiss").onClick.listen(dismissPrompt);
+  querySelector("#dismissFinal").onClick.listen(dismissPrompt);
   querySelector("#clipboard").onClick.listen(saveToClipboard);
   
-  querySelector("#no").onClick.listen(dismissPrompt);
-  querySelector("#yes").onClick.listen(completeLicence);
+  querySelector("#dismissFail").onClick.listen(dismissPrompt);
+  querySelector("#dismissSuccess").onClick.listen(completeLicence);
     
   setlogOut();
   disableDateLengthTextBox();
@@ -310,11 +311,11 @@ popup(String popupId)
   
   ButtonElement button = querySelector("#clipboard");
   button.hidden = false;
-  ButtonElement button2 = querySelector("#dismiss");
+  ButtonElement button2 = querySelector("#dismissFinal");
   button2.hidden = false;
-  ButtonElement button3 = querySelector("#yes");
+  ButtonElement button3 = querySelector("#dismissSuccess");
   button3.hidden = true;
-  ButtonElement button4 = querySelector("#no");
+  ButtonElement button4 = querySelector("#dismissFail");
   button4.hidden = true;
   
   p.blanketSize(popupId);
@@ -350,7 +351,7 @@ void dismissPrompt(MouseEvent e)
 
 void getResult(Function popup, String s)
 {
-  OutputElement licence = querySelector("#licence");
+  OutputElement licence = querySelector("#serverResponse");
   licence.value = s;
   popup;
   licenceName = s;
@@ -363,15 +364,15 @@ popupFail(String popupId)
   querySelector("#popupTitle").innerHtml = "Error";
   OutputElement text = querySelector("#popupText");
   text.value = "An Error Occurred: ";
-  OutputElement licenceText = querySelector("#licence");
+  OutputElement licenceText = querySelector("#serverResponse");
   licenceText.value = "";
   ButtonElement button = querySelector("#clipboard");
   button.hidden = true;
-  ButtonElement button2 = querySelector("#dismiss");
+  ButtonElement button2 = querySelector("#dismissFinal");
   button2.hidden = false;
-  ButtonElement button3 = querySelector("#yes");
+  ButtonElement button3 = querySelector("#dismissSuccess");
   button3.hidden = true;
-  ButtonElement button4 = querySelector("#no");
+  ButtonElement button4 = querySelector("#dismissFail");
   button4.hidden = true;
   
   p.blanketSize(popupId);
@@ -387,15 +388,15 @@ popupNoUserName(String popupId)
   querySelector("#popupTitle").innerHtml = "Error";
   OutputElement text = querySelector("#popupText");
   text.value = "No Username Entered, Please Enter A Username.";
-  OutputElement licenceText = querySelector("#licence");
+  OutputElement licenceText = querySelector("#serverResponse");
   licenceText.value = "";
   ButtonElement button = querySelector("#clipboard");
   button.hidden = true;
-  ButtonElement button2 = querySelector("#dismiss");
+  ButtonElement button2 = querySelector("#dismissFinal");
   button2.hidden = false;
-  ButtonElement button3 = querySelector("#yes");
+  ButtonElement button3 = querySelector("#dismissSuccess");
   button3.hidden = true;
-  ButtonElement button4 = querySelector("#no");
+  ButtonElement button4 = querySelector("#dismissFail");
   button4.hidden = true;
     
   p.blanketSize(popupId);
@@ -411,15 +412,15 @@ popupInvalidDate(String popupId, String reason)
   querySelector("#popupTitle").innerHtml = "Error";
   OutputElement text = querySelector("#popupText");
   text.value = reason;
-  OutputElement licenceText = querySelector("#licence");
+  OutputElement licenceText = querySelector("#serverResponse");
   licenceText.value = "";
   ButtonElement button = querySelector("#clipboard");
   button.hidden = true;
-  ButtonElement button2 = querySelector("#dismiss");
+  ButtonElement button2 = querySelector("#dismissFinal");
   button2.hidden = false;
-  ButtonElement button3 = querySelector("#yes");
+  ButtonElement button3 = querySelector("#dismissSuccess");
   button3.hidden = true;
-  ButtonElement button4 = querySelector("#no");
+  ButtonElement button4 = querySelector("#dismissFail");
   button4.hidden = true;
       
   p.blanketSize(popupId);
@@ -435,15 +436,15 @@ popupLicenceFormat(String popupId)
   querySelector("#popupTitle").innerHtml = "Username Format";
   OutputElement text = querySelector("#popupText");
   text.value = "The Username Is Not In The Recommended Email Format, Continue?";
-  OutputElement licenceText = querySelector("#licence");
+  OutputElement licenceText = querySelector("#serverResponse");
   licenceText.value = "";
   ButtonElement button = querySelector("#clipboard");
   button.hidden = true;
-  ButtonElement button2 = querySelector("#dismiss");
+  ButtonElement button2 = querySelector("#dismissFinal");
   button2.hidden = true;
-  ButtonElement button3 = querySelector("#yes");
+  ButtonElement button3 = querySelector("#dismissSuccess");
   button3.hidden = false;
-  ButtonElement button4 = querySelector("#no");
+  ButtonElement button4 = querySelector("#dismissFail");
   button4.hidden = false;
   
   p.blanketSize(popupId);
@@ -459,15 +460,15 @@ popupNoOptionSelected(String popupId)
   querySelector("#popupTitle").innerHtml = "Error";
   OutputElement text = querySelector("#popupText");
   text.value = "No Licence Length Option Selected, Please Pick An Option.";
-  OutputElement licenceText = querySelector("#licence");
+  OutputElement licenceText = querySelector("#serverResponse");
   licenceText.value = "";
   ButtonElement button = querySelector("#clipboard");
   button.hidden = true;
-  ButtonElement button2 = querySelector("#dismiss");
+  ButtonElement button2 = querySelector("#dismissFinal");
   button2.hidden = false;
-  ButtonElement button3 = querySelector("#yes");
+  ButtonElement button3 = querySelector("#dismissSuccess");
   button3.hidden = true;
-  ButtonElement button4 = querySelector("#no");
+  ButtonElement button4 = querySelector("#dismissFail");
   button4.hidden = true;
         
   p.blanketSize(popupId);

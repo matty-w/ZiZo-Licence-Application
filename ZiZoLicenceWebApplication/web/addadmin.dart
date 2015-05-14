@@ -3,7 +3,9 @@ import 'dart:html';
 import 'helpscreenfunctions.dart';
 import 'licenceserverrequest.dart';
 import 'viewablepages.dart';
+import 'popupconstruct.dart';
 import 'popup.dart';
+
 
 void main()
 {
@@ -14,10 +16,11 @@ void main()
 void refresh(Event e)
 {
   LoginAndOut log = new LoginAndOut();
+  PopupWindow p = new PopupWindow();
   HelpScreenFunctions help = new HelpScreenFunctions();
   
-  querySelector("#dismissSuccess").onClick.listen(dismissPrompt);
-  querySelector("#dismissFail").onClick.listen(dismissPrompt);
+  querySelector("#dismissSuccess").onClick.listen(p.dismissPrompt);
+  querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
   
   querySelector("#logoutButton").onClick.listen(log.logout);
   querySelector("#helpButton").onClick.listen(help.showAddUsersScreen);
@@ -29,22 +32,33 @@ void refresh(Event e)
 
 void addAdmin(MouseEvent m)
 {
-  InputElement password1 = querySelector("#password");
-  InputElement password2 = querySelector("#confirmPassword");
-  String passwordFirst = password1.value;
-  String passwordSecond = password2.value;
-  
+  SelectPopup sp = new SelectPopup();
   InputElement userNameInput = querySelector("#username");
   InputElement passwordInput = querySelector("#password");
   InputElement confirmPassword = querySelector("#confirmPassword");
+  String passwordFirst = passwordInput.value;
+  String passwordSecond = confirmPassword.value;
+  
+  if(userNameInput.value == null || userNameInput.value.trim() == "")
+  {
+    sp.popupOther("no-username","#popUpDiv");
+    return;
+  }
+  
+  if(passwordFirst == null || passwordFirst.trim() == "" || passwordSecond == null || passwordSecond.trim() == "")
+  {  
+    sp.popupOther("no-password","#popUpDiv");
+    return;
+  }  
   
   if(checkPasswordsMatch(passwordFirst, passwordSecond) == true)
-  {   
+  { 
+    PopupWindow p = new PopupWindow();
     String user = userNameInput.value;
     String password = passwordInput.value;
      
     LicenceServerRequest.addAdminUser(user, password, window.sessionStorage['username'],window.sessionStorage['password'],
-        "localhost", (s) => getResult(popup("#popUpDiv"), s),(s) => getResult(popupFail("#popUpDiv"), s));
+        "localhost", (s) => p.getResult(sp.popup("add-admin","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
     
     userNameInput.value = "";
     passwordInput.value = "";
@@ -52,7 +66,7 @@ void addAdmin(MouseEvent m)
     return;
   }  
     
-  popupPasswordsDontMatch("#popUpDiv");
+  sp.popupOther("passwords-dont-match","#popUpDiv");
 
 }
 
@@ -62,72 +76,4 @@ bool checkPasswordsMatch(String password, String confirmPassword)
     return false;
   else
     return true;
-}
-
-popup(String popupId)
-{
-  PopupWindow p = new PopupWindow();
-  ButtonElement button = querySelector("#dismissFail");
-  button.hidden = true;
-  ButtonElement button2 = querySelector("#dismissSuccess");
-  button2.hidden = false;
-  querySelector("#popupTitle").innerHtml = "Admin Created";
-  OutputElement text = querySelector("#popupText");
-  text.value = "The Admin Account Was Successfully Created: ";
-  querySelector("#tick").setAttribute("src", "images/ticksmall.png");
-  
-  p.blanketSize(popupId);
-  p.windowPosition(popupId);
-  p.toggle('#blanket');
-  p.toggle(popupId);
-}
-
-popupFail(String popupId)
-{
-  PopupWindow p = new PopupWindow();
-  ButtonElement button = querySelector("#dismissSuccess");
-  button.hidden = true;
-  ButtonElement button2 = querySelector("#dismissFail");
-  button2.hidden = false;
-  
-  
-  querySelector("#popupTitle").innerHtml = "Error";
-  OutputElement text = querySelector("#popupText");
-  text.value = "An Error Occurred: ";
-  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
-  p.blanketSize(popupId);
-  p.windowPosition(popupId);
-  p.toggle('#blanket');
-  p.toggle(popupId);
-}
-
-popupPasswordsDontMatch(String popupId)
-{
-  PopupWindow p = new PopupWindow();
-  ButtonElement button = querySelector("#dismissSuccess");
-  button.hidden = true;
-  ButtonElement button2 = querySelector("#dismissFail");
-  button2.hidden = false;
-    
-  querySelector("#popupTitle").innerHtml = "Error";
-  OutputElement text = querySelector("#popupText");
-  text.value = "The Passwords Do Not Match, Please Try Again";
-  querySelector("#tick").setAttribute("src", "images/dialogWarning2.png");
-  p.blanketSize(popupId);
-  p.windowPosition(popupId);
-  p.toggle('#blanket');
-  p.toggle(popupId);
-}
-
-void getResult(Function popup, String s)
-{
-  OutputElement admin = querySelector("#serverResponse");
-  admin.value = s;
-  popup;
-}
-
-void dismissPrompt(MouseEvent e)
-{
-  popup("#popUpDiv");
-  main();
 }

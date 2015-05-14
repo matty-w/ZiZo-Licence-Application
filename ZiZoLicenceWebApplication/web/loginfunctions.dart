@@ -4,7 +4,6 @@ import 'dart:html';
 import 'licenceserverrequest.dart';
 
 bool testing = false;
-List<String> permissions;
 
 class LoginAndOut
 {
@@ -30,7 +29,11 @@ class LoginAndOut
     InputElement password = querySelector("#passwordTextbox");
     Storage local = window.sessionStorage;
     String page = "createLicence.html";
+    List<String> permissions = null;
+    String response = local['permissions'];
     
+    if(response != null)
+      permissions = response.split(",");
     if ((permissions!=null)&&(!permissions.contains('add-licence')))
         page = "changePassword.html";
     local['username'] = username.value;
@@ -47,6 +50,7 @@ class LoginAndOut
 
   void storePermissions(String response)
   {
-    permissions = response.split(",");
+    Storage local = window.sessionStorage;
+    local['permissions'] = response;
   }
 }
