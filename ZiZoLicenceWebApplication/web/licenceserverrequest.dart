@@ -1,3 +1,5 @@
+library licenceserver;
+
 import 'soaprequest.dart';
 
 class LicenceServerRequest extends SoapRequest

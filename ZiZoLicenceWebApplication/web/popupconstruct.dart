@@ -2,6 +2,8 @@ library popup;
 
 import 'dart:html';
 
+String licenceName;
+
 class PopupWindow
 {
   void toggle(div_id)
@@ -215,7 +217,13 @@ class PopupWindow
   {
     OutputElement output = querySelector("#serverResponse");
     output.innerHtml = response;
+    licenceName = response;
     popup; 
+  }
+  
+  String getLicenceName()
+  {
+    return licenceName;
   }
   
   void dismissPrompt(MouseEvent e)
