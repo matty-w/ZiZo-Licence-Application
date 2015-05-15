@@ -447,3 +447,39 @@ class RemoveLicenceFunctions
         (s) => p.getResult(sp.popup("remove-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
   }
 }
+
+class ChangePassword
+{
+  void changePassword(MouseEvent m)
+  {
+    SelectPopup sp = new SelectPopup();
+    PopupWindow p = new PopupWindow();
+    InputElement username = querySelector("#username");
+    username.value = window.sessionStorage['username'];
+    InputElement password = querySelector("#password");
+    InputElement confirmPassword = querySelector("#confirmPassword");
+    String pass = password.value;
+    String cp = confirmPassword.value;
+    
+    if(pass == null || pass.trim() == "" || cp == null || cp.trim() == "")
+    {
+      sp.popupOther("no-password","#popUpDiv");
+      return;
+    }
+    
+    if(pass != cp)
+    {
+      sp.popupOther("passwords-dont-match","#popUpDiv");
+      return;
+    }
+    else
+    {
+      LicenceServerRequest.changeAdminPassword(username.value, cp, window.sessionStorage['username'],window.sessionStorage['password'],
+          "localhost", (s) => p.getResult(sp.popup("change-password","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+      window.sessionStorage['password'] = pass;
+    }  
+    
+    pass = "";
+    cp = "";
+  }
+}

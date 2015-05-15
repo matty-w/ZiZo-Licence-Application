@@ -102,4 +102,21 @@ class OnLoadFunctions
     querySelector("#username-output").innerHtml = window.sessionStorage['username'];   
     ViewablePages.revealOptions();
   }
+  
+  void changePassword()
+  {
+    ChangePassword cp = new ChangePassword();
+    g.setLogOut();
+    HelpScreenFunctions help = new HelpScreenFunctions(); 
+    querySelector("#helpButton").onClick.listen(help.showChangePassword);
+    PopupWindow p = new PopupWindow();
+    InputElement username = querySelector("#username");
+    username.disabled = true;
+    username.value = window.sessionStorage['username'];
+    querySelector("#username-output").innerHtml = window.sessionStorage['username'];
+    querySelector("#addUser_submitButton").onClick.listen(cp.changePassword);
+    querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
+    querySelector("#dismissSuccess").onClick.listen(p.dismissPrompt);
+    ViewablePages.revealOptions();
+  }
 }

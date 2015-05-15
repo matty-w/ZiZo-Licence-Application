@@ -124,7 +124,7 @@ class PopupWindow
     if(option == "change-password")
     {
       title = "Password Changed";
-      description = "Your Password Was Successfully Changed.";
+      description = "Your Password Was Successfully Changed: ";
       querySelector("#popupTitle").innerHtml = title;
       OutputElement text = querySelector("#popupText");
       text.innerHtml = description;

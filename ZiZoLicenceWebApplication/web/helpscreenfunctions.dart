@@ -46,11 +46,16 @@ class HelpScreenFunctions
   
   showRemoveUsersScreen(MouseEvent m)
   {
-    window.open("helpPages/removeAdminHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/removeAdminHelp.html");
   }
   
   showViewLicencesScreen(MouseEvent m)
   {
-    window.open("helpPages/viewLicencesHelp.html","",'width=500,height=300,scrollbars=yes');
+    showHelpScreen("helpPages/viewLicencesHelp.html");
+  }
+  
+  showChangePassword(MouseEvent m)
+  {
+    showHelpScreen("helpPages/changePasswordHelp.html");
   }
 }  
