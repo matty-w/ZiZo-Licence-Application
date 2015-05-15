@@ -163,8 +163,8 @@ class CreateLicenceFunctions
     if(checkUsername(e) == true)
     {
       sp.popupLicenceFormat("#popUpDiv");
-    }
-    
+      return;
+    } 
     else
     {
       String shortDate = licenceLengthValue();
@@ -192,6 +192,7 @@ class CreateLicenceFunctions
   {
     SelectPopup sp = new SelectPopup();
     PopupWindow p = new PopupWindow();
+    p.dismiss("#popUpDiv");
     sp.popupLicence("add-licence","#popUpDiv");
     InputElement un = querySelector("#username");
     InputElement fe = querySelector("#filter");
