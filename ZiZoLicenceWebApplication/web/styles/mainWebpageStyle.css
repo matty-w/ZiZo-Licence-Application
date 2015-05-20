@@ -252,6 +252,19 @@ td
   width: 6em;
 }
 
+#version
+{
+  position: fixed;
+  top: 85%;
+  right: 94.5%;
+  color: #ffffff; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 10px; 
+  font-weight: 300; 
+  text-shadow: 1px 1px #000000;
+  text-align: center;
+}
+
 /*############################### ID's Create Licence Page #################################################*/
 
 #expiryDate
@@ -299,6 +312,13 @@ td
 #removeUser_button
 {
   margin-left: 65%;
+}
+
+/*##############################  ID's Change Password #####################################################*/
+
+#changePassword_submitButton
+{
+  margin-left: 60%;
 }
 
 /*############################### ID's View Licences/Logs Page #############################################*/

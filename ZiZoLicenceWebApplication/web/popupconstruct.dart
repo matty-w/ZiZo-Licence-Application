@@ -6,15 +6,18 @@ String licenceName;
 
 class PopupWindow
 {
-  void toggle(div_id)
+  void hide(div_id)
   {
-    DivElement el = querySelector(div_id);
-    
-    if(el.style.display == "none")
-      el.style.display = "block";
-    else
-      el.style.display = "none";   
+    DivElement el = querySelector(div_id);  
+    el.style.display = "none";   
   }
+  
+  void show(div_id)
+  {
+    DivElement el = querySelector(div_id);  
+    el.style.display = "block";  
+  }
+
 
   Rectangle blanketSize(String popupId)
   {
@@ -60,16 +63,17 @@ class PopupWindow
   
   void dismiss(String popupId)
   {
-    toggle("#blanket");
-    toggle(popupId);
+    hide("#blanket");
+    hide(popupId);
   }
   
   void popup(String popupId)
   {
+    print("popup"+popupId);
     blanketSize(popupId);
     windowPosition(popupId);
-    toggle('#blanket');
-    toggle(popupId); 
+    show('#blanket');
+    show(popupId); 
   }
   
   void buttons(bool dismissFail, bool dismissSuccess, bool dismissFinal, bool clipboard)

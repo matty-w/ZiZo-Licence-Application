@@ -139,7 +139,7 @@ class CreateLicenceFunctions
     RadioButtonInputElement thirtyDay = querySelector("#thirtyDays");
     RadioButtonInputElement unlimited = querySelector("#neverExpires");
     String userValue; 
-    Event e;
+
 
     if(!(specifiedChoice.checked) && !(thirtyDay.checked) && !(unlimited.checked))
     {
@@ -154,13 +154,13 @@ class CreateLicenceFunctions
     }
     
     if(specifiedChoice.checked)
-      if(checkDateValue(e) == false)
+      if(checkDateValue() == false)
       {  
         sp.popupInvalidDate("#popUpDiv", licenceLengthError);
         return;
       }    
     
-    if(checkUsername(e) == true)
+    if(checkUsername() == true)
     {
       sp.popupLicenceFormat("#popUpDiv");
       return;
@@ -192,7 +192,6 @@ class CreateLicenceFunctions
   {
     SelectPopup sp = new SelectPopup();
     PopupWindow p = new PopupWindow();
-    p.dismiss("#popUpDiv");
     sp.popupLicence("add-licence","#popUpDiv");
     InputElement un = querySelector("#username");
     InputElement fe = querySelector("#filter");
@@ -237,7 +236,7 @@ class CreateLicenceFunctions
       return "";
   }
   
-  bool checkDateValue(Event e)
+  bool checkDateValue()
   {
     DateInputElement dateInput = querySelector("#specifiedLength");
     DateTime shortDate = DateTime.parse(dateInput.value);
@@ -277,7 +276,7 @@ class CreateLicenceFunctions
     (querySelector("#specified") as RadioButtonInputElement).checked;
   }
   
-  bool checkUsername(Event e)
+  bool checkUsername()
   {
     InputElement input = querySelector("#username");
     String username = input.value;
