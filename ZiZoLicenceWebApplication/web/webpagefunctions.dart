@@ -455,7 +455,6 @@ class ChangePassword
     SelectPopup sp = new SelectPopup();
     PopupWindow p = new PopupWindow();
     InputElement username = querySelector("#username");
-    username.value = window.sessionStorage['username'];
     InputElement password = querySelector("#password");
     InputElement confirmPassword = querySelector("#confirmPassword");
     String pass = password.value;

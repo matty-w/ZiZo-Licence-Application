@@ -105,14 +105,31 @@ class OnLoadFunctions
   
   void changePassword()
   {
+    InputElement username = querySelector("#username");
+    Storage local = window.sessionStorage;
+    String response = local['permissions'];
+    List<String> permissions = null;
+    
+    if(response != null)
+      permissions = response.split(",");
+    if ((permissions!=null)&&(permissions.contains('change-password')))
+    {  
+      username.disabled = false;
+      username.value = window.sessionStorage['username'];
+    }  
+    else
+    {  
+      username.disabled = true;
+      username.value = window.sessionStorage['username'];
+    }  
+      
+    
     ChangePassword cp = new ChangePassword();
     g.setLogOut();
     HelpScreenFunctions help = new HelpScreenFunctions(); 
     querySelector("#helpButton").onClick.listen(help.showChangePassword);
     PopupWindow p = new PopupWindow();
-    InputElement username = querySelector("#username");
-    username.disabled = true;
-    username.value = window.sessionStorage['username'];
+    
     querySelector("#username-output").innerHtml = window.sessionStorage['username'];
     querySelector("#changePassword_submitButton").onClick.listen(cp.changePassword);
     querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
