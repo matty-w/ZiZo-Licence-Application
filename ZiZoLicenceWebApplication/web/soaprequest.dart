@@ -50,10 +50,10 @@ class SoapRequest
     return _host;
   }
   
-  int port()
+  /*int port()
   {
     return 8080;
-  }
+  }*/
   
   String path()
   {
@@ -136,8 +136,7 @@ class SoapRequest
   
   String packageName()
   {
-    //TODO get rid of port
-    return host()+":"+port().toString()+"/"+path();
+    return host()+":"+"/"+path();
   }
   
   String xmlResponseText()
