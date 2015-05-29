@@ -181,7 +181,7 @@ class CreateLicenceFunctions
       LicenceServerRequest.addLicence(
           userValue,shortDate,fe.value,
           window.sessionStorage['username'],window.sessionStorage['password'],
-          "localhost",(s) => p.getResult(sp.popupLicence("add-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+          LicenceServerRequest.defaultUri(),(s) => p.getResult(sp.popupLicence("add-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
         
       un.value = "";
       fe.value = "";
@@ -212,7 +212,7 @@ class CreateLicenceFunctions
     LicenceServerRequest.addLicence(
         userValue,shortDate,fe.value,
         window.sessionStorage['username'],window.sessionStorage['password'],
-        "localhost",(s) => p.getResult(sp.popupLicence("add-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+        LicenceServerRequest.defaultUri(),(s) => p.getResult(sp.popupLicence("add-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
           
     un.value = "";
     fe.value = "";
@@ -322,7 +322,7 @@ class AddAdminFucntions
       String password = passwordInput.value;
        
       LicenceServerRequest.addAdminUser(user, password, window.sessionStorage['username'],window.sessionStorage['password'],
-          "localhost", (s) => p.getResult(sp.popup("add-admin","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+          LicenceServerRequest.defaultUri(), (s) => p.getResult(sp.popup("add-admin","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
       
       userNameInput.value = "";
       passwordInput.value = "";
@@ -356,7 +356,7 @@ class AddPermissionsFunctions
     permission = permissionChoice.value;
     
     LicenceServerRequest.addPermission(user, permission, window.sessionStorage['username'],window.sessionStorage['password'], 
-        "localhost", (s) => p.getResult(sp.popup("add-permissions","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+        LicenceServerRequest.defaultUri(), (s) => p.getResult(sp.popup("add-permissions","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
   }
 
   void setDescriptionText()
@@ -398,7 +398,7 @@ class RegenerateLicenceFunctions
         userValue = userValue+"("+url.value+")";
       
     LicenceServerRequest.regenerateLicence(userValue, window.sessionStorage['username'],window.sessionStorage['password'], 
-        "localhost", (s) => p.getResult(sp.popup("regenerate-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));  
+        LicenceServerRequest.defaultUri(), (s) => p.getResult(sp.popup("regenerate-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));  
   }
 }
 
@@ -419,7 +419,7 @@ class RemoveAdminFunctions
       return;
     }
     
-    LicenceServerRequest.removeUser(userValue, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
+    LicenceServerRequest.removeUser(userValue, window.sessionStorage['username'],window.sessionStorage['password'], LicenceServerRequest.defaultUri(),
         (s) => p.getResult(sp.popup("remove-admin","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
     
     username.value = "";
@@ -443,7 +443,7 @@ class RemoveLicenceFunctions
       return;
     }
     
-    LicenceServerRequest.removeAdmin(licenceValue, window.sessionStorage['username'],window.sessionStorage['password'], "localhost",
+    LicenceServerRequest.removeAdmin(licenceValue, window.sessionStorage['username'],window.sessionStorage['password'], LicenceServerRequest.defaultUri(),
         (s) => p.getResult(sp.popup("remove-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
   }
 }
@@ -474,7 +474,7 @@ class ChangePassword
     else
     {
       LicenceServerRequest.changeAdminPassword(username.value, cp, window.sessionStorage['username'],window.sessionStorage['password'],
-          "localhost", (s) => p.getResult(sp.popup("change-password","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+          LicenceServerRequest.defaultUri(), (s) => p.getResult(sp.popup("change-password","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
       window.sessionStorage['password'] = pass;
     }  
     

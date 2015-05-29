@@ -14,7 +14,6 @@ class SoapRequest
   StringBuffer buffer = new StringBuffer();
   HttpRequest request;
   
-   
   Stream<ProgressEvent> sendRequest()
   {
     String uriv = uri();
@@ -49,11 +48,6 @@ class SoapRequest
   {
     return _host;
   }
-  
-  /*int port()
-  {
-    return 8080;
-  }*/
   
   String path()
   {
@@ -136,7 +130,7 @@ class SoapRequest
   
   String packageName()
   {
-    return host()+":"+"/"+path();
+    return host()+"/"+path();
   }
   
   String xmlResponseText()

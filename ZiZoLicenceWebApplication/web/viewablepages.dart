@@ -10,7 +10,7 @@ class ViewablePages
     String adminName = window.sessionStorage['username'];
     String adminPassword = window.sessionStorage['password'];
     
-    LicenceServerRequest.checkPermissions(adminName,adminPassword,"localhost",enablePermissions);
+    LicenceServerRequest.checkPermissions(adminName,adminPassword,LicenceServerRequest.defaultUri(),enablePermissions);
   }
   
   static void enablePermissions(String response)

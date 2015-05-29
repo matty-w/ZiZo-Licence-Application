@@ -3,7 +3,7 @@ library login;
 import 'dart:html';
 import 'licenceserverrequest.dart';
 
-bool testing = false;
+bool testing = true;
 
 class LoginAndOut
 {
@@ -11,7 +11,7 @@ class LoginAndOut
   {
     InputElement username = querySelector("#usernameTextbox");
     InputElement password = querySelector("#passwordTextbox");
-    LicenceServerRequest.checkPermissions(username.value,password.value,"localhost",storePermissions);
+    LicenceServerRequest.checkPermissions(username.value,password.value,LicenceServerRequest.defaultUri(),storePermissions);
     checkDetails(username.value, password.value);
   }
   
@@ -36,6 +36,7 @@ class LoginAndOut
       permissions = response.split(",");
     if ((permissions!=null)&&(!permissions.contains('add-licence')))
         page = "changePassword.html";
+    print("5");
     local['username'] = username.value;
     local['password'] = password.value;
     window.location.href = page;
@@ -43,7 +44,7 @@ class LoginAndOut
   
   void checkDetails(String userName, String password)
   {  
-    LicenceServerRequest.checkAdminLogin(userName, password, "localhost",
+    LicenceServerRequest.checkAdminLogin(userName, password, LicenceServerRequest.defaultUri(),
         () => goToPage(),
         () => window.alert("The Login Details Are Incorrect, Please Try Again."));
   }

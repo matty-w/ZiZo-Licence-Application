@@ -1,6 +1,7 @@
 library licenceserver;
 
 import 'soaprequest.dart';
+import 'dart:html';
 
 class LicenceServerRequest extends SoapRequest
 {
@@ -123,4 +124,10 @@ class LicenceServerRequest extends SoapRequest
   {
     return "DataReLicenceServer/LicenceServer";
   }
+  
+  static String defaultUri()
+  {
+    return window.location.host;
+  }
+    
 }
