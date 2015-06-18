@@ -36,7 +36,6 @@ class LoginAndOut
       permissions = response.split(",");
     if ((permissions!=null)&&(!permissions.contains('add-licence')))
         page = "changePassword.html";
-    print("5");
     local['username'] = username.value;
     local['password'] = password.value;
     window.location.href = page;
