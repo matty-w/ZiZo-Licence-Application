@@ -40,7 +40,7 @@ class PopupWindow
    
     return new Rectangle(0, 0, 0, viewportHeight);
   }
-
+ 
   Point windowPosition(String popupId)
   {
     int windowWidth;
@@ -136,7 +136,7 @@ class PopupWindow
     if(option == "regenerate-licence")
     {
       title = "Licence Regenerated";
-      description = "The Licence Has Been Successfully Removed: ";
+      description = "The Licence Has Been Successfully Regenerated: ";
       querySelector("#popupTitle").innerHtml = title;
       OutputElement text = querySelector("#popupText");
       text.innerHtml = description;

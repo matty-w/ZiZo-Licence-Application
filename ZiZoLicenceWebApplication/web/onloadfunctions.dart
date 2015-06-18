@@ -15,7 +15,7 @@ class OnLoadFunctions
     CreateLicenceFunctions c = new CreateLicenceFunctions();
     HelpScreenFunctions help = new HelpScreenFunctions();
     PopupWindow p = new PopupWindow();   
-    querySelector("#clipboard").onClick.listen(c.saveToClipboard);
+    querySelector("#clipboard").onClick.listen(g.saveToClipboard);
     querySelector("#dismissSuccess").onClick.listen(c.completeLicence);     
     querySelector("#helpButton").onClick.listen(help.showCreateLicenceScreen); 
     querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
@@ -66,7 +66,8 @@ class OnLoadFunctions
     g.setLogOut();
     g.setDefaultIpAddress();
     PopupWindow p = new PopupWindow();
-    HelpScreenFunctions help = new HelpScreenFunctions();     
+    HelpScreenFunctions help = new HelpScreenFunctions();
+    querySelector("#clipboard").onClick.listen(g.saveToClipboard);
     querySelector("#dismissSuccess").onClick.listen(p.dismissPrompt);
     querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
     querySelector("#regenerateLicence_button").onClick.listen(r.regenerateLicence);            

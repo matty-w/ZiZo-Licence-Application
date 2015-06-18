@@ -4,7 +4,7 @@ import 'dart:html';
 import 'dart:async';
 import 'dart:js';
 
-bool testing = false;
+bool testing = true;
 
 class SoapRequest
 {

@@ -40,7 +40,7 @@ class LicenceServerRequest extends SoapRequest
     result.addArgument(licenceId);
     result.addArgument(adminName);
     result.addArgument(adminPassword);
-    result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
+    result.getStringResult((String s) => (s.contains("-"))? onPass(s) : onFail(s));
   }
   
   static void addAdminUser(String user, String password, String adminName, String adminPassword, String host, Function onPass, Function onFail)

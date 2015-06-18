@@ -3,7 +3,7 @@ library login;
 import 'dart:html';
 import 'licenceserverrequest.dart';
 
-bool testing = true;
+bool testing = false;
 
 class LoginAndOut
 {

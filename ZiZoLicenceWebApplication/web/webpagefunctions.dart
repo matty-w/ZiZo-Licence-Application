@@ -25,6 +25,22 @@ class GlobalFunctions
     InputElement ipAddress = querySelector("#url");
     ipAddress.value = window.location.host;
   }
+  
+  void saveToClipboard(MouseEvent e)
+  {
+    PopupWindow p = new PopupWindow();
+    clipboardPrompt(p.getLicenceName());
+    window.location.reload();
+  }
+  
+  void clipboardPrompt(String licence)
+  {
+    SelectPopup sp = new SelectPopup();
+    var result = context.callMethod('prompt', ["Copy to clipboard: Ctrl+C, Enter", licence]);
+    print(result);
+    sp.popupLicence("add-licence","#popUpDiv");
+    main();
+  }
 }
 
 class CreateLicenceFunctions
@@ -110,22 +126,6 @@ class CreateLicenceFunctions
     String baseDateString = minDate.toString();
     String finalDate = baseDateString.substring(0,10);
     return finalDate;
-  }
-  
-  void saveToClipboard(MouseEvent e)
-  {
-    PopupWindow p = new PopupWindow();
-    clipboardPrompt(p.getLicenceName());
-    window.location.reload();
-  }
-  
-  void clipboardPrompt(String licence)
-  {
-    SelectPopup sp = new SelectPopup();
-    var result = context.callMethod('prompt', ["Copy to clipboard: Ctrl+C, Enter", licence]);
-    print(result);
-    sp.popupLicence("add-licence","#popUpDiv");
-    main();
   }
   
   void submitForm(MouseEvent m)
@@ -398,7 +398,7 @@ class RegenerateLicenceFunctions
         userValue = userValue+"("+url.value+")";
       
     LicenceServerRequest.regenerateLicence(userValue, window.sessionStorage['username'],window.sessionStorage['password'], 
-        LicenceServerRequest.defaultUri(), (s) => p.getResult(sp.popup("regenerate-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));  
+        LicenceServerRequest.defaultUri(), (s) => p.getResult(sp.popupLicence("regenerate-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));  
   }
 }
 
