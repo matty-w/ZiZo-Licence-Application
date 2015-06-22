@@ -190,7 +190,7 @@ class PopupWindow
     if(option == "no-licence-name")
     {
       title = "Error";
-      description = "Please Enter A Licence Name To Continue.";
+      description = "Please Enter A Licence Key To Continue.";
       querySelector("#popupTitle").innerHtml = title;
       OutputElement server = querySelector("#serverResponse");
       server.innerHtml = "";

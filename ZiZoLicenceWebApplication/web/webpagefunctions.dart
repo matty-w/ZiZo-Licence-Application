@@ -389,7 +389,7 @@ class RegenerateLicenceFunctions
     
     if(usernameInput.value == null || usernameInput.value.trim() == "")
     {
-      sp.popupOther("no-username","#popUpDiv");
+      sp.popupOther("no-licence-name","#popUpDiv");
       return;
     }  
     
