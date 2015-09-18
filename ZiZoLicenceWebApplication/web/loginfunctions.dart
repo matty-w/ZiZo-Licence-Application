@@ -31,9 +31,10 @@ class LoginAndOut
     String page = "createLicence.html";
     List<String> permissions = null;
     String response = local['permissions'];
-    
     if(response != null)
       permissions = response.split(",");
+    if(permissions.contains("add-licence"))
+        page = "createLicence.html";
     if ((permissions!=null)&&(!permissions.contains('add-licence')))
         page = "changePassword.html";
     local['username'] = username.value;

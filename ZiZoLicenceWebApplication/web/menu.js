@@ -10,7 +10,8 @@ document.write("\
       <div class='actionMenu' permission='delete-user'    id = 'showRemoveAdmin'>      <a href='removeAdmin.html'>Remove Admin</a></div>\
       <div class='actionMenu' permission='view-logs'      id = 'showLogAccess'>        <a href='logAccess.html'>View Logs</a></div>\
       <div class='actionMenu' permission='show-licences'  id = 'showViewLicences'>     <a href='viewLicences.html'>View Licences</a></div>\
-      <div class='actionMenu' permission='add-licence'    id = 'showCreateLicence'>    <a href='changePassword.html'>Change A Password</a></div>\
+      <div class='actionMenu' permission='password'       id = 'showCreateLicence'>    <a href='changePassword.html'>Change A Password</a></div>\
+      <div class='actionMenu' permission='log-out'        id = 'showLogOut'>           <a>Log Out</a></div>\
     </div>\
   </div>\
 </nav>");

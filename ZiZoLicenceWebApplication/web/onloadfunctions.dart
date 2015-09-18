@@ -93,15 +93,39 @@ class OnLoadFunctions
   void removeLicence()
   {
     RemoveLicenceFunctions r = new RemoveLicenceFunctions();
+    Storage local = window.sessionStorage;
+    String response = local['permissions'];
+    InputElement searchBox = querySelector("#licenceSearch");
+    searchBox.disabled = true;
+    if(response.contains("check-licence"))
+    {
+      searchBox.disabled = false;
+    }
+    
     g.setLogOut();
     PopupWindow p = new PopupWindow();
     HelpScreenFunctions help = new HelpScreenFunctions();  
     querySelector("#dismissSuccess").onClick.listen(p.dismissPrompt);
     querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
-    querySelector("#removeLicence_button").onClick.listen(r.removeLicence);   
+    querySelector("#removeLicence_button").onClick.listen(r.removeLicence);
+    querySelector("#removeLicenceSearch_button").onClick.listen(r.searchLicences);
     querySelector("#helpButton").onClick.listen(help.showRemoveLicenceScreen);
     querySelector("#username-output").innerHtml = window.sessionStorage['username'];   
     ViewablePages.revealOptions();
+  }
+  
+  void searchResults()
+  {
+    SearchResults s = new SearchResults();
+    g.setLogOut();
+    PopupWindow p = new PopupWindow();
+    window.onLoad.listen(s.loadTable);
+    querySelector("#dismissFail").onClick.listen(p.dismissPrompt);
+    querySelector("#dismissSuccess").onClick.listen(s.completeDeletion);
+    querySelector("#returnButton").onClick.listen(s.returnToPage);
+    querySelector("#deleteLicencesButton").onClick.listen(s.deleteLicences);
+    querySelector("#username-output").innerHtml = window.sessionStorage['username'];  
+    querySelector("#dismissFinal").onClick.listen(s.returnToPage);
   }
   
   void changePassword()

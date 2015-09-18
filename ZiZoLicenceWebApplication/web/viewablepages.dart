@@ -16,6 +16,8 @@ class ViewablePages
   static void enablePermissions(String response)
   {
     List<String> permissions = response.split(",");
+    permissions.add("log-out");
+    permissions.add("password");
     for (DivElement e in document.getElementsByClassName("actionMenu"))
       if (!permissions.contains(e.attributes['permission']))
         e.innerHtml = "";

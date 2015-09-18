@@ -66,4 +66,14 @@ class SelectPopup
     p.buttons(false, false, true, true);
     p.popup(popupId);
   }
+  
+  popupLicenceList(List licenceNames, String popupId)
+  {
+    PopupWindow p = new PopupWindow();
+    p.setText("confrim-licence-deletion");
+    p.setList(licenceNames);
+    p.setErrorPicture(true);
+    p.buttons(false, false, true, true);
+    p.popup(popupId);
+  }
 }

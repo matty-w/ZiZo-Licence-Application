@@ -2,6 +2,118 @@
 
 /*################################## Main CSS Elements ######################################################*/
 
+#buttonDiv
+{
+  width: 200px;
+  height: 2em;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loginDetailsDiv
+{
+  position: relative;
+  height: 6em;
+  width: 18em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#returnButton
+{
+  height: 2em;
+  width: 10%;
+  vertical-align: bottom;
+  display: inline-block;
+  float: right;
+}
+
+#deleteLicencesButton
+{
+  height: 2em;
+  width: 10%;
+  vertical-align: bottom;
+  display: inline-block;
+  float: right;
+}
+
+.loginButtons2
+{
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #235B6D;
+  padding: 4px 15px 4px 15px;
+  text-decoration: none;
+}
+
+.loginButtons2:hover
+{
+  background: #296b80;
+  text-decoration: none;
+}
+
+table#searchTable
+{
+  width: 100%; 
+  display: inline-table;
+  background-color: #f1f1c1;
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#pageLayout
+{
+  position: relative;
+  top: 7.5em; 
+  width: 55%;
+  height: 22em;
+  max-height: 28em;
+  min-height: 10em;
+  bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 47em;
+}
+
+#searchTableDiv
+{
+  position: absolute;
+  overflow: auto;
+  height: 60%;
+  top: 3em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.loginButtons
+{
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 5px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 15px;
+  background: #5C5CD7;
+  padding: 4px 15px 4px 15px;
+  text-decoration: none;
+}
+
+.loginButtons:hover
+{
+  background: #7C75D3;
+  text-decoration: none;
+}
+
+
+
 body
 {
   background-color: #53868B;
@@ -101,7 +213,19 @@ td
   width: 25em;
   height: 25em;
   position: absolute;
-  top: -10em;
+  top: -12em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#pageDiv2
+{
+  width: 25em;
+  height: 25em;
+  position: absolute;
+  top: 20em;
   bottom: 0;
   left: 0;
   right: 0;
@@ -162,14 +286,14 @@ td
 
 #default_fieldset
 {
-  border: 1px solid #006400;
+  border: 1px solid #235B6D;
   width: 25em
 }
 
 #default_legend
 {
   color: #fff;
-  background: #006400;
+  background: #235B6D;
   border: 1px solid #000000;
   padding: 2px 6px
 }
@@ -189,67 +313,67 @@ td
 
 #usernameTextbox
 {
-  position: fixed;
+  position: absolute;
   height: 25px;
-  width: 12.5em;
-  margin-left: 16em;
+  margin-left: 50%;
+  width: 11em;
 }
 #usernameLabel
 {
   color: white;
   text-shadow: 1px 1px #000000;
-  position:fixed;	
-  margin-left: 7em;
+  position: absolute;	
+  margin-left: 4%;
 }
 
 #passwordTextbox
 {
-  position: fixed;
+  position: absolute;
   height: 25px;
-  width: 12.5em;
-  margin-left: 16em;
+  width: 11em;
+  margin-left: 50%;
 }
 
 #passwordLabel
 {
   color: white;
   text-shadow: 1px 1px #000000;
-  position: fixed;
-  margin-left: 7.65em;
+  position: absolute;
+  margin-left: 7.75%;
 }
 
 #loginDiv
 {
   width: 35em;
-  height: 35em;
-  position: absolute;
-  top: 10em;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 20em;
+  position: relative;
+  top: 12em;
+  bottom: auto;
   margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #loginForm
 {
-  position: fixed;
+  position: absolute;
   margin: 0;
   padding: 0;
   width: 35em;
+  height: 100%;
 }
 
 #resetButton
 {
-  position: fixed;
-  margin-left: 13.2em;
-  width: 6em;
+  position: absolute;
+  width: 50%;
 }
 
 #submitButton
 {	
-  position: fixed;
-  margin-left: 19.2em;
-  width: 6em;
+  position: absolute;
+  margin-left: 50%;
+  width: 50%;
 }
 
 #version
@@ -307,6 +431,11 @@ td
   margin-left: 60%;
 }
 
+#removeLicenceSearch_button
+{
+  margin-left: 55%;
+}
+
 /*############################### ID's Remove User Page ####################################################*/
 
 #removeUser_button
@@ -361,12 +490,12 @@ td
 
 /*############################### Classes ##################################################################*/
 
-a:link, a:visited 
+a
 {
   display: block;
   font-weight: bold;
   color: #FFFFFF;
-  background-color: #458B00;
+  background-color: #235B6D;
   width: 250px;
   text-align: center;
   padding: 4px;
@@ -376,7 +505,7 @@ a:link, a:visited
 
 a:hover, a:active 
 {
-  background-color: #9ACD32;
+  background-color: #296b80;
 }
 
 a:deactive

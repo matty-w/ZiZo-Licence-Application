@@ -79,7 +79,7 @@ class LicenceServerRequest extends SoapRequest
     result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
   }
   
-  static void removeAdmin(String licenceKey, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  static void removeLicence(String licenceKey, String adminName, String adminPassword, String host, Function onPass, Function onFail)
   {
     LicenceServerRequest result;
     result = new LicenceServerRequest();
@@ -89,6 +89,18 @@ class LicenceServerRequest extends SoapRequest
     result.addArgument(adminName);
     result.addArgument(adminPassword);
     result.getStringResult((String s) => (s == "done")? onPass(s) : onFail(s));
+  }
+  
+  static void searchForLicences(String searchCriteria, String adminName, String adminPassword, String host, Function onPass, Function onFail)
+  {
+    LicenceServerRequest result;
+    result = new LicenceServerRequest();
+    result.setHost(host);
+    result.setAction("licencesFor");
+    result.addArgument(searchCriteria);
+    result.addArgument(adminName);
+    result.addArgument(adminPassword);
+    result.getStringResult((String s) => (s.contains("key"))? onPass(s) : onFail(s));
   }
   
   static void addPermission(String user, String permissionChoice, String adminName, String adminPassword, String host, Function onPass, Function onFail)

@@ -7,17 +7,23 @@ import 'popupconstruct.dart';
 import 'createlicence.dart';
 import 'dart:js';
 import 'licenceserverrequest.dart';
+import 'createtable.dart';
+import 'parseresponse.dart';
 
 String isoDate;
 String licenceLength;
 String licenceLengthError;
+List<String> licenceNames;
+List<String> licenceDates;
+List<String> licenceKeys;
+HttpRequest request = new HttpRequest();
 
 class GlobalFunctions
 {
   void setLogOut()
   {
     LoginAndOut log = new LoginAndOut();
-    querySelector("#logoutButton").onClick.listen(log.logout);
+    querySelector("#showLogOut").onClick.listen(log.logout);
   }
   
   void setDefaultIpAddress()
@@ -443,8 +449,190 @@ class RemoveLicenceFunctions
       return;
     }
     
-    LicenceServerRequest.removeAdmin(licenceValue, window.sessionStorage['username'],window.sessionStorage['password'], LicenceServerRequest.defaultUri(),
+    LicenceServerRequest.removeLicence(licenceValue, window.sessionStorage['username'],window.sessionStorage['password'], LicenceServerRequest.defaultUri(),
         (s) => p.getResult(sp.popup("remove-licence","#popUpDiv"), s),(s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+  }
+  
+  void searchLicences(MouseEvent m)
+  {
+    SelectPopup sp = new SelectPopup();
+    PopupWindow p = new PopupWindow();    
+    InputElement search = querySelector("#licenceSearch");
+    String licenceSearch;
+    licenceSearch = search.value;
+    if(!(licenceSearch.trim() == "") && !licenceSearch.contains(".*"))
+    {
+      licenceSearch = licenceSearch+".*";
+    }
+    
+    if(licenceSearch == null || licenceSearch.trim() == "")
+    {
+      sp.popupOther("no-search-value", "#popUpDiv");
+      return;
+    }
+    
+    LicenceServerRequest.searchForLicences(licenceSearch, window.sessionStorage['username'],window.sessionStorage['password'], LicenceServerRequest.defaultUri(),
+           (s) => goToSearchResultPage(s), (s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+  }
+  
+  goToSearchResultPage(String responseText)
+  {
+    List keyAndDate = ParseResponse.parseLicence("key=", responseText);
+    List<String> keysList = new List<String>(); 
+    List<String> dates = new List<String>();
+    List<String> licenceName = new List<String>();
+    window.sessionStorage['rows'] = "";
+
+    for(int i = 0; i < keyAndDate.length; i++)
+    {
+      String keyDate = keyAndDate[i];
+      String key = keyDate.substring(0, 29);
+      keysList.add(key);
+      window.sessionStorage['licenceKey$i'] = keysList[i];
+    }
+    for(int i = 0; i < keyAndDate.length; i++)
+    {
+      String keyDate = keyAndDate[i];
+      String date = keyDate.substring(keyDate.lastIndexOf('date=') + 5);
+      dates.add(date);
+      window.sessionStorage['licenceDate$i'] = dates[i];
+    }
+    for(int i = 0; i < keyAndDate.length; i++)
+    {
+      String keyName = keyAndDate[i];
+      String nameAndDate = keyName.substring(34);
+      String date = nameAndDate.substring(nameAndDate.lastIndexOf('date='));
+      int dateLength = date.length;
+      int nameAndDateLength = nameAndDate.length;
+      int nameLength = nameAndDateLength - dateLength;
+      String name = nameAndDate.substring(0, nameLength);
+      licenceName.add(name);
+      window.sessionStorage['licenceName$i'] = licenceName[i];
+    }
+    window.sessionStorage['rows'] = licenceName.length.toString();
+    window.location.href = "searchResults.html";
+  }
+}
+
+class SearchResults
+{
+  void loadTable(Event e)
+  {
+    TableElement table = querySelector("#searchTable");
+    Storage local = window.sessionStorage;
+    int rows = int.parse(local['rows']);
+    List<String> keysList = new List<String>(); 
+    List<String> dates = new List<String>();
+    List<String> licenceName = new List<String>();
+    for(int i = 0; i < rows; i++)
+    {
+      String date = local['licenceDate$i'];
+      dates.add(date);
+    }
+    for(int i = 0; i < rows; i++)
+    {
+      String name = local['licenceName$i'];
+      licenceName.add(name);
+    }
+    for(int i = 0; i < rows; i++)
+    {
+      String key = local['licenceKey$i'];
+      keysList.add(key);
+    }
+
+    for(int i = 0; i < licenceName.length; i++)
+    {
+      TableRowElement row = table.insertRow(i);
+      TableCellElement checkboxCell = row.insertCell(-1);
+      TableCellElement lName = row.insertCell(-1);
+      TableCellElement lKey = row.insertCell(-1);
+      TableCellElement lDate = row.insertCell(-1);
+      checkboxCell.innerHtml = "<input id=checkbox$i type='checkbox'>";
+      lName.text = licenceName[i];
+      lKey.text = keysList[i];
+      if(dates[i].trim() == "" || dates[i] == null)
+      {
+        lDate.text = "Unlimited Licence Length";
+      }
+      else
+      {
+        lDate.text = dates[i];
+      }
+     }
+    CreateTable.createTable();
+  }
+  
+  void returnToPage(MouseEvent m)
+  {
+    Storage local = window.sessionStorage;
+    int rows = int.parse(local['rows']);
+    for(int i = 0; i < rows; i++)
+    {
+      local['licenceDate$i'] = "";
+      local['licenceName$i'] = "";
+      local['licenceKey$i'] = "";
+    }
+    local['rows'] = "";
+    window.location.href = "removeLicence.html";
+  }
+  
+  void deleteLicences(MouseEvent m)
+  {
+    List<String> licencesForDeletion = new List<String>();
+    SelectPopup sp = new SelectPopup();
+    licencesForDeletion = SearchResults.licencesForDeletion();
+
+    if(licencesForDeletion.length == 0 || licencesForDeletion.length == null)
+    {
+      sp.popupOther("no-licences-selected", "#popUpDiv");
+    }
+    if(licencesForDeletion.length > 0)
+    {
+      sp.popupLicenceList(licencesForDeletion, "#popUpDiv");
+    }
+  }
+  
+  void completeDeletion(MouseEvent m)
+  {
+    TableElement table = querySelector("#searchTable");
+    int checkboxLength = table.rows.length;
+    PopupWindow p = new PopupWindow();
+    SelectPopup sp = new SelectPopup();
+    
+    for(int i = 0; i < checkboxLength-1; i++)
+    {
+      CheckboxInputElement checkbox = querySelector("#checkbox$i");
+      if(checkbox.checked == true)
+      {
+        String licenceKey = ParseResponse.parseLicenceKey(table.rows[i+1].innerHtml);
+        LicenceServerRequest.removeLicence(licenceKey, window.sessionStorage['username'],window.sessionStorage['password'],
+                       LicenceServerRequest.defaultUri(), moveOn(), (s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+      }
+    }
+    sp.popupOther("remove-licence","#popUpDiv");
+  }
+  
+  moveOn()
+  {
+    return;
+  }
+  
+  static List licencesForDeletion()
+  {
+    TableElement table = querySelector("#searchTable");
+    List<String> licences = new List<String>();
+    int checkboxLength = table.rows.length;
+    
+    for(int i = 0; i < checkboxLength-1; i++)
+    {
+      CheckboxInputElement checkbox = querySelector("#checkbox$i");
+      if(checkbox.checked == true)
+      {
+        String licenceName = ParseResponse.parseLicenceName(table.rows[i+1].innerHtml);
+        licences.add(licenceName);
+      }
+    }
+    return licences;
   }
 }
 

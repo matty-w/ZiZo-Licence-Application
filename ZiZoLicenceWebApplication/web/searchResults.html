@@ -3,9 +3,11 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="styles/mainWebpageStyle.css">
-  	<meta charset="utf-8">
-    <title>Remove Admin</title>
-    <script type="application/dart" src="removeadmin.dart"></script>
+    <link rel="import" href="menu.html">
+
+    <meta charset="utf-8">
+    <title>Search Results</title>
+    <script type="application/dart" src="searchresults.dart"></script>
     <script src="packages/browser/dart.js"> </script>
   </head>
  
@@ -18,7 +20,7 @@
     <div id="popUpDiv" style="display:none">
       <br>
       <img id = "tick" src = "images/ticksmall.png"/>
-      <h2 id = "popupTitle"></h2>
+      <h2 id = "popupTitle">Licence Created</h2>
       <p id = "popupParagraph"><output id = "popupText"></output><output id = "serverResponse"></output><p>
       <div align="center">
       <button id = "dismissFinal" class = "dismissButton">Dismiss</button>
@@ -28,16 +30,16 @@
       </div>
     </div>
     
-    <div id = "pageDiv">    
-     <form id = "default_form" action="#">
-      <h2>Remove Admin</h2>
-      <fieldset id = "default_fieldset">
-        <legend id = "default_legend">Remove A User</legend>
-          <p><label id = "formLabel" for="username">User For Deletion:</label> <input type = "text" id = "username" required/></p>
-          <p><input type = "button" id = "removeUser_button" value="Remove Admin" class="loginButtons2"/></p>
-      </fieldset>
-     </form>
-    </div> 
+    <div id="pageLayout">
+      <h2 id="searchTitle">Search Results</h2>
+        <h3 id="registrySubTitle">Select The Licences You Wish To Delete Below</h3>
+          <div id="searchTableDiv">
+            <table id="searchTable">
+            </table>
+            <button id="deleteLicencesButton" type="button" class="loginButtons2">Delete</button>
+            <button id="returnButton" type="button" class="loginButtons2">Return</button>
+          </div>
+     </div>
     
     <script type="text/javascript" src="menu.js"> </script>
     <script type="text/javascript" src="footer.js"> </script>

@@ -96,6 +96,21 @@ class PopupWindow
     text.innerHtml = description;
   }
   
+  void setList(List licenceForDeletion)
+  {
+    OutputElement text = querySelector("#popupText");
+    String endList = "";
+    String currentText;
+    int num = 1;
+    for(int i = 0; i < licenceForDeletion.length; i++)
+    {
+      currentText = "Licence "+num.toString()+": "+licenceForDeletion[i]+" ";
+      endList = endList+currentText;
+      num++;
+    }
+    text.innerHtml = endList;
+  }
+  
   void setText(String option)
   {
     String title;
@@ -206,6 +221,31 @@ class PopupWindow
       text.innerHtml = description;
       OutputElement server = querySelector("#serverResponse");
       server.innerHtml = "";
+    }
+    if(option == "no-search-value")
+    {
+      title = "Error";
+      description = "No Value Entered Into Search Box, Please Enter The Search Criteria And Try Again";
+      querySelector("#popupTitle").innerHtml = title;
+      OutputElement text = querySelector("#popupText");
+      text.innerHtml = description;
+      OutputElement server = querySelector("#serverResponse");
+      server.innerHtml = "";
+    }
+    if(option == "no-licences-selected")
+    {
+      title = "Error";
+      description = "No Licences Have Been Selected For Deletion, Please Select At Least One And Try Again";
+      querySelector("#popupTitle").innerHtml = title;
+      OutputElement text = querySelector("#popupText");
+      text.innerHtml = description;
+      OutputElement server = querySelector("#serverResponse");
+      server.innerHtml = "";
+    }
+    if(option == "confrim-licence-deletion")
+    {
+      title = "Delete Entries?";
+      querySelector("#popupTitle").innerHtml = title;
     }
   }
   

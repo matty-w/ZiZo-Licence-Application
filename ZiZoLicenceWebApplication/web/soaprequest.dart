@@ -35,7 +35,8 @@ class SoapRequest
       onReturn(result);
       return;
     }
-    sendRequest().listen((ProgressEvent e) {
+    sendRequest().listen((ProgressEvent e) 
+    {
       if (request.readyState==4)
       {
         if (request.status==200)
