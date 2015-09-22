@@ -96,10 +96,18 @@ class OnLoadFunctions
     Storage local = window.sessionStorage;
     String response = local['permissions'];
     InputElement searchBox = querySelector("#licenceSearch");
+    ButtonElement searchButton = querySelector("#removeLicenceSearch_button");
     searchBox.disabled = true;
+    searchButton.disabled = false;
     if(response.contains("check-licence"))
     {
       searchBox.disabled = false;
+    }
+    if(!response.contains("check-licence"))
+    {
+      searchButton.disabled = true;
+      searchButton.style.background = "#2C3539";
+      searchButton.style.color = "#848482";
     }
     
     g.setLogOut();
@@ -117,9 +125,11 @@ class OnLoadFunctions
   void searchResults()
   {
     SearchResults s = new SearchResults();
+    HelpScreenFunctions help = new HelpScreenFunctions();
     g.setLogOut();
     PopupWindow p = new PopupWindow();
     window.onLoad.listen(s.loadTable);
+    querySelector("#helpButton").onClick.listen(help.showSearchScreen);
     querySelector("#dismissFail").onClick.listen(p.dismissPrompt);
     querySelector("#dismissSuccess").onClick.listen(s.completeDeletion);
     querySelector("#returnButton").onClick.listen(s.returnToPage);

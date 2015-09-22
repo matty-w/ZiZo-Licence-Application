@@ -30,11 +30,14 @@
     
     <div id = "pageDiv">    
      <form id = "default_form" action="#">
-      <h2>Remove A Licence</h2>
       <fieldset id = "default_fieldset">
         <legend id = "default_legend">Remove A Licence</legend>
-          <p><label id = "formLabel" for="username">Licence Key:</label> <input type = "text" id = "licence"/></p>
+          <ul class="form-style-1">
+          <li><label>Licence Key:<span class="required">*</span></label> 
+              <input type = "text" id = "licence" class="field-long" placeholder="Licence Key"/>
+          </li>    
           <p><input type = "button" id = "removeLicence_button" value="Remove Licence" class="loginButtons2"/></p>
+          </ul>
       </fieldset>
      </form>
     </div>
@@ -43,8 +46,12 @@
       <form id = "default_form" action="#">
        <fieldset id = "default_fieldset">
         <legend id = "default_legend">Search For Licences</legend>
-          <p><label id = "formLabel" for="username">Licence Username:</label> <input type = "text" id = "licenceSearch"/></p>
+          <ul class="form-style-1">
+          <li><label>Licence Username:<span class="required">*</span></label>
+              <input type = "text" id = "licenceSearch" class="field-long" placeholder="Licence Username"/>
+          </li>    
           <p><input type = "button" id = "removeLicenceSearch_button" value="Search By Username" class="loginButtons2"/></p>
+          </ul>
       </fieldset>
       </form>
     </div>

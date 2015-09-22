@@ -606,13 +606,13 @@ class SearchResults
       {
         String licenceKey = ParseResponse.parseLicenceKey(table.rows[i+1].innerHtml);
         LicenceServerRequest.removeLicence(licenceKey, window.sessionStorage['username'],window.sessionStorage['password'],
-                       LicenceServerRequest.defaultUri(), moveOn(), (s) => p.getResult(sp.popupFail("#popUpDiv"), s));
+                       LicenceServerRequest.defaultUri(), moveToNext(), (s) => p.getResult(sp.popupFail("#popUpDiv"), s));
       }
     }
     sp.popupOther("remove-licence","#popUpDiv");
   }
   
-  moveOn()
+  moveToNext()
   {
     return;
   }

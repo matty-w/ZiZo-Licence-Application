@@ -28,14 +28,19 @@
       </div>
     </div>
     
-    <div id = "pageDiv">    
+    <div id = "pageDivSmall">    
      <form id = "default_form" action="#">
-      <h2>Regenerate Licence</h2>
       <fieldset id = "default_fieldset">
         <legend id = "default_legend">Regenerate A Licence</legend>
-          <p><label id = "formLabel" for="username">Licence Key:</label> <input type = "text" id = "username"/></p>
-          <p><label id = "formLabel" for = "url">Server Address:</label> <input type = "text" id = "url" /><br /></p>
+          <ul class="form-style-1">
+          <li><label>Licence Key:<span class="required">*</span></label>
+              <input type = "text" id = "username" class="field-long" placeholder="Licence Key"/>
+          </li>    
+          <li><label>Server Address:<span class="required">*</span></label>
+              <input type = "text" id = "url" class="field-long" placeholder="Server Address"/>
+          </li>    
           <p><input type = "button" id = "regenerateLicence_button" value="Regenerate Licence" class="loginButtons2"/></p>
+          </ul>
       </fieldset>
      </form>
     </div>

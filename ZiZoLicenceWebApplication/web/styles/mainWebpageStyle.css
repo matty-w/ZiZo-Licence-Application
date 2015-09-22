@@ -176,7 +176,8 @@ td
   left: 0px;
   top: 0px;
   width: 100%;
-  min-height: 12%;
+  min-height: 5em;
+  max-height: 5em;
   z-index: -1;
 }
 
@@ -185,8 +186,6 @@ td
   position: absolute;
   left: 150px;
   top: 0px;
-  height: auto;
-  width: auto;
 }
 
 #bottomPage
@@ -195,7 +194,8 @@ td
   bottom: 0px;
   left: 0px;
   width: 100%;
-  min-height: 12%;
+  min-height: 5em;
+  max-height: 5em;
 }
 
 #menu
@@ -213,7 +213,19 @@ td
   width: 25em;
   height: 25em;
   position: absolute;
-  top: -12em;
+  top: -9em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+#pageDivSmall
+{
+  width: 25em;
+  height: 25em;
+  position: absolute;
+  top: 5em;
   bottom: 0;
   left: 0;
   right: 0;
@@ -225,7 +237,7 @@ td
   width: 25em;
   height: 25em;
   position: absolute;
-  top: 20em;
+  top: 22em;
   bottom: 0;
   left: 0;
   right: 0;
@@ -267,13 +279,13 @@ td
 
 #formLabel
 {
-  color: white;
-  text-shadow: 1px 1px #000000; 
-  width: 7em;
+  color: #25383C;
   float: left;
-  text-align: right;
-  margin-right: 0.5em;
-  display: block
+  display: block;
+  margin:0 0 3px 0;
+  padding:0px;
+  font-weight: bold;
+  font-style: italic;
 }
 
 #default_form
@@ -284,10 +296,30 @@ td
   padding: 0;
 }
 
+#thirtyDays
+{
+  margin-left: 64px;
+}
+
+#neverExpires
+{
+  margin-left: 49px;
+}
+
+#specified
+{
+  margin-left: 48px;
+}
+
+#createLicenceHr
+{
+  margin-right:40px;
+}
+
 #default_fieldset
 {
   border: 1px solid #235B6D;
-  width: 25em
+  width: 25em;
 }
 
 #default_legend
@@ -300,7 +332,7 @@ td
 
 #default_submitButton
 {
-  margin-left: 65%;
+  margin-left: 54%;
 }
 
 #tableDiv
@@ -347,7 +379,7 @@ td
   width: 35em;
   height: 20em;
   position: relative;
-  top: 12em;
+  top: 15em;
   bottom: auto;
   margin: auto;
   margin-left: auto;
@@ -393,61 +425,61 @@ td
 
 #expiryDate
 {
-  color: white;
-  text-shadow: 1px 1px #000000;
+  color: #25383C;
+  font-style: italic;
 }
 
 /*############################### ID's Add User Page #######################################################*/
 
 #addUser_submitButton
 {
-  margin-left: 70%;
+  margin-left: 62%;
 }
 
 /*############################### ID's Add Permissions Page ################################################*/
 
 #permissionDescription
 {
-  color: white;
-  text-shadow: 1px 1px #000000;
+  color: #25383C;
+  font-style: italic;
 }
 
 #addPermissions_button
 {
-  margin-left: 65%;
+  margin-left: 53%;
 }
 
 /*############################### ID's Regenerate Licence Page #############################################*/
 
 #regenerateLicence_button
 {
-  margin-left: 60%;
+  margin-left: 45%;
 }
 
 /*############################### ID's Remove A Licence Page ###############################################*/
 
 #removeLicence_button
 {
-  margin-left: 60%;
+  margin-left: 51%;
 }
 
 #removeLicenceSearch_button
 {
-  margin-left: 55%;
+  margin-left: 43%;
 }
 
 /*############################### ID's Remove User Page ####################################################*/
 
 #removeUser_button
 {
-  margin-left: 65%;
+  margin-left: 54%;
 }
 
 /*##############################  ID's Change Password #####################################################*/
 
 #changePassword_submitButton
 {
-  margin-left: 60%;
+  margin-left: 48.5%;
 }
 
 /*############################### ID's View Licences/Logs Page #############################################*/
@@ -568,6 +600,110 @@ a:deactive
 {
   background: #27a155;
   text-decoration: none;
+}
+
+.form-style-1 {
+  margin:0px auto;
+  max-width: 400px;
+  padding: 20px 12px 10px 20px;
+  font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.form-style-1 li 
+{
+  padding: 0;
+  display: block;
+  list-style: none;
+  margin: 10px 0 0 0;
+}
+.form-style-1 label
+{
+  color: #25383C;
+  margin:0 0 3px 0;
+  padding:0px;
+  display:block;
+  font-weight: bold;
+}
+
+.form-style-1 input[type=text]:focus, 
+.form-style-1 input[type=date]:focus,
+.form-style-1 input[type=datetime]:focus,
+.form-style-1 input[type=number]:focus,
+.form-style-1 input[type=search]:focus,
+.form-style-1 input[type=time]:focus,
+.form-style-1 input[type=url]:focus,
+.form-style-1 input[type=email]:focus,
+.form-style-1 textarea:focus, 
+.form-style-1 select:focus
+{
+  -moz-box-shadow: 0 0 8px #88D5E9;
+  -webkit-box-shadow: 0 0 8px #88D5E9;
+  box-shadow: 0 0 8px #88D5E9;
+  border: 1px solid #88D5E9;
+}
+
+.form-style-1 input[type=text], 
+.form-style-1 input[type=password],
+.form-style-1 input[type=date],
+.form-style-1 input[type=datetime],
+.form-style-1 input[type=number],
+.form-style-1 input[type=search],
+.form-style-1 input[type=time],
+.form-style-1 input[type=url],
+.form-style-1 input[type=email],
+textarea
+{
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border:1px solid #BEBEBE;
+  padding: 7px;
+  margin:0px;
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;  
+}
+
+.form-style-1 .field-divided
+{
+  width: 49%;
+}
+
+.form-style-1 .field-long
+{
+  width: 90%;
+}
+
+.form-style-1 .field-select
+{
+  width: 100%;
+}
+
+.form-style-1 .field-textarea
+{
+  height: 100px;
+}
+
+.form-style-1 input[type=submit], .form-style-1 input[type=button]
+{
+  background: #235B6D;
+  padding: 8px 15px 8px 15px;
+  border: none;
+  color: #fff;
+}
+
+.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover
+{
+  background: #4691A4;
+  box-shadow:none;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+}
+
+.form-style-1 .required
+{
+  color:red;
 }
 
 /*#################################### Popup  ############################################################*/

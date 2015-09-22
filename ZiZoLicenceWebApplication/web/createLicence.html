@@ -30,8 +30,40 @@
       </div>
     </div>
     
+    <div id="pageDiv">
+    <form id = "default_form" action="#">
+    <fieldset id="default_fieldset">
+      <legend id = "default_legend">Create A Licence</legend>
+        <ul class="form-style-1">
+          <li><label>Licence Name:<span class="required">*</span></label>
+              <input type="text" id = "username" class="field-long" placeholder="Licence Name" />
+          </li>
+          <li><label>Server Address:<span class="required">*</span></label>
+              <input type="text" id = "url" class="field-long" placeholder="Server Address" />
+          </li>
+          <li><label>Filter:</label>
+              <input type="text" id = "filter" class="field-long" placeholder="Filter" />
+          </li>
+          <li><label>Select The Licence Length:<span class="required">*</span></label>
+            <hr id="createLicenceHr">
+            <p><label id = "formLabel" for = "30Days">Thirty Days:</label>
+               <input type = "radio" id = "thirtyDays" name = "createLicence_radio"/></p>
+            <p><label id = "formLabel" for = "neverExpires">Never Expires:</label>
+               <input type = "radio" id = "neverExpires" name = "createLicence_radio" required/></p>
+            <p><label id = "formLabel" for = "specified">User Specified:</label>
+                <input type = "radio" id = "specified" name = "createLicence_radio"/></p>
+                <input type = "date" id = "specifiedLength"/>
+            <p><output id = "expiryDate"></output></p>    
+            <hr id="createLicenceHr">
+          </li>
+      <input type = "button" id = "default_submitButton" value="Create Licence" class="loginButtons2"/>
+      </ul>
+    </fieldset>
+    </form>
+    </div>
+    
    
-    <div id = "pageDiv">    
+    <!--<div id = "pageDiv">    
      <form id = "default_form" action="#">
      <h2>Create A Licence</h2>
       <fieldset id = "default_fieldset">
@@ -48,7 +80,7 @@
           <p><input type = "button" id = "default_submitButton" value="Create Licence" class="loginButtons2"/></p>
       </fieldset>
      </form>
-    </div>
+    </div>-->
 
     
     <script type="text/javascript" src="menu.js"> </script>

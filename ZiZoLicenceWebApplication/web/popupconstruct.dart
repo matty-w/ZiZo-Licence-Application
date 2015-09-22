@@ -167,7 +167,7 @@ class PopupWindow
     if(option == "remove-licence")
     {
       title = "Licence Removed";
-      description = "The Licence Has Been Successfully Removed: ";
+      description = "The Licence(s) Has Been Successfully Removed: ";
       querySelector("#popupTitle").innerHtml = title;
       OutputElement text = querySelector("#popupText");
       text.innerHtml = description;

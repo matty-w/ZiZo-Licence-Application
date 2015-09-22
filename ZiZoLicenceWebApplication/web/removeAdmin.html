@@ -28,13 +28,16 @@
       </div>
     </div>
     
-    <div id = "pageDiv">    
+    <div id = "pageDivSmall">    
      <form id = "default_form" action="#">
-      <h2>Remove Admin</h2>
       <fieldset id = "default_fieldset">
         <legend id = "default_legend">Remove A User</legend>
-          <p><label id = "formLabel" for="username">User For Deletion:</label> <input type = "text" id = "username" required/></p>
+          <ul class="form-style-1">
+          <li><label>User For Deletion:<span class="required">*</span></label>
+              <input type = "text" id = "username" class="field-long" placeholder="Admin Username"/>
+          </li>
           <p><input type = "button" id = "removeUser_button" value="Remove Admin" class="loginButtons2"/></p>
+          </ul>
       </fieldset>
      </form>
     </div> 

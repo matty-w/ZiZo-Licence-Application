@@ -6,14 +6,6 @@ class HelpScreenFunctions
 {
   WindowBase helpWindow;
    
-  void showHelpScreen(String url)
-  {
-    if(helpWindow != null && !helpWindow.closed)
-      helpWindow.location;
-    else
-      helpWindow = window.open(url, "",'width=500,height=300,scrollbars=yes');
-  }
-  
   showAddPermissionsScreen(MouseEvent m)
   { 
     showHelpScreen("helpPages/addPermissionsHelp.html");  
@@ -24,9 +16,22 @@ class HelpScreenFunctions
     showHelpScreen("helpPages/addAdminHelp.html");
   }
   
+  showChangePassword(MouseEvent m)
+  {
+    showHelpScreen("helpPages/changePasswordHelp.html");
+  }
+  
   showCreateLicenceScreen(MouseEvent m)
   {
     showHelpScreen("helpPages/createLicenceHelp.html");
+  }
+  
+  void showHelpScreen(String url)
+  {
+    if(helpWindow != null && !helpWindow.closed)
+      helpWindow.location;
+    else
+      helpWindow = window.open(url, "",'width=500,height=300,scrollbars=yes');
   }
   
   showLogAccessScreen(MouseEvent m)
@@ -49,13 +54,13 @@ class HelpScreenFunctions
     showHelpScreen("helpPages/removeAdminHelp.html");
   }
   
+  showSearchScreen(MouseEvent m)
+  {
+    showHelpScreen("helpPages/searchScreenHelp.html");
+  }
+  
   showViewLicencesScreen(MouseEvent m)
   {
     showHelpScreen("helpPages/viewLicencesHelp.html");
-  }
-  
-  showChangePassword(MouseEvent m)
-  {
-    showHelpScreen("helpPages/changePasswordHelp.html");
   }
 }  

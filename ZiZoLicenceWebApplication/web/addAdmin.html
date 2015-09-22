@@ -28,15 +28,22 @@
       </div>
     </div>
     
-    <div id = "pageDiv">    
+    <div id = "pageDivSmall">    
      <form id = "default_form" action="#">
-      <h2>Add Admin</h2>
       <fieldset id = "default_fieldset">
         <legend id = "default_legend">Add An Admin</legend>
-          <p><label id = "formLabel" for="username">New Admin:</label> <input type = "text" id = "username" required/></p>
-          <p><label id = "formLabel" for = "password">Password:</label> <input type = "password" id = "password" required/><br /></p>
-          <p><label id = "formLabel" for = "confirmPassword">Confirm Password:</label><input type = "password" id = "confirmPassword" required/></p>
+          <ul class="form-style-1">
+          <li><label>New Admin:<span class="required">*</span></label>
+              <input type="text" id = "username" class="field-long" placeholder="Admin Name"/>
+          </li>
+          <li><label>Password:<span class="required">*</span></label>
+              <input type="password" id = "password" class="field-long" placeholder="Password" />
+          </li>
+          <li><label>Confirm Password:<span class="required">*</span></label>
+              <input type="password" id = "confirmPassword" class="field-long" placeholder="Confirm Password" />
+          </li>
           <p><input type = "button" id = "addUser_submitButton" value="Add Admin" class="loginButtons2"/></p>
+          </ul>
       </fieldset>
      </form>
     </div>   
