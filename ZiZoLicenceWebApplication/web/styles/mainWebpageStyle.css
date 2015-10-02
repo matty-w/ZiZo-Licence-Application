@@ -2,6 +2,170 @@
 
 /*################################## Main CSS Elements ######################################################*/
 
+html 
+{ 
+  height: 100% 
+
+}
+
+::-moz-selection 
+{ 
+  background: #235B6D; color: #fff; text-shadow: none;
+}
+
+::selection
+{ 
+  background: #235B6D; color: #fff; text-shadow: none;
+}
+
+.login 
+{
+  background: #eceeee;
+  border: 1px solid #42464b;
+  border-radius: 6px;
+  height: 300px;
+  width: 298px;
+  position: relative;
+  top: 14em;
+  bottom: auto;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login h1 
+{
+  background-image: linear-gradient(top, #f1f3f3, #d4dae0);
+  border-bottom: 1px solid #a6abaf;
+  border-radius: 6px 6px 0 0;
+  box-sizing: border-box;
+  color: #727678;
+  display: block;
+  height: 43px;
+  font: 600 14px/1 'Open Sans', sans-serif;
+  padding-top: 14px;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.2), 0 1px 0 #fff;
+}
+
+input[type="password"], input[type="text"] 
+{
+  border: 1px solid #a1a3a3;
+  border-radius: 4px;
+  box-shadow: 0 1px #fff;
+  box-sizing: border-box;
+  color: #696969;
+  height: 39px;
+  margin: 31px 0 0 29px;
+  padding-left: 37px;
+  transition: box-shadow 0.3s;
+  width: 240px;
+}
+
+input[type="password"]:focus, input[type="text"]:focus 
+{
+  box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+  outline: 0;
+}
+
+.forgot:hover 
+{ 
+  color: #3b3b3b
+}
+
+#submitButton
+{
+  width:240px;
+  height:35px;
+  display:block;
+  font-family:Arial, "Helvetica", sans-serif;
+  font-size:16px;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+  text-transform:uppercase;
+  text-align:center;
+  padding-top:6px;
+  margin: 29px 0 0 29px;
+  position:relative;
+  cursor:pointer;
+  border: none;  
+  background-color: #235B6D;
+  background-image: linear-gradient(top,#3db0a6,#3111);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius:5px;
+}
+
+#resetButton
+{
+  width:240px;
+  height:35px;
+  display:block;
+  font-family:Arial, "Helvetica", sans-serif;
+  font-size:16px;
+  font-weight:bold;
+  color:#fff;
+  text-decoration:none;
+  text-transform:uppercase;
+  text-align:center;
+  padding-top:6px;
+  margin: 29px 0 0 29px;
+  position:relative;
+  cursor:pointer;
+  border: none;  
+  background-color: #AF2525;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius:5px;
+}
+
+#submitButton:hover
+{
+  background-color: #1C4B5B;  
+}
+
+#resetButton:hover
+{
+  background-color: #901F1F;  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #buttonDiv
 {
   width: 200px;
@@ -127,6 +291,38 @@ h2
   font-weight: 300; 
   text-shadow: 1px 1px #000000;
   text-align: center;
+}
+
+#loginTitle
+{
+  color: #ffffff; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 30px; 
+  font-weight: 300; 
+  text-shadow: 1px 1px #000000;
+  text-align: center;
+  position: relative;
+  top: 6em;
+  bottom: auto;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loginSubTitle
+{
+  color: #ffffff; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 20px; 
+  font-weight: 300; 
+  text-shadow: 1px 1px #000000;
+  text-align: center; 
+  position: relative;
+  top: 10em;
+  bottom: auto;
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 h3
@@ -308,7 +504,7 @@ td
 
 #specified
 {
-  margin-left: 48px;
+  margin-left: 47px;
 }
 
 #createLicenceHr
@@ -345,10 +541,7 @@ td
 
 #usernameTextbox
 {
-  position: absolute;
-  height: 25px;
-  margin-left: 50%;
-  width: 11em;
+
 }
 #usernameLabel
 {
@@ -360,10 +553,7 @@ td
 
 #passwordTextbox
 {
-  position: absolute;
-  height: 25px;
-  width: 11em;
-  margin-left: 50%;
+
 }
 
 #passwordLabel
@@ -388,14 +578,10 @@ td
 
 #loginForm
 {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  width: 35em;
-  height: 100%;
+
 }
 
-#resetButton
+/*#resetButton
 {
   position: absolute;
   width: 50%;
@@ -406,7 +592,7 @@ td
   position: absolute;
   margin-left: 50%;
   width: 50%;
-}
+}*/
 
 #version
 {
@@ -695,7 +881,7 @@ textarea
 
 .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover
 {
-  background: #4691A4;
+  background: #296b80;
   box-shadow:none;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;

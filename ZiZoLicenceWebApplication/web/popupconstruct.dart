@@ -172,6 +172,16 @@ class PopupWindow
       OutputElement text = querySelector("#popupText");
       text.innerHtml = description;
     } 
+    if(option == "no-licence")
+    {
+      title = "Error";
+      description = "No Licence Name Entered, Please Enter A Licence Name.";
+      querySelector("#popupTitle").innerHtml = title;
+      OutputElement server = querySelector("#serverResponse");
+      server.innerHtml = "";
+      OutputElement text = querySelector("#popupText");
+      text.innerHtml = description;
+    }
     if(option == "no-username")
     {
       title = "Error";
@@ -246,6 +256,36 @@ class PopupWindow
     {
       title = "Delete Entries?";
       querySelector("#popupTitle").innerHtml = title;
+    }
+    if(option == "incorrect-details")
+    {
+      title = "Error";
+      description = "The Username and/or Password are invalid, please try again.";
+      querySelector("#popupTitle").innerHtml = title;
+      OutputElement text = querySelector("#popupText");
+      text.innerHtml = description;
+      OutputElement server = querySelector("#serverResponse");
+      server.innerHtml = "";      
+    }
+    if(option == "no-username")
+    {
+      title = "Error";
+      description = "No Username entered, please enter a Username and try again.";
+      querySelector("#popupTitle").innerHtml = title;
+      OutputElement text = querySelector("#popupText");
+      text.innerHtml = description;
+      OutputElement server = querySelector("#serverResponse");
+      server.innerHtml = "";       
+    }
+    if(option == "no-password")
+    {
+      title = "Error";
+      description = "No Password entered, please enter a Password and try again.";
+      querySelector("#popupTitle").innerHtml = title;
+      OutputElement text = querySelector("#popupText");
+      text.innerHtml = description;
+      OutputElement server = querySelector("#serverResponse");
+      server.innerHtml = "";       
     }
   }
   

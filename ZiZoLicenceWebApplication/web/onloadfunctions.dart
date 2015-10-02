@@ -10,6 +10,12 @@ class OnLoadFunctions
 { 
   GlobalFunctions g = new GlobalFunctions();
   
+  void login()
+  {
+    PopupWindow p = new PopupWindow();     
+    querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
+  }
+  
   void createLicence()
   {
     CreateLicenceFunctions c = new CreateLicenceFunctions();
@@ -97,6 +103,7 @@ class OnLoadFunctions
     String response = local['permissions'];
     InputElement searchBox = querySelector("#licenceSearch");
     ButtonElement searchButton = querySelector("#removeLicenceSearch_button");
+    window.onLoad.listen(g.clearTable);
     searchBox.disabled = true;
     searchButton.disabled = false;
     if(response.contains("check-licence"))
@@ -131,11 +138,11 @@ class OnLoadFunctions
     window.onLoad.listen(s.loadTable);
     querySelector("#helpButton").onClick.listen(help.showSearchScreen);
     querySelector("#dismissFail").onClick.listen(p.dismissPrompt);
-    querySelector("#dismissSuccess").onClick.listen(s.completeDeletion);
+    querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);
+    querySelector("#dismissSuccess").onClick.listen(p.dismissPrompt);
     querySelector("#returnButton").onClick.listen(s.returnToPage);
     querySelector("#deleteLicencesButton").onClick.listen(s.deleteLicences);
     querySelector("#username-output").innerHtml = window.sessionStorage['username'];  
-    querySelector("#dismissFinal").onClick.listen(s.returnToPage);
   }
   
   void changePassword()

@@ -16,7 +16,12 @@ String licenceLengthError;
 List<String> licenceNames;
 List<String> licenceDates;
 List<String> licenceKeys;
+List<int> tableRows = new List<int>();
 HttpRequest request = new HttpRequest();
+int checkboxLength = null;
+int nullRows = 0;
+int deletedRows = 0;
+int deletedRows2 = 0;
 
 class GlobalFunctions
 {
@@ -36,7 +41,6 @@ class GlobalFunctions
   {
     PopupWindow p = new PopupWindow();
     clipboardPrompt(p.getLicenceName());
-    window.location.reload();
   }
   
   void clipboardPrompt(String licence)
@@ -46,6 +50,12 @@ class GlobalFunctions
     print(result);
     sp.popupLicence("add-licence","#popUpDiv");
     main();
+  }
+  
+  void clearTable(Event e)
+  {
+    TableElement table = querySelector("#searchTable");
+    table.hidden = true;
   }
 }
 
@@ -155,7 +165,7 @@ class CreateLicenceFunctions
     
     if(un.value == null || un.value.trim() == "")
     {
-      sp.popupOther("no-username","#popUpDiv");
+      sp.popupOther("no-licence","#popUpDiv");
       return;
     }
     
@@ -542,11 +552,11 @@ class SearchResults
 
     for(int i = 0; i < licenceName.length; i++)
     {
-      TableRowElement row = table.insertRow(i);
-      TableCellElement checkboxCell = row.insertCell(-1);
-      TableCellElement lName = row.insertCell(-1);
-      TableCellElement lKey = row.insertCell(-1);
-      TableCellElement lDate = row.insertCell(-1);
+      TableRowElement row = table.insertRow(-1);
+      TableCellElement checkboxCell = row.insertCell(0);
+      TableCellElement lName = row.insertCell(1);
+      TableCellElement lKey = row.insertCell(2);
+      TableCellElement lDate = row.insertCell(3);
       checkboxCell.innerHtml = "<input id=checkbox$i type='checkbox'>";
       lName.text = licenceName[i];
       lKey.text = keysList[i];
@@ -566,6 +576,16 @@ class SearchResults
   {
     Storage local = window.sessionStorage;
     int rows = int.parse(local['rows']);
+    TableElement table = querySelector("#searchTable");
+    int tableLength = table.rows.length;
+    table.remove();
+    if(tableLength > 0)
+    {
+      for(int i = 0; table.rows.length > 0; i++)
+      {
+        table.deleteRow(0);
+      }
+    }
     for(int i = 0; i < rows; i++)
     {
       local['licenceDate$i'] = "";
@@ -573,6 +593,7 @@ class SearchResults
       local['licenceKey$i'] = "";
     }
     local['rows'] = "";
+    checkboxLength == null;
     window.location.href = "removeLicence.html";
   }
   
@@ -588,28 +609,88 @@ class SearchResults
     }
     if(licencesForDeletion.length > 0)
     {
-      sp.popupLicenceList(licencesForDeletion, "#popUpDiv");
+      completeDeletion();
     }
   }
   
-  void completeDeletion(MouseEvent m)
+  void completeDeletion()
   {
     TableElement table = querySelector("#searchTable");
-    int checkboxLength = table.rows.length;
     PopupWindow p = new PopupWindow();
     SelectPopup sp = new SelectPopup();
     
     for(int i = 0; i < checkboxLength-1; i++)
     {
       CheckboxInputElement checkbox = querySelector("#checkbox$i");
+      
+      if(checkbox == null)
+      {
+        deletedRows = deletedRows+1;
+        continue;
+      }
+      
       if(checkbox.checked == true)
       {
-        String licenceKey = ParseResponse.parseLicenceKey(table.rows[i+1].innerHtml);
+        String licenceKey = ParseResponse.parseLicenceKey(table.rows[i+1-deletedRows].innerHtml);
         LicenceServerRequest.removeLicence(licenceKey, window.sessionStorage['username'],window.sessionStorage['password'],
                        LicenceServerRequest.defaultUri(), moveToNext(), (s) => p.getResult(sp.popupFail("#popUpDiv"), s));
       }
     }
-    sp.popupOther("remove-licence","#popUpDiv");
+    removeRows();
+    p.getResult(sp.popup("remove-licence", "#popUpDiv"), "");
+    nullRows = 0;
+    deletedRows = 0;
+    deletedRows2 = 0;
+  }
+  
+  removeRows()
+  {
+    TableElement table = querySelector("#searchTable");
+    int deletedRows1 = 0;
+    
+    for(int i = 0; i < checkboxLength-1; i++)
+    {
+      CheckboxInputElement checkbox = querySelector("#checkbox$i");
+      
+      if(checkbox == null)
+      {
+        deletedRows2 = deletedRows2+1;
+        continue;
+      }
+        
+      if(checkbox.checked == true && i == 0 && deletedRows2 == 0)
+      {
+        table.rows[i+1].remove();
+        deletedRows1++;
+        continue;
+      }
+      if(checkbox.checked == true && i-deletedRows1 == 0 && deletedRows2 == 0)
+      {
+        table.rows[1].remove();
+        deletedRows1++;
+        continue;
+      }
+      if(checkbox.checked == true && i != 0 && deletedRows2 == 0)
+      {
+        int row = i-deletedRows1;
+        table.rows[row+1].remove();
+        deletedRows1++;
+        continue;
+      }
+      if(checkbox.checked == true && i == 0 && deletedRows2 != 0)
+      {
+        table.rows[1].remove();
+        deletedRows1++;
+        continue;
+      }
+      if(checkbox.checked == true && i != 0 && deletedRows2 != 0)
+      {
+        int row = i-deletedRows1-deletedRows2;
+        table.rows[row+1].remove();
+        deletedRows1++;
+        continue;
+      }
+    }
   }
   
   moveToNext()
@@ -621,15 +702,31 @@ class SearchResults
   {
     TableElement table = querySelector("#searchTable");
     List<String> licences = new List<String>();
-    int checkboxLength = table.rows.length;
+    if(checkboxLength == null)
+    {
+      checkboxLength = table.rows.length;      
+    }
     
     for(int i = 0; i < checkboxLength-1; i++)
     {
       CheckboxInputElement checkbox = querySelector("#checkbox$i");
-      if(checkbox.checked == true)
+      
+      if(checkbox == null)
+      {
+        nullRows = nullRows+1;
+        continue;
+      }
+      
+      if(checkbox.checked == true && nullRows  != 0)
+      {
+        String licenceName = ParseResponse.parseLicenceName(table.rows[i+1-nullRows].innerHtml);
+        licences.add(licenceName);
+      }
+      
+      if(checkbox.checked == true && nullRows == 0)
       {
         String licenceName = ParseResponse.parseLicenceName(table.rows[i+1].innerHtml);
-        licences.add(licenceName);
+        licences.add("LICENCE NAME: "+licenceName);
       }
     }
     return licences;

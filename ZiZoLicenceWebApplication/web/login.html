@@ -12,28 +12,33 @@
 	<img id="zizoLogo" src="images/logo-zizo.jpg"/>
 	<img id="bottomPage" src="images/whiteBackground.jpg"/>
 	
-  
-  
-  <div id = "loginDiv">
-    <form id = "loginForm">
-    <h2>The Licence Server Application</h2>
-    <h3>Please Login To Continue:</h3>
-    <br>
-    <div id="loginDetailsDiv">
-    <p><label id="usernameLabel" for="projectTextbox">User Name:</label>
-    <input type="text" id="usernameTextbox" value="" required/></p>
-    <br>
-    <p><label id="passwordLabel" for="passwordTextbox">Password:</label>
-    <input type="password" id="passwordTextbox" value="" required/></p>
+
+    <div id="blanket" style="display:none"></div>
+    <div id="popUpDiv" style="display:none">
+      <br>
+      <img id = "tick" src = "images/ticksmall.png"/>
+      <h2 id = "popupTitle">Licence Created</h2>
+      <p id = "popupParagraph"><output id = "popupText"></output><output id = "serverResponse"></output><p>
+      <div align="center">
+      <button id = "dismissFinal" class = "dismissButton">Dismiss</button>
+      <button id = "clipboard" class = "popupButtons">Copy To Clipboard</button>
+      <button id = "dismissFail" class = "dismissButton">No</button>
+      <button id = "dismissSuccess" class = "popupButtons">Yes</button>
+      </div>
     </div>
-    <div id="buttonDiv">
-    <button id="resetButton" type="reset" class="loginButtons2">Reset</button>
-    <button id="submitButton" type="button" class="loginButtons2">Submit</button>
-    </div>
-    </form>
+
+  <h2 id="loginTitle">The Licence Server Application</h2>
+  <h3 id="loginSubTitle">Please Login To Continue:</h3>
+  <form id = "loginForm">
+  <div class="login">
+    <input type="text" placeholder="Username" id="usernameTextbox" />
+    <input type="password" placeholder="Password" id="passwordTextbox" />
+    <button id="submitButton" type="button">Submit</button>
+    <button id="resetButton" type="reset">Reset</button>
   </div>
+  </form>
  
- <text id = "version">Version: 2.1.5</text>  
+ <text id = "version">Version: 3.1.9</text>  
  </body>
  </html>
 

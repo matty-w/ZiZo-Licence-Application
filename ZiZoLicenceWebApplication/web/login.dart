@@ -1,5 +1,6 @@
 import 'loginfunctions.dart';
 import 'dart:html';
+import 'popupconstruct.dart';
 
 void main()
 {
@@ -9,15 +10,9 @@ void main()
 
 void refresh(Event e)
 {
-  LoginAndOut log = new LoginAndOut();      
-  querySelector("#resetButton").onClick.listen(resetTextboxes);
+  LoginAndOut log = new LoginAndOut();    
+  PopupWindow p = new PopupWindow();  
   querySelector("#submitButton").onClick.listen(log.login);
+  querySelector("#dismissFinal").onClick.listen(p.dismissPrompt);  
 }
 
-void resetTextboxes(MouseEvent m)
-{
-  InputElement username = querySelector("#usernameTextbox");
-  InputElement password = querySelector("#passwordTextbox");
-  username.value = "";
-  password.value = "";
-}

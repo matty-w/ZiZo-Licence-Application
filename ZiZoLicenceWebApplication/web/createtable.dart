@@ -9,10 +9,10 @@ class CreateTable
     TableElement table = querySelector("#searchTable");
     TableSectionElement header = table.createTHead();
     TableRowElement headerRow = header.insertRow(-1);
-    TableCellElement cell = headerRow.insertCell(-1);
-    TableCellElement cell2 = headerRow.insertCell(-1);
-    TableCellElement cell3 = headerRow.insertCell(-1);
-    TableCellElement cell4 = headerRow.insertCell(-1);
+    TableCellElement cell = headerRow.insertCell(0);
+    TableCellElement cell2 = headerRow.insertCell(1);
+    TableCellElement cell3 = headerRow.insertCell(2);
+    TableCellElement cell4 = headerRow.insertCell(3);
     cell.text = "";
     cell.style.backgroundColor = "#235B6D";
     cell2.style.backgroundColor = "#235B6D";
